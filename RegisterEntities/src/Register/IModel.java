@@ -30,6 +30,5 @@ public interface IModel {
       public List<Curso> searchCursosEstu(Estudiante estudiante);
       public List<Grupo> searchGruposProf(Profesor profe);
       public List<Estudiante> getEstuGrupo(Grupo grupo);
-      
-
+      public  void close();
 }

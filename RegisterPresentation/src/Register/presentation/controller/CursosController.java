@@ -51,7 +51,7 @@ public class CursosController {
     }
 
     public void borrar(int row){
-        Curso seleccionada = model.getCursosModel().getRowAt(row); 
+        /*Curso seleccionada = model.getCursosModel().getRowAt(row); 
         try {
             Application.Model.deleteCurso(seleccionada);
         } catch (Exception ex) {
@@ -59,6 +59,7 @@ public class CursosController {
         }
         List<Curso> rowsMod = Application.Model.searchCursos(model.getFiltro());
         model.setCursos(rowsMod);
+        */
     }
     
     public void close(){

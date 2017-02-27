@@ -103,4 +103,7 @@ public class Model implements IModel{
     public List<Estudiante> getEstuGrupo(Grupo grupo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public  void close(){
+    }
 }
