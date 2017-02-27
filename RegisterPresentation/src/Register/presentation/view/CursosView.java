@@ -5,12 +5,32 @@
  */
 package Register.presentation.view;
 
+import Register.presentation.controller.CursosController;
+import Register.presentation.model.CursoModel;
+
 /**
  *
  * @author Estudiante
  */
-public class CursosView extends javax.swing.JFrame {
+public class CursosView extends javax.swing.JFrame implements java.util.Observer{
 
+    CursosController controller;
+    CursoModel model;
+    
+    public void setController(CursosController controller){
+        this.controller=controller;
+    }
+    public void setModel(CursoModel model){
+        this.model=model;
+         model.addObserver(this);
+    }
+    
+   public void update(java.util.Observable updatedModel,Object parametros){
+       if (parametros != CursoModel.PERSONAS_MODEL) return;
+       textNombreCurso.setText(model.getFiltro().getNombre());
+       cursosTable.setModel(model.getCursosModel());
+       this.revalidate();
+   }
     /**
      * Creates new form NewJFrame
      */
@@ -35,7 +55,7 @@ public class CursosView extends javax.swing.JFrame {
         textCarrera = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        cursosTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mantenimiento Cursos");
@@ -59,7 +79,7 @@ public class CursosView extends javax.swing.JFrame {
 
         btnBuscar.setText("buscar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        cursosTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -70,7 +90,7 @@ public class CursosView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(cursosTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,13 +180,13 @@ public class CursosView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JTable cursosTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelCarrera;
     private javax.swing.JLabel labelCodigo;
     private javax.swing.JLabel labelNombreCurso;
     private javax.swing.JTextField textCarrera;
     private javax.swing.JTextField textCodigo;
-    private javax.swing.JTextField textNombreCurso;
+    public javax.swing.JTextField textNombreCurso;
     // End of variables declaration//GEN-END:variables
 }
