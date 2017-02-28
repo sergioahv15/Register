@@ -18,6 +18,7 @@ import java.util.List;
  * @author Herrera
  */
 public interface IModel {
+
       public List<Curso> search_CUR_NOM(String nombre);
       public List<Curso> search_CUR_COD(String codigo);
       public List<Curso> search_CUR_CAR(Carrera carrera);
@@ -47,5 +48,6 @@ public interface IModel {
       public List<Estudiante> search_EST_GRU(int numGrupo);
       
       public List<Curso> search_HIS_GLOB(int ced);
+
 
 }

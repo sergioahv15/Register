@@ -152,6 +152,9 @@ public class Model implements IModel{
     public List<Curso> search_HIS_GLOB(int ced) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public  void close(){
+    }
 }
 
     

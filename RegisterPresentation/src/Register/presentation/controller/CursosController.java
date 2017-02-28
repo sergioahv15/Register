@@ -27,10 +27,10 @@ public class CursosController {
     }
     
     public void buscar(){
-        model.getFiltro().setNombre(view.nombreFld.getText());
+        model.getFiltro().setNombre(view.textNombreCurso.getText());
         Curso filtro= new Curso();
         filtro.setNombre(model.getFiltro().getNombre());
-        List<Curso> rows = Application.Model.searchCursos(filtro);
+        List<Curso> rows = Application.Model.searchCursosDisp(filtro);
         //List<Curso> rows = Model.searchCursos(model.getFiltro());
         model.setCursos(rows);
     }
@@ -39,7 +39,7 @@ public class CursosController {
         model.clearErrors();
         model.setModo(Application.MODO_AGREGAR);
         model.setCursoCurrent(new Curso());
-        Application.PERSONA_VIEW.setVisible(true);
+        Application.CURSO_VIEW.setVisible(true);
     }
     
     public void editar(int row){
@@ -47,11 +47,11 @@ public class CursosController {
         Curso seleccionada = model.getCursosModel().getRowAt(row); 
         model.setModo(Application.MODO_EDITAR);
         model.setCursoCurrent(seleccionada);
-        Application.PERSONA_VIEW.setVisible(true);
+        Application.CURSO_VIEW.setVisible(true);
     }
 
     public void borrar(int row){
-        Curso seleccionada = model.getCursosModel().getRowAt(row); 
+        /*Curso seleccionada = model.getCursosModel().getRowAt(row); 
         try {
             Application.Model.deleteCurso(seleccionada);
         } catch (Exception ex) {
@@ -59,6 +59,7 @@ public class CursosController {
         }
         List<Curso> rowsMod = Application.Model.searchCursos(model.getFiltro());
         model.setCursos(rowsMod);
+        */
     }
     
     public void close(){
