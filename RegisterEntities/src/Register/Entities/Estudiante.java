@@ -19,10 +19,10 @@ public class Estudiante extends Usuario {
     private String Email;
     private Date FechaNac;
     Carrera Carrera;
-    Nota Nota;
+    Historial Historial;
   
 
-    public Estudiante(String nombre, int tel, String email, Date fechaNac,Carrera c,Nota n,
+    public Estudiante(String nombre, int tel, String email, Date fechaNac,Carrera c,Historial h,
             String clave, int cedula, int tipo) {
         super(clave, cedula, tipo);
         this.Nombre = nombre;
@@ -30,7 +30,7 @@ public class Estudiante extends Usuario {
         this.Email = email;
         this.FechaNac = fechaNac;
         this.Carrera= c;
-        this.Nota=n;
+        this.Historial= h;
     }
 
     public Estudiante() {
@@ -40,8 +40,18 @@ public class Estudiante extends Usuario {
         this.Email="";
         this.FechaNac= new java.sql.Date(1900,01,01);
         this.Carrera= new Carrera();
-        this.Nota= new Nota();
+        this.Historial= new Historial();
     }
+
+    public Historial getHistorial() {
+        return Historial;
+    }
+
+    public void setHistorial(Historial Historial) {
+        this.Historial = Historial;
+    }
+    
+    
 
     public Carrera getCarrera() {
         return Carrera;
@@ -50,16 +60,6 @@ public class Estudiante extends Usuario {
     public void setCarrera(Carrera Carrera) {
         this.Carrera = Carrera;
     }
-
-    public Nota getNota() {
-        return Nota;
-    }
-
-    public void setNota(Nota Nota) {
-        this.Nota = Nota;
-    }
-
-    
     
     public String getNombre() {
         return Nombre;

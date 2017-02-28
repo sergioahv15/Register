@@ -18,18 +18,34 @@ import java.util.List;
  * @author Herrera
  */
 public interface IModel {
-      public List<Curso> searchCursosDisp(Curso filtro);
-      public void updateCurso(Curso curso)throws Exception;
-      public Carrera getCarrera(String nombre, String codigo); // busqueda por nombre o codigo, dependiendo del parametro que se pase.
-      public List<Profesor> getProfesor(String nombre, int ced);
-      public void updateProfesor(Profesor profe)throws Exception;
-      public List<Estudiante> getEstudiantes(String nombre,int ced, Carrera carrera);
-      public List<Ciclo> getCiclos(int annio);
-      public void updateCiclo(Ciclo ciclo)throws Exception;
-      public void ofertaAcad(Carrera carrera, Ciclo ciclo);
-      public List<Curso> searchCursosEstu(Estudiante estudiante);
-      public List<Grupo> searchGruposProf(Profesor profe);
-      public List<Estudiante> getEstuGrupo(Grupo grupo);
+      public List<Curso> search_CUR_NOM(String nombre);
+      public List<Curso> search_CUR_COD(String codigo);
+      public List<Curso> search_CUR_CAR(Carrera carrera);
+      public void update(Curso curso)throws Exception;
       
+      public Carrera search_CAR_NOM(String nombre); 
+      public Carrera search_CAR_COD(String codigo);
+      public void update(Carrera carrera)throws Exception;
+      
+      public List<Profesor> search_PRO_NOM(String nombre);
+      public List<Profesor> search_PRO_CED(int ced);
+      public void update(Profesor profe)throws Exception;
+      
+      public List<Estudiante> search_EST_NOM(String nombre);
+      public List<Estudiante> search_EST_CED(int ced);
+      public List<Estudiante> search_EST_CAR(Carrera carrera);
+      public void update(Estudiante estu)throws Exception;
+      
+      public List<Ciclo> search_CIC_ANYO(int annio);
+      public void update(Ciclo ciclo)throws Exception;
+      
+      public List<Curso> ofertaAcad(Carrera carrera, Ciclo ciclo);
+      public List<Grupo> search_GRU_COD(String cod);
+      
+      public List<Curso> search_HIS_ACT(int ced);
+      public List<Grupo> search_GRU_PRO(int ced); 
+      public List<Estudiante> search_EST_GRU(int numGrupo);
+      
+      public List<Curso> search_HIS_GLOB(int ced);
 
 }

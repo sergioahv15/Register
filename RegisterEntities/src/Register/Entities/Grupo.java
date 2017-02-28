@@ -18,22 +18,36 @@ public class Grupo {
     private ArrayList<Estudiante> Estudiantes;
     private ArrayList<Nota> Notas;
     Horario Horario;
+    Curso Curso;
 
     public Grupo() {
         Profesor = new Profesor();
         Estudiantes= new ArrayList<>();
         Notas = new ArrayList<>();
         Horario = new Horario();
+        Curso = new Curso();
     }
 
-    public Grupo(int NumeroGrupo, Profesor Profesor, ArrayList<Estudiante> Estudiantes, ArrayList<Nota> Notas, Horario Horario) {
+    public Grupo(int NumeroGrupo, Profesor Profesor, ArrayList<Estudiante> Estudiantes, ArrayList<Nota> Notas,
+            Horario Horario,Curso c) {
         this.NumeroGrupo = NumeroGrupo;
         this.Profesor = Profesor;
         this.Estudiantes = Estudiantes;
         this.Notas = Notas;
         this.Horario = Horario;
+        this.Curso=c;
     }
 
+    public Curso getCurso() {
+        return Curso;
+    }
+
+    public void setCurso(Curso Curso) {
+        this.Curso = Curso;
+    }
+
+    
+    
     public int getNumeroGrupo() {
         return NumeroGrupo;
     }

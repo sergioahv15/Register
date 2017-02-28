@@ -5,6 +5,8 @@
  */
 package Register.Entities;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -91,8 +93,30 @@ public class Curso {
     }
 
     public ArrayList<Grupo> getGrupos() {
+        if(Grupos.isEmpty()){
+            Grupo g = new Grupo();
+          /*  DataBase db = new DataBase(null,null,null);
+            try{
+                String SQL= "select * from curso c where c.grupo like %s";
+                SQL= String.format(SQL,g.getCurso().getCodigo());
+                ResultSet rs= db.executeQuery(SQL);
+                while(rs.next()){
+                    Grupos.add(grupo(rs));
+                }}
+                catch(SQLException ex){}
+            }*/
+            
+            
+        }
         return Grupos;
     }
+    
+
+    private Grupo grupo(ResultSet rs){
+        Grupo g = new Grupo();
+        return g;
+        
+}
 
     public void setGrupos(ArrayList<Grupo> grupos) {
         this.Grupos = grupos;
