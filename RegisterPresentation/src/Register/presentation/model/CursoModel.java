@@ -24,7 +24,7 @@ public class CursoModel extends java.util.Observable{
         initCursos();
     }
 
-//======= PERSONA ============    
+//======= CURSO ============    
     Curso cursoCurrent;
     Hashtable<String,String> errores;
     String mensaje;
@@ -72,10 +72,10 @@ public class CursoModel extends java.util.Observable{
     public void setCursoCurrent(Curso cursoCurrent) {
         this.cursoCurrent = cursoCurrent;
         setChanged();
-        notifyObservers(PERSONA_CURRENT);        
+        notifyObservers(CURSO_CURRENT);        
     }
 
-//======== PERSONAS ===========
+//======== CURSOS ===========
     Curso filtro;
     CursoTableModel cursosModel;
     
@@ -105,17 +105,17 @@ public class CursoModel extends java.util.Observable{
     public void addObserver(java.util.Observer o) {
         super.addObserver(o);
         setChanged();
-        notifyObservers(PERSONA_CURRENT);
+        notifyObservers(CURSO_CURRENT);
         setChanged();        
-        notifyObservers(PERSONAS_MODEL);
+        notifyObservers(CURSOS_MODEL);
     }
     
     public void setCursosModel(CursoTableModel cursosModel) {
         this.cursosModel = cursosModel;
         setChanged();
-        notifyObservers(PERSONAS_MODEL);
+        notifyObservers(CURSOS_MODEL);
     }
     
-    public static Integer PERSONA_CURRENT=1;
-    public static Integer PERSONAS_MODEL=2;
+    public static Integer CURSO_CURRENT=1;
+    public static Integer CURSOS_MODEL=2;
 }
