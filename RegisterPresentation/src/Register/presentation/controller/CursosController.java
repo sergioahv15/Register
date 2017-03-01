@@ -6,6 +6,7 @@
 package Register.presentation.controller;
 
 import Register.Application;
+import Register.Entities.Carrera;
 import Register.Entities.Curso;
 import Register.presentation.model.CursoModel;
 import Register.presentation.view.CursosView;
@@ -28,9 +29,9 @@ public class CursosController {
     
     public void buscar(){
         model.getFiltro().setNombre(view.textNombreCurso.getText());
-        Curso filtro= new Curso();
+        Carrera filtro= new Carrera();
         filtro.setNombre(model.getFiltro().getNombre());
-        List<Curso> rows = Application.Model.searchCursosDisp(filtro);
+        List<Curso> rows = Application.Model.search_CUR_CAR(filtro);
         //List<Curso> rows = Model.searchCursos(model.getFiltro());
         model.setCursos(rows);
     }
