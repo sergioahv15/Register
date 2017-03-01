@@ -48,6 +48,6 @@ public interface IModel {
       public List<Estudiante> search_EST_GRU(int numGrupo);
       
       public List<Curso> search_HIS_GLOB(int ced);
-
+      public  void close();
 
 }
