@@ -18,17 +18,34 @@ public class Ciclo {
     private int Anyo;
     private Date FechaInicio;
     private Date FechaFin;
+    private ArrayList<Curso> Cursos;
     
     
     public Ciclo() {
+        Numero= 0;
+        Anyo=1999;
+        FechaInicio= new Date();
+        FechaFin= new Date();
+        Cursos = new ArrayList<Curso>();
     }
 
-    public Ciclo(int numero, int anyo, Date fechaInicio, Date fechaFin) {
+    public Ciclo(int numero, int anyo, Date fechaInicio, Date fechaFin,ArrayList<Curso> c) {
         this.Numero = numero;
         this.Anyo = anyo;
         this.FechaInicio = fechaInicio;
         this.FechaFin = fechaFin;
+        this.Cursos= c;
     }
+
+    public ArrayList<Curso> getCursos() {
+        return Cursos;
+    }
+
+    public void setCursos(ArrayList<Curso> Cursos) {
+        this.Cursos = Cursos;
+    }
+    
+    
 
     public int getNumero() {
         return Numero;

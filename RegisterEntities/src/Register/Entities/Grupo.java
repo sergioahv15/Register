@@ -75,6 +75,15 @@ public class Grupo {
     public ArrayList<Nota> getNotas() {
         return Notas;
     }
+    
+    
+    /*private Nota nota(ResultSet rs) throws SQLException{
+        Nota n = new Nota();
+        n.setNota(rs.getInt("nota"));
+        n.setEstudiante(estudiante(rs));
+        n.setGrupo(grupo(rs));
+        return n;
+    }*/
 
     public void setNotas(ArrayList<Nota> Notas) {
         this.Notas = Notas;

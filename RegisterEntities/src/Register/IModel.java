@@ -19,7 +19,7 @@ import java.util.List;
  */
 public interface IModel {
 
-      public List<Curso> search_CUR_NOM(String nombre);
+      public List<Curso> search_CUR_NOM(String nombre) throws Exception; 
       public List<Curso> search_CUR_COD(String codigo);
       public List<Curso> search_CUR_CAR(Carrera carrera);
       public void update(Curso curso)throws Exception;
@@ -48,6 +48,6 @@ public interface IModel {
       public List<Estudiante> search_EST_GRU(int numGrupo);
       
       public List<Curso> search_HIS_GLOB(int ced);
-      public  void close();
+
 
 }

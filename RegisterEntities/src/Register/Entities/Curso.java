@@ -19,23 +19,24 @@ public class Curso {
     private String Nombre;
     private int Creditos;
     private int HorasSemanales;
-    private Carrera Carrera;
+    private PlanEstudio PlanEstu;
     private ArrayList<Grupo> Grupos;
     Ciclo Ciclo;
 
     public Curso() {
-        Carrera= new Carrera();
+        PlanEstu= new PlanEstudio();
         Grupos = new ArrayList<>();
         Ciclo= new Ciclo();
+        
     }
 
-    public Curso(String codigo, String nombre, int creditos, int horasSemanales, Carrera c,ArrayList<Grupo> g,
+    public Curso(String codigo, String nombre, int creditos, int horasSemanales, PlanEstudio p,ArrayList<Grupo> g,
             Ciclo ci) {
         this.Codigo = codigo;
         this.Nombre = nombre;
         this.Creditos = creditos;
         this.HorasSemanales = horasSemanales;
-        this.Carrera=c;
+        this.PlanEstu=p;
         this.Grupos=g;
         this.Ciclo=ci;
     }
@@ -47,20 +48,17 @@ public class Curso {
     public void setCiclo(Ciclo Ciclo) {
         this.Ciclo = Ciclo;
     }
-    
-    
 
-    public Carrera getCarrera() {
-        return Carrera;
+    public PlanEstudio getPlanEstu() {
+        return PlanEstu;
     }
 
-    public void setCarrera(Carrera carrera) {
-        this.Carrera = carrera;
+    public void setPlanEstu(PlanEstudio PlanEstu) {
+        this.PlanEstu = PlanEstu;
     }
-
     
     
-    public String getCodigo() {
+ public String getCodigo() {
         return Codigo;
     }
 
@@ -92,10 +90,10 @@ public class Curso {
         this.HorasSemanales = horasSemanales;
     }
 
-    public ArrayList<Grupo> getGrupos() {
-        if(Grupos.isEmpty()){
+    /* public ArrayList<Grupo> getGrupos() {
+       if(Grupos.isEmpty()){
             Grupo g = new Grupo();
-          /*  DataBase db = new DataBase(null,null,null);
+            DataBase db = new DataBase(null,null,null);
             try{
                 String SQL= "select * from curso c where c.grupo like %s";
                 SQL= String.format(SQL,g.getCurso().getCodigo());
@@ -104,19 +102,38 @@ public class Curso {
                     Grupos.add(grupo(rs));
                 }}
                 catch(SQLException ex){}
-            }*/
+            }
             
-            
-        }
         return Grupos;
-    }
+    }*/
     
 
-    private Grupo grupo(ResultSet rs){
+    private Grupo grupo(ResultSet rs) throws SQLException{
         Grupo g = new Grupo();
+        g.setNumeroGrupo(rs.getInt("numGrupo"));
+        g.setProfesor(profesor(rs));
+        g.setHorario(horario(rs));
+        g.setCurso(this);
         return g;
         
 }
+    
+    private Profesor profesor(ResultSet rs) throws SQLException{
+        Profesor p = new Profesor();
+        p.setNombre(rs.getString("nombre"));
+        p.setTel(rs.getInt("tel"));
+        p.setEmail(rs.getString("email"));
+        return p;
+    }
+    
+    private Horario horario(ResultSet rs) throws SQLException{
+        Horario h = new Horario();
+        h.setHoraFin(rs.getString("horaFin"));
+        h.setHoraInicio(rs.getString("horaIni"));
+        return h;
+    }
+    
+    
 
     public void setGrupos(ArrayList<Grupo> grupos) {
         this.Grupos = grupos;

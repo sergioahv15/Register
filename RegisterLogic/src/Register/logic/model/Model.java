@@ -12,6 +12,9 @@ import Register.Entities.Estudiante;
 import Register.Entities.Grupo;
 import Register.Entities.Profesor;
 import Register.IModel;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,13 +35,28 @@ public class Model implements IModel{
     }
 
     @Override
-    public List<Curso> search_CUR_NOM(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Curso> search_CUR_NOM(String nombre)throws Exception{
+        List<Curso> resultado = new ArrayList<Curso>();
+        try {
+            String SQL="select * from curso cur inner join carrera car on cur.carrera=car.codigo "+
+                    "ciclo ci on cur.ciclo=ci=fechaIni where c.codigo like '%%s%%'";
+            SQL = String.format(SQL, nombre);
+            ResultSet rs = database.executeQuery(SQL);
+            while(rs.next()){
+                //resultado.add(curso(rs));
+            }
+        } catch (Exception e) {
+        }
+            
+        
+        return resultado;
     }
 
     @Override
     public List<Curso> search_CUR_COD(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Curso> c = new ArrayList<Curso>();
+        //String SQL= "select * from ";
+        return c;
     }
 
     @Override
