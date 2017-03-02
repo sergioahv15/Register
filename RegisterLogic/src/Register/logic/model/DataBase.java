@@ -70,5 +70,5 @@ public class DataBase {
     private static final String PUERTO = "3306";
     private static final String USUARIO = "root";
     private static final String CLAVE = "root";
-    private static final String BASEDATOS = "register";
+    private static final String BASEDATOS = "mydb";
 }

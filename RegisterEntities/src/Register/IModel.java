@@ -49,5 +49,6 @@ public interface IModel {
       
       public List<Curso> search_HIS_GLOB(int ced);
 
+      public void close();
 
 }

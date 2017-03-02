@@ -84,5 +84,9 @@ public class Ciclo {
         return "Ciclo{" + "numero=" + Numero + ", anyo=" + Anyo + ", fechaInicio=" + FechaInicio + ", fechaFin=" + FechaFin + '}';
     }
 
+    public void getNumero(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 }

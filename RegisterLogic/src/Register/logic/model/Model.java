@@ -10,6 +10,7 @@ import Register.Entities.Ciclo;
 import Register.Entities.Curso;
 import Register.Entities.Estudiante;
 import Register.Entities.Grupo;
+import Register.Entities.PlanEstudio;
 import Register.Entities.Profesor;
 import Register.IModel;
 import java.sql.ResultSet;
@@ -38,18 +39,43 @@ public class Model implements IModel{
     public List<Curso> search_CUR_NOM(String nombre)throws Exception{
         List<Curso> resultado = new ArrayList<Curso>();
         try {
-            String SQL="select * from curso cur inner join carrera car on cur.carrera=car.codigo "+
-                    "ciclo ci on cur.ciclo=ci=fechaIni where c.codigo like '%%s%%'";
+            String SQL="select * from curso cur where c.nombre like '%%%s%%'";
             SQL = String.format(SQL, nombre);
             ResultSet rs = database.executeQuery(SQL);
             while(rs.next()){
-                //resultado.add(curso(rs));
+                resultado.add(curso(rs));
             }
         } catch (Exception e) {
         }
-            
-        
-        return resultado;
+         return resultado;
+    }
+    
+    private Curso curso(ResultSet rs) throws SQLException{
+        Curso c = new Curso();
+        c.setCodigo(rs.getString("codigo"));
+        c.setNombre(rs.getString("nombre"));
+        c.setCreditos(rs.getInt("creditos"));
+        c.setHorasSemanales(rs.getInt("horas_semanales"));
+        c.setPlanEstu(planEstudio(rs));
+        c.setCiclo(ciclo(rs));
+        //c.setGrupos(grupos);
+        return c;
+    }
+    
+    private PlanEstudio planEstudio(ResultSet rs) throws SQLException{
+        PlanEstudio p = new PlanEstudio();
+        p.setTitulo(rs.getString("titulo"));
+        //p.setCarrera(carrera(rs));
+        return p;
+    }
+    
+    private Ciclo ciclo(ResultSet rs) throws SQLException{
+        Ciclo c = new Ciclo();
+        c.setNumero(rs.getInt("numero"));
+        c.setAnyo(rs.getInt("anyo"));
+        c.setFechaInicio(rs.getDate("fecha_inicio"));
+        c.setFechaFin(rs.getDate("fecha_fin"));
+        return c;
     }
 
     @Override
