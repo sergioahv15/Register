@@ -312,33 +312,34 @@ public class Model implements IModel{
     }
 
     @Override
-    public List<Curso> ofertaAcad(Carrera carrera, Ciclo ciclo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Curso> ofertaAcad(String carrera, int ciclo) {
+        List<Curso> resultado = new ArrayList<Curso>();
+        try {
+            String SQL="select * from curso c where c.carrera= '%%%s%%' AND c.ciclo=%d";
+            SQL = String.format(SQL, carrera,ciclo);
+            ResultSet rs = database.executeQuery(SQL);
+            while(rs.next()){
+                resultado.add(curso(rs));
+            }
+        } catch (Exception e) {
+        }
+         return resultado;
     }
-
-    @Override
-    public List<Grupo> search_GRU_COD(String cod) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     @Override
     public List<Curso> search_HIS_ACT(int ced) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Grupo> search_GRU_PRO(int ced) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Estudiante> search_EST_GRU(int numGrupo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Curso> search_HIS_GLOB(int ced) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Curso> c = new ArrayList<Curso>();
+           /*DataBase db = new DataBase(null,null,null);
+            try{
+                String SQL= "select * from historial h where h.curso like %d";
+                SQL= String.format(SQL,c.getHistorial().getEstudiante().getCedula());
+                ResultSet rs= db.executeQuery(SQL);
+                while(rs.next()){
+                    Historial.add(curso(rs));
+                }}
+                catch(SQLException ex){}*/
+            return c;
     }
     
     public  void close(){

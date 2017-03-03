@@ -23,16 +23,18 @@ public class Curso {
     private Carrera Carrera;
     private ArrayList<Grupo> Grupos;
     Ciclo Ciclo;
+    Historial Historial;    //Necesaria para la carga de los cursos desde la clase Historial
 
     public Curso() {
         Carrera= new Carrera();
         Grupos = new ArrayList<>();
         Ciclo= new Ciclo();
+        Historial = new Historial();
         
     }
 
     public Curso(String codigo, String nombre, int creditos, int horasSemanales, Carrera c,ArrayList<Grupo> g,
-            Ciclo ci) {
+            Ciclo ci, Historial h) {
         this.Codigo = codigo;
         this.Nombre = nombre;
         this.Creditos = creditos;
@@ -40,8 +42,19 @@ public class Curso {
         this.Carrera=c;
         this.Grupos=g;
         this.Ciclo=ci;
+        this.Historial=h;
     }
 
+    public Historial getHistorial() {
+        return Historial;
+    }
+
+    public void setHistorial(Historial Historial) {
+        this.Historial = Historial;
+    }
+
+    
+    
     public Ciclo getCiclo() {
         return Ciclo;
     }
@@ -95,7 +108,7 @@ public class Curso {
             Grupo g = new Grupo();
             DataBase db = new DataBase(null,null,null);
             try{
-                String SQL= "select * from curso c where c.grupo like '%%%s%%'";
+                String SQL= "select * from grupo g where g.curso like '%%%s%%'";
                 SQL= String.format(SQL,g.getCurso().getCodigo());
                 ResultSet rs= db.executeQuery(SQL);
                 while(rs.next()){

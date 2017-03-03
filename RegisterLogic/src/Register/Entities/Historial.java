@@ -37,22 +37,50 @@ public class Historial {
         this.Estudiante = Estudiante;
     }
 
-   /* public ArrayList<Curso> getHistorial() {
+    /*public ArrayList<Curso> getHistorial() {
         if(Historial.isEmpty()){
             Curso c = new Curso();
             DataBase db = new DataBase(null,null,null);
             try{
-                String SQL= "select * from historial c where c.grupo like '%%%s%%'";
-                SQL= String.format(SQL,g.getCurso().getCodigo());
+                String SQL= "select * from historial h where h.curso like %d";
+                SQL= String.format(SQL,c.getHistorial().getEstudiante().getCedula());
                 ResultSet rs= db.executeQuery(SQL);
                 while(rs.next()){
-                    Grupos.add(grupo(rs));
+                    Historial.add(curso(rs));
                 }}
                 catch(SQLException ex){}
         }
         return Historial;
     }*/
 
+    private Curso curso(ResultSet rs) throws SQLException{
+        Curso c = new Curso();
+        c.setCodigo(rs.getString("codigo"));
+        c.setNombre(rs.getString("nombre"));
+        c.setCreditos(rs.getInt("creditos"));
+        c.setHorasSemanales(rs.getInt("horas_semanales"));
+        c.setCarrera(carrera(rs));
+        c.setCiclo(ciclo(rs));
+        return c;
+    }
+    
+    private Carrera carrera(ResultSet rs) throws SQLException{
+        Carrera c = new Carrera();
+        c.setTitulo(rs.getString("titulo"));
+        c.setCodigo(rs.getString("codigo"));
+        c.setNombre(rs.getString("nombre"));
+        return c;
+    }
+    
+    private Ciclo ciclo(ResultSet rs) throws SQLException{
+        Ciclo c = new Ciclo();
+        c.setNumero(rs.getInt("numero"));
+        c.setAnyo(rs.getInt("anyo"));
+        c.setFechaInicio(rs.getDate("fecha_inicio"));
+        c.setFechaFin(rs.getDate("fecha_fin"));
+        return c;
+    }
+    
     public void setHistorial(ArrayList<Curso> Historial) {
         this.Historial = Historial;
     }

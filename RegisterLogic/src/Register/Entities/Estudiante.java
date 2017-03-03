@@ -20,6 +20,7 @@ public class Estudiante extends Usuario {
     private Date FechaNac;
     Carrera Carrera;
     Historial Historial;
+    
   
 
     public Estudiante(String nombre, int tel, String email, Date fechaNac,Carrera c,Historial h,

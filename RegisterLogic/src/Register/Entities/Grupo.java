@@ -5,6 +5,9 @@
  */
 package Register.Entities;
 
+import Register.logic.model.DataBase;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -65,6 +68,18 @@ public class Grupo {
     }
 
     public ArrayList<Estudiante> getEstudiantes() {
+        if(Estudiantes.isEmpty()){
+           /* Estudiante e = new Estudiante();
+            DataBase db = new DataBase(null,null,null);
+            try{
+                String SQL= "select * from estudiante e where e.curso like '%%%s%%'";
+                SQL= String.format(SQL,g.getCurso().getCodigo());
+                ResultSet rs= db.executeQuery(SQL);
+                while(rs.next()){
+                    Grupos.add(grupo(rs));
+                }}
+                catch(SQLException ex){}*/
+        }
         return Estudiantes;
     }
 

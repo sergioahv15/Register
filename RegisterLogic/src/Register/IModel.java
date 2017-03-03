@@ -40,14 +40,10 @@ public interface IModel {
       public List<Ciclo> search_CIC_ANYO(int annio);
       public void update(Ciclo ciclo)throws Exception;
       
-      public List<Curso> ofertaAcad(Carrera carrera, Ciclo ciclo);
-      public List<Grupo> search_GRU_COD(String cod);
+      public List<Curso> ofertaAcad(String carrera, int ciclo);
       
-      public List<Curso> search_HIS_ACT(int ced);
-      public List<Grupo> search_GRU_PRO(int ced); 
-      public List<Estudiante> search_EST_GRU(int numGrupo);
       
-      public List<Curso> search_HIS_GLOB(int ced);
+      public List<Curso> search_HIS_ACT(int ced);     
 
       public void close();
 
