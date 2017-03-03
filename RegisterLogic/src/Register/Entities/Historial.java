@@ -5,6 +5,9 @@
  */
 package Register.Entities;
 
+import Register.logic.model.DataBase;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -12,29 +15,18 @@ import java.util.ArrayList;
  * @author sergio
  */
 public class Historial {
-    
-    private ArrayList<Ciclo> Ciclos;
+   
     private Estudiante Estudiante;
     private ArrayList<Curso> Historial;
 
-    public Historial(ArrayList<Ciclo> ciclos, Estudiante Estudiante, ArrayList<Curso> Historial) {
-        this.Ciclos = ciclos;
+    public Historial(Estudiante Estudiante, ArrayList<Curso> Historial) {
         this.Estudiante = Estudiante;
         this.Historial = Historial;
     }
 
     public Historial() {
-        Ciclos = new ArrayList<Ciclo>();
-        Estudiante= new Estudiante();
+         Estudiante= new Estudiante();
         Historial = new ArrayList<Curso>();
-    }
-
-    public ArrayList<Ciclo> getCiclo() {
-        return Ciclos;
-    }
-
-    public void setCiclo(ArrayList<Ciclo> Ciclos) {
-        this.Ciclos = Ciclos;
     }
 
     public Estudiante getEstudiante() {
@@ -45,9 +37,21 @@ public class Historial {
         this.Estudiante = Estudiante;
     }
 
-    public ArrayList<Curso> getHistorial() {
+   /* public ArrayList<Curso> getHistorial() {
+        if(Historial.isEmpty()){
+            Curso c = new Curso();
+            DataBase db = new DataBase(null,null,null);
+            try{
+                String SQL= "select * from historial c where c.grupo like '%%%s%%'";
+                SQL= String.format(SQL,g.getCurso().getCodigo());
+                ResultSet rs= db.executeQuery(SQL);
+                while(rs.next()){
+                    Grupos.add(grupo(rs));
+                }}
+                catch(SQLException ex){}
+        }
         return Historial;
-    }
+    }*/
 
     public void setHistorial(ArrayList<Curso> Historial) {
         this.Historial = Historial;

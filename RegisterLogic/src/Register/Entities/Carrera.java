@@ -5,6 +5,9 @@
  */
 package Register.Entities;
 
+import Register.logic.model.DataBase;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -61,7 +64,39 @@ public class Carrera {
     }
 
     public ArrayList<Curso> getCursos() {
+        if(Cursos.isEmpty()){
+            Curso c = new Curso();
+            DataBase db = new DataBase(null,null,null);
+            try{
+                String SQL= "select * from carrera c where c.curso like '%%%s%%'";
+                SQL= String.format(SQL,c.getCarrera().getCodigo());
+                ResultSet rs= db.executeQuery(SQL);
+                while(rs.next()){
+                    Cursos.add(curso(rs));
+                }}
+                catch(SQLException ex){}
+        }
         return Cursos;
+    }
+    
+    private Curso curso(ResultSet rs) throws SQLException{
+        Curso c = new Curso();
+        c.setCodigo(rs.getString("codigo"));
+        c.setNombre(rs.getString("nombre"));
+        c.setCreditos(rs.getInt("creditos"));
+        c.setHorasSemanales(rs.getInt("horas_semanales"));
+        c.setCarrera(this);
+        c.setCiclo(ciclo(rs));
+        return c;
+    }
+    
+    private Ciclo ciclo(ResultSet rs) throws SQLException{
+        Ciclo c = new Ciclo();
+        c.setNumero(rs.getInt("numero"));
+        c.setAnyo(rs.getInt("anyo"));
+        c.setFechaInicio(rs.getDate("fecha_inicio"));
+        c.setFechaFin(rs.getDate("fecha_fin"));
+        return c;
     }
 
     public void setCursos(ArrayList<Curso> Cursos) {

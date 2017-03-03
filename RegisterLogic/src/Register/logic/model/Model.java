@@ -10,6 +10,7 @@ import Register.Entities.Ciclo;
 import Register.Entities.Curso;
 import Register.Entities.Estudiante;
 import Register.Entities.Grupo;
+import Register.Entities.Historial;
 import Register.Entities.Profesor;
 import Register.IModel;
 import java.sql.ResultSet;
@@ -265,8 +266,17 @@ public class Model implements IModel{
         e.setEmail(rs.getString("email"));
         e.setTel(rs.getInt("tel"));
         e.setFechaNac(rs.getDate("fecha_nac"));
+        e.setCarrera(carrera(rs));
+        e.setHistorial(historial(rs));
         return e;
     }
+    
+    private Historial historial(ResultSet rs) throws SQLException{
+        Historial h = new Historial();
+        h.setEstudiante(estudiante(rs));
+        return h;
+    }
+    
 
     @Override
     public void update(Estudiante e) throws Exception {
@@ -282,8 +292,18 @@ public class Model implements IModel{
     
 
     @Override
-    public List<Ciclo> search_CIC_ANYO(int annio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Ciclo> search_CIC_ANYO(int anyo) {
+        List<Ciclo> resultado = new ArrayList<Ciclo>();
+        try {
+            String SQL="select * from ciclo c where c.anyo like %d";
+            SQL = String.format(SQL, anyo);
+            ResultSet rs = database.executeQuery(SQL);
+            while(rs.next()){
+                resultado.add(ciclo(rs));
+            }
+        } catch (Exception e) {
+        }
+         return resultado;
     }
 
     @Override
