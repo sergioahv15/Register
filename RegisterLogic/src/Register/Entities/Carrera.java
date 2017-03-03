@@ -5,6 +5,8 @@
  */
 package Register.Entities;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Herrera
@@ -12,12 +14,14 @@ package Register.Entities;
 public class Carrera {
     private String Codigo;
     private String Nombre;
-    private PlanEstudio Plan;
+    private String Titulo;
+    private ArrayList<Curso> Cursos;
 
-    public Carrera(String Codigo, String Nombre, PlanEstudio plan) {
+    public Carrera(String Codigo, String Nombre,String titulo, ArrayList<Curso> c) {
         this.Codigo = Codigo;
         this.Nombre = Nombre;
-        this.Plan = plan;
+        this.Titulo=titulo;
+        this.Cursos=c;
     }
     
     public Carrera(String Codigo, String Nombre) {
@@ -28,7 +32,8 @@ public class Carrera {
     public Carrera() {
         this.Codigo="00000";
         this.Nombre="";
-        this.Plan= new PlanEstudio();
+        this.Titulo="";
+        this.Cursos= new ArrayList<>();
     }
 
     public String getCodigo() {
@@ -47,13 +52,22 @@ public class Carrera {
         this.Nombre = Nombre;
     }
 
-    public PlanEstudio getPlan() {
-        return Plan;
+    public String getTitulo() {
+        return Titulo;
     }
 
-    public void setPlan(PlanEstudio plan) {
-        this.Plan = plan;
+    public void setTitulo(String Titulo) {
+        this.Titulo = Titulo;
     }
+
+    public ArrayList<Curso> getCursos() {
+        return Cursos;
+    }
+
+    public void setCursos(ArrayList<Curso> Cursos) {
+        this.Cursos = Cursos;
+    }
+    
     
     
 }

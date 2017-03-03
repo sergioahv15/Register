@@ -19,8 +19,8 @@ public class Profesor extends Usuario {
     private String Email;
     private ArrayList<Grupo> Grupos;
 
-    public Profesor(String Nombre, int Tel, String Email,ArrayList<Grupo> grupos, String clave, int cedula, int tipo) {
-        super(clave, cedula, tipo);
+    public Profesor(String Nombre, int Tel, String Email,ArrayList<Grupo> grupos, String clave, int cedula) {
+        super(clave, cedula, 1);
         this.Nombre = Nombre;
         this.Tel = Tel;
         this.Email = Email;
@@ -28,7 +28,7 @@ public class Profesor extends Usuario {
     }
 
     public Profesor() {
-        super();
+        super("",1,1);
         this.Nombre="";
         this.Email="";
         this.Tel=00000000;

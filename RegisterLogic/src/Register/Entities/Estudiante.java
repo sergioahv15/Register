@@ -23,8 +23,8 @@ public class Estudiante extends Usuario {
   
 
     public Estudiante(String nombre, int tel, String email, Date fechaNac,Carrera c,Historial h,
-            String clave, int cedula, int tipo) {
-        super(clave, cedula, tipo);
+            String clave, int cedula) {
+        super(clave, cedula, 2);
         this.Nombre = nombre;
         this.Tel = tel;
         this.Email = email;
@@ -34,7 +34,7 @@ public class Estudiante extends Usuario {
     }
 
     public Estudiante() {
-        super();
+        super("",2,2);
         this.Nombre="";
         this.Tel=0;
         this.Email="";

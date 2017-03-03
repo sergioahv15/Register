@@ -44,13 +44,13 @@ public abstract class Usuario implements Serializable{
         this.Cedula = cedula;
     }
 
-   /* public int getTipo() {
+    public int getTipo() {
         return Tipo;
     }
 
     public void setTipo(int tipo) {
         this.Tipo = tipo;
-    }*/
+    }
     
     
     
