@@ -31,7 +31,7 @@ public class CursosController {
         model.getFiltro().setNombre(view.textNombreCurso.getText());
         Carrera filtro= new Carrera();
         filtro.setNombre(model.getFiltro().getNombre());
-        List<Curso> rows = Application.Model.search_CUR_CAR(filtro);
+        List<Curso> rows = Application.Model.search_CUR_CAR(filtro.getNombre());
         //List<Curso> rows = Model.searchCursos(model.getFiltro());
         model.setCursos(rows);
     }
