@@ -132,12 +132,7 @@ public class ModelProxy implements IModel{
     }
 
     @Override
-    public List<Curso> ofertaAcad(Carrera carrera, Ciclo ciclo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Grupo> search_GRU_COD(String cod) {
+    public List<Curso> ofertaAcad(String carrera, int ciclo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -145,20 +140,4 @@ public class ModelProxy implements IModel{
     public List<Curso> search_HIS_ACT(int ced) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public List<Grupo> search_GRU_PRO(int ced) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Estudiante> search_EST_GRU(int numGrupo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Curso> search_HIS_GLOB(int ced) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-   
 }

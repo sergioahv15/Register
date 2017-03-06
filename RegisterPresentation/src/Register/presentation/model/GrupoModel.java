@@ -20,7 +20,7 @@ public class GrupoModel extends java.util.Observable{
         initGrupos();
     }
 
-//======= CURSO ============    
+//======= GRUPO ============    
     Grupo grupoCurrent;
     Hashtable<String,String> errores;
     String mensaje;
@@ -71,7 +71,7 @@ public class GrupoModel extends java.util.Observable{
         notifyObservers(CURSO_CURRENT);        
     }
 
-//======== CURSOS ===========
+//======== GRUPOS ===========
     Grupo filtro;
     GrupoTableModel gruposModel;
     

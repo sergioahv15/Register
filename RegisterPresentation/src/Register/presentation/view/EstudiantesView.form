@@ -44,7 +44,13 @@
                       <Component id="carreraFld" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="61" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="agregarBtn" max="32767" attributes="0"/>
+                  <Component id="consultaBtn" alignment="0" max="32767" attributes="0"/>
+                  <Component id="matriculaBtn" alignment="0" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -65,7 +71,16 @@
                   <Component id="carreraLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="231" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane1" min="-2" pref="231" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="agregarBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="consultaBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="matriculaBtn" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace pref="35" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -142,6 +157,27 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="carrera:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="agregarBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar Estudiante"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="consultaBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Consultar Historial"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultaBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="matriculaBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Matricular Cursos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="matriculaBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

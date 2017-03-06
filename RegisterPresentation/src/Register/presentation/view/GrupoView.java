@@ -5,12 +5,16 @@
  */
 package Register.presentation.view;
 
+import Register.presentation.controller.GrupoController;
+import Register.presentation.model.GrupoModel;
+
 /**
  *
  * @author Fabio
  */
-public class GrupoView extends javax.swing.JDialog {
-
+public class GrupoView extends javax.swing.JDialog implements java.util.Observer{
+    GrupoController controller;
+    GrupoModel model;
     /**
      * Creates new form GrupoView
      */
@@ -18,6 +22,15 @@ public class GrupoView extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+    
+    public void setController(GrupoController controller){
+        this.controller=controller;
+    }
+    public void setModel(GrupoModel model){
+        this.model=model;
+         model.addObserver(this);
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -204,6 +217,83 @@ public class GrupoView extends javax.swing.JDialog {
         });
     }
 
+    public void update(java.util.Observable updatedModel,Object parametros){
+       
+        /*if (parametros != PersonaModel.PERSONA_CURRENT) return;
+       
+       Persona personaCurrent = model.getPersonaCurrent();
+        
+       this.idFld.setEnabled(model.getModo()==Application.MODO_AGREGAR);
+       
+       idFld.setText(personaCurrent.getId());
+       if (model.getErrores().get("id")!=null){
+            idLbl.setBorder(Application.BORDER_ERROR);
+            idLbl.setToolTipText(model.getErrores().get("id"));
+        }
+        else{
+            idLbl.setBorder(null);
+            idLbl.setToolTipText("");
+        }
+
+        nombreFld.setText(personaCurrent.getNombre());
+        if (model.getErrores().get("nombre")!=null){
+            nombreLbl.setBorder(Application.BORDER_ERROR);
+            nombreLbl.setToolTipText(model.getErrores().get("nombre"));
+        }
+        else{
+           nombreLbl.setBorder(null);
+           nombreLbl.setToolTipText("");
+        }
+
+        if (personaCurrent.getSexo()=='F'){
+            sexoFldFem.setSelected(true);
+        }
+        else if(personaCurrent.getSexo()=='M'){
+            sexoFldMasc.setSelected(true);  
+        }
+        else{
+            this.sexoFld.clearSelection();
+        }
+        if (model.getErrores().get("sexo")!=null){
+            sexoLbl.setBorder(Application.BORDER_ERROR);
+            sexoLbl.setToolTipText(model.getErrores().get("sexo"));
+        }
+        else{
+           sexoLbl.setBorder(null);
+           sexoLbl.setToolTipText("");
+         }
+        estadoFld.setModel(model.getEstadosCiviles());
+        estadoFld.setSelectedItem(personaCurrent.getEstadoCivil());
+        pasatiempoFldMusica.setSelected(personaCurrent.isPasatiempoMusica());
+        pasatiempoFldCine.setSelected(personaCurrent.isPasatiempoCine());
+        pasatiempoFldDeporte.setSelected(personaCurrent.isPasatiempoDeporte());
+        pasatiempoFldVideoJuegos.setSelected(personaCurrent.isPasatiempoVideoJuegos());
+        pasatiempoFldCocina.setSelected(personaCurrent.isPasatiempoCocina());
+        pasatiempoFldOtro.setSelected(personaCurrent.isPasatiempoOtro());
+        if (personaCurrent.isPasatiempoOtro()){
+            pasatiempoFldOtroDescripcion.setVisible(true);
+            pasatiempoFldOtroDescripcion.setText(model.getPersonaCurrent().getPasatiempoOtroTexto());
+            if (model.getErrores().get("pasatiempoOtroDescripcion")!=null){
+                pasatiempoFldOtro.setBorder(Application.BORDER_ERROR);
+                pasatiempoFldOtro.setBorderPainted(true); 
+                pasatiempoFldOtro.setToolTipText(model.getErrores().get("pasatiempoOtroDescripcion"));
+            }
+            else{
+                pasatiempoFldOtro.setBorder(null);
+                pasatiempoFldOtro.setBorderPainted(false); 
+                pasatiempoFldOtro.setToolTipText("");
+            }
+        }
+        else{
+            pasatiempoFldOtroDescripcion.setVisible(false);
+        }
+        this.validate();
+        if (!model.getMensaje().equals("")){
+            JOptionPane.showMessageDialog(this, model.getMensaje(), "",JOptionPane.INFORMATION_MESSAGE);
+        }
+    */
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelarBtn;
     private javax.swing.JComboBox<String> diaFld1;
