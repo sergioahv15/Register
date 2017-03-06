@@ -88,7 +88,22 @@ public class ModelProxy implements IModel{
 
     @Override
     public List<Profesor> search_PRO_NOM(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            out.writeInt(Protocol.SEARCH_PROFESOR_NOMBRE);
+            out.writeObject(nombre);
+            out.flush();
+            int error = in.readInt();
+            List<Profesor> profesores = (List<Profesor>) in.readObject();
+            
+            //
+            System.out.println(profesores.get(0).getNombre());
+            //
+            
+            return profesores;
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            return new ArrayList<Profesor>();
+        }
     }
 
     @Override
@@ -133,7 +148,21 @@ public class ModelProxy implements IModel{
 
     @Override
     public void update(Estudiante estu) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            out.writeInt(Protocol.UPDATE_ESTUDIANTE);
+            out.writeObject(estu);
+            out.flush();
+            int error = in.readInt();
+            if (error == Protocol.ERROR_NO_ERROR){
+            }
+            else{
+                throw new Exception("Estudiante no existe");
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            throw new Exception("Estudiante no existe");
+        }
     }
 
     @Override

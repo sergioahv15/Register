@@ -31,7 +31,6 @@ public class ProfesoresController {
         Profesor filtro= new Profesor();
         filtro.setNombre(model.getFiltro().getNombre());
         List<Profesor> rows = Application.Model.search_PRO_NOM(filtro.getNombre());
-        //List<Profesor> rows = Model.searchProfesors(model.getFiltro());
         model.setProfesores(rows);
     }
 

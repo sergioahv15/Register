@@ -5,8 +5,11 @@
  */
 package Register.presentation.view;
 
+import Register.Application;
+import Register.Entities.Profesor;
 import Register.presentation.controller.ProfesorController;
 import Register.presentation.model.ProfesorModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -160,7 +163,7 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
     }//GEN-LAST:event_cedulaFldActionPerformed
 
     private void guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtnActionPerformed
-        // TODO add your handling code here:
+        this.controller.guardar();
     }//GEN-LAST:event_guardarBtnActionPerformed
 
     private void emailFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFldActionPerformed
@@ -211,79 +214,41 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
 
     public void update(java.util.Observable updatedModel,Object parametros){
        
-        /*if (parametros != PersonaModel.PERSONA_CURRENT) return;
+        if (parametros != ProfesorModel.PROFESOR_CURRENT) return;
        
-       Persona personaCurrent = model.getPersonaCurrent();
+       Profesor profesorCurrent = model.getProfesorCurrent();
         
-       this.idFld.setEnabled(model.getModo()==Application.MODO_AGREGAR);
+       this.cedulaFld.setEnabled(model.getModo()==Application.MODO_AGREGAR);
        
-       idFld.setText(personaCurrent.getId());
-       if (model.getErrores().get("id")!=null){
+       cedulaFld.setText(String.valueOf(profesorCurrent.getCedula()));
+       /*if (model.getErrores().get("id")!=null){
             idLbl.setBorder(Application.BORDER_ERROR);
             idLbl.setToolTipText(model.getErrores().get("id"));
         }
         else{
             idLbl.setBorder(null);
             idLbl.setToolTipText("");
-        }
+        }*/
 
-        nombreFld.setText(personaCurrent.getNombre());
-        if (model.getErrores().get("nombre")!=null){
+        nombreFld.setText(profesorCurrent.getNombre());
+        /*if (model.getErrores().get("nombre")!=null){
             nombreLbl.setBorder(Application.BORDER_ERROR);
             nombreLbl.setToolTipText(model.getErrores().get("nombre"));
         }
         else{
            nombreLbl.setBorder(null);
            nombreLbl.setToolTipText("");
-        }
+        }*/
 
-        if (personaCurrent.getSexo()=='F'){
-            sexoFldFem.setSelected(true);
-        }
-        else if(personaCurrent.getSexo()=='M'){
-            sexoFldMasc.setSelected(true);  
-        }
-        else{
-            this.sexoFld.clearSelection();
-        }
-        if (model.getErrores().get("sexo")!=null){
-            sexoLbl.setBorder(Application.BORDER_ERROR);
-            sexoLbl.setToolTipText(model.getErrores().get("sexo"));
-        }
-        else{
-           sexoLbl.setBorder(null);
-           sexoLbl.setToolTipText("");
-         }
-        estadoFld.setModel(model.getEstadosCiviles());
-        estadoFld.setSelectedItem(personaCurrent.getEstadoCivil());
-        pasatiempoFldMusica.setSelected(personaCurrent.isPasatiempoMusica());
-        pasatiempoFldCine.setSelected(personaCurrent.isPasatiempoCine());
-        pasatiempoFldDeporte.setSelected(personaCurrent.isPasatiempoDeporte());
-        pasatiempoFldVideoJuegos.setSelected(personaCurrent.isPasatiempoVideoJuegos());
-        pasatiempoFldCocina.setSelected(personaCurrent.isPasatiempoCocina());
-        pasatiempoFldOtro.setSelected(personaCurrent.isPasatiempoOtro());
-        if (personaCurrent.isPasatiempoOtro()){
-            pasatiempoFldOtroDescripcion.setVisible(true);
-            pasatiempoFldOtroDescripcion.setText(model.getPersonaCurrent().getPasatiempoOtroTexto());
-            if (model.getErrores().get("pasatiempoOtroDescripcion")!=null){
-                pasatiempoFldOtro.setBorder(Application.BORDER_ERROR);
-                pasatiempoFldOtro.setBorderPainted(true); 
-                pasatiempoFldOtro.setToolTipText(model.getErrores().get("pasatiempoOtroDescripcion"));
-            }
-            else{
-                pasatiempoFldOtro.setBorder(null);
-                pasatiempoFldOtro.setBorderPainted(false); 
-                pasatiempoFldOtro.setToolTipText("");
-            }
-        }
-        else{
-            pasatiempoFldOtroDescripcion.setVisible(false);
-        }
+        emailFld.setText(profesorCurrent.getEmail());
+        
+        telefonoFld.setText(String.valueOf(profesorCurrent.getTel()));
+        
         this.validate();
         if (!model.getMensaje().equals("")){
             JOptionPane.showMessageDialog(this, model.getMensaje(), "",JOptionPane.INFORMATION_MESSAGE);
         }
-    */
+    
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

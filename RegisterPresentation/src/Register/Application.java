@@ -39,7 +39,7 @@ public class Application {
        Model=new ModelProxy();
         //Model=new Model();
        // CursoModel cursoModel = new CursoModel();
-        //ProfesorModel profesorModel = new ProfesorModel();
+        ProfesorModel profesorModel = new ProfesorModel();
         EstudianteModel estudianteModel = new EstudianteModel();
         
         /*
@@ -47,11 +47,12 @@ public class Application {
         CURSOS_VIEW=cursosView;
         CursosController cursoscontroller = new CursosController(cursosView,cursoModel);
         cursosView.setVisible(true);
+        */
         ProfesoresView profesoresView= new ProfesoresView();
         PROFESORES_VIEW=profesoresView;
         ProfesoresController profesoresController = new ProfesoresController(profesoresView,profesorModel);
         profesoresView.setVisible(true);
-        */
+        
         EstudiantesView estudiantesView= new EstudiantesView();
         ESTUDIANTES_VIEW=estudiantesView;
         EstudiantesController estudiantesController = new EstudiantesController(estudiantesView,estudianteModel);
@@ -61,12 +62,12 @@ public class Application {
         //CursoView cursoView = new CursoView(cursosView,true);
         //CURSO_VIEW=cursoView;
         //CursoController cursoController = new CursoController(cursoView,cursoModel);        
-        //ProfesorView profesorView = new ProfesorView(profesoresView,true);
+        ProfesorView profesorView = new ProfesorView(profesoresView,true);
         
-        /*
+        
         PROFESOR_VIEW=profesorView;
         ProfesorController profesorController = new ProfesorController(profesorView,profesorModel);
-        */
+        
         EstudianteView estudianteView = new EstudianteView(estudiantesView,true);
         ESTUDIANTE_VIEW=estudianteView;
         EstudianteController estudianteController = new EstudianteController(estudianteView,estudianteModel);   

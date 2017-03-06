@@ -82,8 +82,8 @@ public class ProfesorModel extends java.util.Observable{
     }
     
     public void setProfesores(List<Profesor> rows){
-        //int[] cols={ProfesorTableModel.ID,ProfesorTableModel.NOMBRE,ProfesorTableModel.SEXO,ProfesorTableModel.PASATIEMPO_CINE,ProfesorTableModel.ESTADO_CIVIL};
-        //setProfesorsModel(new ProfesorTableModel(cols,rows));        
+        int[] cols={ProfesorTableModel.CEDULA,ProfesorTableModel.NOMBRE,ProfesorTableModel.TELEFONO,ProfesorTableModel.EMAIL};
+        setProfesoresModel(new ProfesorTableModel(cols,rows));        
     }
     
     public Profesor getFiltro() {

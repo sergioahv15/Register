@@ -5,6 +5,7 @@
  */
 package Register.presentation.view;
 
+import Register.Application;
 import Register.presentation.controller.ProfesoresController;
 import Register.presentation.model.ProfesorModel;
 import Register.presentation.model.ProfesorModel;
@@ -87,9 +88,19 @@ public class ProfesoresView extends javax.swing.JFrame implements java.util.Obse
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        profesoresFld.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profesoresFldMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(profesoresFld);
 
         buscarBtn.setText("Buscar");
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,6 +147,18 @@ public class ProfesoresView extends javax.swing.JFrame implements java.util.Obse
     private void cedulaFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulaFldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cedulaFldActionPerformed
+
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        this.controller.buscar();
+    }//GEN-LAST:event_buscarBtnActionPerformed
+
+    private void profesoresFldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profesoresFldMouseClicked
+        if (evt.getClickCount() == 2) {
+            int row = this.profesoresFld.getSelectedRow();
+            Application.PROFESOR_VIEW.setLocation(evt.getLocationOnScreen());
+            controller.editar(row);
+        }
+    }//GEN-LAST:event_profesoresFldMouseClicked
 
     /**
      * @param args the command line arguments

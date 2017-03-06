@@ -217,10 +217,10 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
 
     private void estudiantesFldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estudiantesFldMouseClicked
         if (evt.getClickCount() == 2) {
-        int row = this.estudiantesFld.getSelectedRow();
-        Application.ESTUDIANTE_VIEW.setLocation(evt.getLocationOnScreen());
-        controller.editar(row);
-      }
+            int row = this.estudiantesFld.getSelectedRow();
+            Application.ESTUDIANTE_VIEW.setLocation(evt.getLocationOnScreen());
+            controller.editar(row);
+        }
     }//GEN-LAST:event_estudiantesFldMouseClicked
 
     /**
