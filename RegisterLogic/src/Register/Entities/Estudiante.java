@@ -14,87 +14,82 @@ import java.util.Date;
  */
 public class Estudiante extends Usuario {
     
-    private String Nombre;
-    private int Tel;
-    private String Email;
-    private Date FechaNac;
-    Carrera Carrera;
-    Historial Historial;
+    private String nombre;
+    private int tel;
+    private String email;
+    private Date fechaNac;
+    Carrera carrera;
+    Historial historial;
     
   
 
     public Estudiante(String nombre, int tel, String email, Date fechaNac,Carrera c,Historial h,
             String clave, int cedula) {
         super(clave, cedula, 2);
-        this.Nombre = nombre;
-        this.Tel = tel;
-        this.Email = email;
-        this.FechaNac = fechaNac;
-        this.Carrera= c;
-        this.Historial= h;
+        this.nombre = nombre;
+        this.tel = tel;
+        this.email = email;
+        this.fechaNac = fechaNac;
+        this.carrera= c;
+        this.historial= h;
     }
 
-    public Estudiante() {
-        super("",2,2);
-        this.Nombre="";
-        this.Tel=0;
-        this.Email="";
-        this.FechaNac= new java.sql.Date(1900,01,01);
-        this.Carrera= new Carrera();
-        this.Historial= new Historial();
+    public Estudiante() {        
+        super();
+        this.nombre="";
+        this.tel=0;
+        this.email="";
+        this.fechaNac= new Date();
+        this.carrera= null;
+        this.historial= null;        
     }
 
     public Historial getHistorial() {
-        return Historial;
+        return historial;
     }
 
     public void setHistorial(Historial Historial) {
-        this.Historial = Historial;
-    }
-    
-    
+        this.historial = Historial;
+    }    
 
     public Carrera getCarrera() {
-        return Carrera;
+        return carrera;
     }
 
     public void setCarrera(Carrera Carrera) {
-        this.Carrera = Carrera;
+        this.carrera = Carrera;
     }
     
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        this.Nombre = nombre;
+        this.nombre = nombre;
     }
 
     public int getTel() {
-        return Tel;
+        return tel;
     }
 
     public void setTel(int tel) {
-        this.Tel = tel;
+        this.tel = tel;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        this.Email = email;
+        this.email = email;
     }
 
     public Date getFechaNac() {
-        return FechaNac;
+        return fechaNac;
     }
 
     public void setFechaNac(Date fechaNac) {
-        this.FechaNac = fechaNac;
+        this.fechaNac = fechaNac;
     }
-    
-    
-    
     
 }

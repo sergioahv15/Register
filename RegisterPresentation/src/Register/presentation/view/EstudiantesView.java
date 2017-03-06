@@ -5,6 +5,7 @@
  */
 package Register.presentation.view;
 
+import Register.Application;
 import Register.presentation.controller.EstudiantesController;
 import Register.presentation.model.EstudianteModel;
 
@@ -75,6 +76,11 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        estudiantesFld.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                estudiantesFldMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(estudiantesFld);
 
         nombreFld.setColumns(17);
@@ -96,6 +102,11 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
         });
 
         buscarBtn.setText("Buscar");
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarBtnActionPerformed(evt);
+            }
+        });
 
         carreraFld.setColumns(17);
         carreraFld.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +211,18 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
         // TODO add your handling code here:
     }//GEN-LAST:event_consultaBtnActionPerformed
 
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        this.controller.buscar();
+    }//GEN-LAST:event_buscarBtnActionPerformed
+
+    private void estudiantesFldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estudiantesFldMouseClicked
+        if (evt.getClickCount() == 2) {
+        int row = this.estudiantesFld.getSelectedRow();
+        Application.ESTUDIANTE_VIEW.setLocation(evt.getLocationOnScreen());
+        controller.editar(row);
+      }
+    }//GEN-LAST:event_estudiantesFldMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -234,7 +257,8 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
             }
         });
     }
-
+  
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
     private javax.swing.JButton buscarBtn;

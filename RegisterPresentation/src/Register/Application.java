@@ -38,10 +38,11 @@ public class Application {
      public static void main(String[] args) {
        Model=new ModelProxy();
         //Model=new Model();
-        CursoModel cursoModel = new CursoModel();
-        ProfesorModel profesorModel = new ProfesorModel();
+       // CursoModel cursoModel = new CursoModel();
+        //ProfesorModel profesorModel = new ProfesorModel();
         EstudianteModel estudianteModel = new EstudianteModel();
         
+        /*
         CursosView cursosView= new CursosView();
         CURSOS_VIEW=cursosView;
         CursosController cursoscontroller = new CursosController(cursosView,cursoModel);
@@ -50,20 +51,25 @@ public class Application {
         PROFESORES_VIEW=profesoresView;
         ProfesoresController profesoresController = new ProfesoresController(profesoresView,profesorModel);
         profesoresView.setVisible(true);
+        */
         EstudiantesView estudiantesView= new EstudiantesView();
         ESTUDIANTES_VIEW=estudiantesView;
         EstudiantesController estudiantesController = new EstudiantesController(estudiantesView,estudianteModel);
         estudiantesView.setVisible(true);
         
-        CursoView cursoView = new CursoView(cursosView,true);
-        CURSO_VIEW=cursoView;
-        CursoController cursoController = new CursoController(cursoView,cursoModel);        
-        ProfesorView profesorView = new ProfesorView(profesoresView,true);
+        
+        //CursoView cursoView = new CursoView(cursosView,true);
+        //CURSO_VIEW=cursoView;
+        //CursoController cursoController = new CursoController(cursoView,cursoModel);        
+        //ProfesorView profesorView = new ProfesorView(profesoresView,true);
+        
+        /*
         PROFESOR_VIEW=profesorView;
         ProfesorController profesorController = new ProfesorController(profesorView,profesorModel);
+        */
         EstudianteView estudianteView = new EstudianteView(estudiantesView,true);
         ESTUDIANTE_VIEW=estudianteView;
-        EstudianteController estudianteController = new EstudianteController(estudianteView,estudianteModel);        
+        EstudianteController estudianteController = new EstudianteController(estudianteView,estudianteModel);   
      }
     
     public static CursoView CURSO_VIEW;

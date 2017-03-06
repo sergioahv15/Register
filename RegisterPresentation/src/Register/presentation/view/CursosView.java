@@ -26,10 +26,11 @@ public class CursosView extends javax.swing.JFrame implements java.util.Observer
     }
     
    public void update(java.util.Observable updatedModel,Object parametros){
-       if (parametros != CursoModel.CURSOS_MODEL) return;
+       /*if (parametros != CursoModel.CURSOS_MODEL) return;
        textNombreCurso.setText(model.getFiltro().getNombre());
        cursosTable.setModel(model.getCursosModel());
        this.revalidate();
+       */
    }
     /**
      * Creates new form NewJFrame

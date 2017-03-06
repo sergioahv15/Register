@@ -103,7 +103,22 @@ public class ModelProxy implements IModel{
 
     @Override
     public List<Estudiante> search_EST_NOM(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            out.writeInt(Protocol.SEARCH_ESTUDIANTES_NOMBRE);
+            out.writeObject(nombre);
+            out.flush();
+            int error = in.readInt();
+            List<Estudiante> estudiantes = (List<Estudiante>) in.readObject();
+            
+            //
+            System.out.println(estudiantes.get(0).getNombre());
+            //
+            
+            return estudiantes;
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            return new ArrayList<Estudiante>();
+        }
     }
 
     @Override

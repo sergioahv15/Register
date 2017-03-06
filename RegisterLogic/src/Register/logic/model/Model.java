@@ -9,7 +9,6 @@ import Register.Entities.Carrera;
 import Register.Entities.Ciclo;
 import Register.Entities.Curso;
 import Register.Entities.Estudiante;
-import Register.Entities.Grupo;
 import Register.Entities.Historial;
 import Register.Entities.Profesor;
 import Register.IModel;
@@ -24,15 +23,11 @@ import java.util.List;
  */
 public class Model implements IModel{
     
-    DataBase database = new DataBase(null, null, null);
+    private DataBase database;
     
     
     public Model(){
-        initUsers();
-    }
-    
-    private void initUsers(){
-    
+        database= new DataBase(null, null, null);
     }
 
     @Override
@@ -215,7 +210,8 @@ public class Model implements IModel{
 
     @Override
     public List<Estudiante> search_EST_NOM(String nombre) {
-        List<Estudiante> resultado = new ArrayList<Estudiante>();
+        List<Estudiante> resultado = new ArrayList<>();
+        System.out.println(nombre);
         try {
             String SQL="select * from estudiante est where est.nombre like '%%%s%%'";
             SQL = String.format(SQL, nombre);
@@ -223,8 +219,8 @@ public class Model implements IModel{
             while(rs.next()){
                 resultado.add(estudiante(rs));
             }
-        } catch (Exception e) {
-        }
+        } catch (Exception e) { }
+        //System.out.println(resultado.toString());
          return resultado;
     }
 
@@ -265,9 +261,11 @@ public class Model implements IModel{
         e.setCedula(rs.getInt("cedula"));
         e.setEmail(rs.getString("email"));
         e.setTel(rs.getInt("tel"));
-        e.setFechaNac(rs.getDate("fecha_nac"));
-        e.setCarrera(carrera(rs));
-        e.setHistorial(historial(rs));
+        //e.setFechaNac(rs.getDate("fecha_nac"));
+        //e.setCarrera(carrera(rs));
+        //e.setHistorial(historial(rs));
+        e.setCarrera(null);
+        e.setHistorial(null);
         return e;
     }
     

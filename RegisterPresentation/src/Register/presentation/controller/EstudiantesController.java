@@ -44,9 +44,9 @@ public class EstudiantesController {
     
     public void editar(int row){
         model.clearErrors();
-        Estudiante seleccionada = model.getEstudiantesModel().getRowAt(row); 
+        Estudiante seleccionado = model.getEstudiantesModel().getRowAt(row); 
         model.setModo(Application.MODO_EDITAR);
-        model.setEstudianteCurrent(seleccionada);
+        model.setEstudianteCurrent(seleccionado);
         Application.ESTUDIANTE_VIEW.setVisible(true);
     }
 

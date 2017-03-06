@@ -5,8 +5,13 @@
  */
 package Register.presentation.controller;
 
+import Register.Application;
+import Register.Entities.Carrera;
+import Register.Entities.Estudiante;
 import Register.presentation.model.EstudianteModel;
 import Register.presentation.view.EstudianteView;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -24,63 +29,45 @@ public class EstudianteController {
     }
 
     public void guardar(){
-        /*
-        Estudiante nueva = new Estudiante();
+      
+        Estudiante nuevo = new Estudiante();
         model.clearErrors();
         
-        nueva.setId(view.idFld.getText());
-        if (view.idFld.getText().length()==0){
+        nuevo.setCedula(Integer.parseInt(view.cedulaFld.getText()));
+        /*if (view.idFld.getText().length()==0){
             model.getErrores().put("id", "Id requerido");
-        }
+        }*/
         
-        nueva.setNombre(view.nombreFld.getText());
-        if (view.nombreFld.getText().length()==0){
+        nuevo.setNombre(view.nombreFld.getText());
+        /*if (view.nombreFld.getText().length()==0){
             model.getErrores().put("nombre", "Nombre requerido");
-        }
+        }*/
         
-        if (view.sexoFldFem.isSelected()) nueva.setSexo('F');
-        else if (view.sexoFldMasc.isSelected()) nueva.setSexo('M');
-        else nueva.setSexo(' ');
-        if (!view.sexoFldFem.isSelected() && !view.sexoFldMasc.isSelected()){
-            model.getErrores().put("sexo", "Sexo requerido");
-        }
+        nuevo.setTel(Integer.parseInt(view.telefonoFld.getText()));
         
-        nueva.setEstadoCivil((EstadoCivil) view.estadoFld.getSelectedItem());
+        nuevo.setEmail(view.emailFld.getText());
         
-        nueva.setPasatiempoMusica(view.pasatiempoFldMusica.isSelected());
+        nuevo.setFechaNac(new Date());
         
-        nueva.setPasatiempoCine(view.pasatiempoFldCine.isSelected());
-        
-        nueva.setPasatiempoDeporte(view.pasatiempoFldDeporte.isSelected());
-        
-        nueva.setPasatiempoVideoJuegos(view.pasatiempoFldVideoJuegos.isSelected());
-        
-        nueva.setPasatiempoCocina(view.pasatiempoFldCocina.isSelected());
-        
-        nueva.setPasatiempoOtro(view.pasatiempoFldOtro.isSelected());
-        
-        nueva.setPasatiempoOtroTexto(view.pasatiempoFldOtroDescripcion.getText());
-        if (view.pasatiempoFldOtro.isSelected() && view.pasatiempoFldOtroDescripcion.getText().length()==0){
-            model.getErrores().put("pasatiempoOtroDescripcion", "Pasatiempo requerido");
-        }
+        nuevo.setCarrera(new Carrera());
         
         if (model.getErrores().isEmpty()){
             try{
                 switch(model.getModo()){
                     case Application.MODO_AGREGAR:
-                        Application.Model.addEstudiante(nueva);
+                        //Application.Model.add(nuevo);
                         model.setMensaje("PROFESOR AGREGADO");
                         model.setEstudianteCurrent(new Estudiante());
                         
-                        List<Estudiante> rowsAgr = Application.Model.searchEstudiantes(model.getFiltro());
+                        List<Estudiante> rowsAgr = Application.Model.search_EST_NOM("");
                         model.setEstudiantes(rowsAgr);                        
                         break;
                     case Application.MODO_EDITAR:
-                        Application.Model.updateEstudiante(nueva);
+                        Application.Model.update(nuevo);
                         model.setMensaje("PROFESOR MODIFICADADO");
-                        model.setEstudianteCurrent(nueva);
+                        model.setEstudianteCurrent(nuevo);
                         
-                        List<Estudiante> rowsMod = Application.Model.searchEstudiantes(model.getFiltro());
+                        List<Estudiante> rowsMod = Application.Model.search_EST_NOM("");
                         model.setEstudiantes(rowsMod);
                         //view.setVisible(false);
                         break;
@@ -89,13 +76,13 @@ public class EstudianteController {
             catch(Exception e){
                 model.getErrores().put("id", "Estudiante ya existe");
                 model.setMensaje("PROFESOR YA EXISTE");
-                model.setEstudianteCurrent(nueva);
+                model.setEstudianteCurrent(nuevo);
             }
         }
         else{
             model.setMensaje("HAY ERRORES ...");
-            model.setEstudianteCurrent(nueva);
+            model.setEstudianteCurrent(nuevo);
         }
-        */
+        
     }
 }

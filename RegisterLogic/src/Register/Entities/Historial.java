@@ -16,29 +16,29 @@ import java.util.ArrayList;
  */
 public class Historial {
    
-    private Estudiante Estudiante;
-    private ArrayList<Curso> Historial;
+    private Estudiante estudiante;
+    private ArrayList<Curso> historial;
 
     public Historial(Estudiante Estudiante, ArrayList<Curso> Historial) {
-        this.Estudiante = Estudiante;
-        this.Historial = Historial;
+        this.estudiante = Estudiante;
+        this.historial = Historial;
     }
 
     public Historial() {
-         Estudiante= new Estudiante();
-        Historial = new ArrayList<Curso>();
+        estudiante= null;
+        historial = null;
     }
 
     public Estudiante getEstudiante() {
-        return Estudiante;
+        return estudiante;
     }
 
     public void setEstudiante(Estudiante Estudiante) {
-        this.Estudiante = Estudiante;
+        this.estudiante = Estudiante;
     }
 
     /*public ArrayList<Curso> getHistorial() {
-        if(Historial.isEmpty()){
+        if(historial.isEmpty()){
             Curso c = new Curso();
             DataBase db = new DataBase(null,null,null);
             try{
@@ -46,11 +46,11 @@ public class Historial {
                 SQL= String.format(SQL,c.getHistorial().getEstudiante().getCedula());
                 ResultSet rs= db.executeQuery(SQL);
                 while(rs.next()){
-                    Historial.add(curso(rs));
+                    historial.add(curso(rs));
                 }}
                 catch(SQLException ex){}
         }
-        return Historial;
+        return historial;
     }*/
 
     private Curso curso(ResultSet rs) throws SQLException{
@@ -82,7 +82,7 @@ public class Historial {
     }
     
     public void setHistorial(ArrayList<Curso> Historial) {
-        this.Historial = Historial;
+        this.historial = Historial;
     }
     
     

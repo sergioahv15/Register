@@ -82,8 +82,8 @@ public class EstudianteModel extends java.util.Observable{
     }
     
     public void setEstudiantes(List<Estudiante> rows){
-        //int[] cols={EstudianteTableModel.ID,EstudianteTableModel.NOMBRE,EstudianteTableModel.SEXO,EstudianteTableModel.PASATIEMPO_CINE,EstudianteTableModel.ESTADO_CIVIL};
-        //setEstudiantesModel(new EstudianteTableModel(cols,rows));        
+        int[] cols={EstudianteTableModel.NOMBRE,EstudianteTableModel.CEDULA,EstudianteTableModel.TELEFONO,EstudianteTableModel.EMAIL,EstudianteTableModel.FECHA_NAC,EstudianteTableModel.CARRERA};
+        setEstudiantesModel(new EstudianteTableModel(cols,rows));        
     }
     
     public Estudiante getFiltro() {
