@@ -5,40 +5,19 @@
  */
 package Register.presentation.view;
 
-import Register.presentation.controller.GruposController;
-import Register.presentation.model.GrupoModel;
-
 /**
  *
  * @author Fabio
  */
-public class GruposView extends javax.swing.JFrame implements java.util.Observer{
-    GruposController controller;
-    GrupoModel model;
+public class MatriculadosView extends javax.swing.JFrame {
+
     /**
-     * Creates new form CursoView
+     * Creates new form MatriculaView
      */
-    public void setController(GruposController controller){
-        this.controller=controller;
-    }
-    public void setModel(GrupoModel model){
-        this.model=model;
-         model.addObserver(this);
-    }
-    /**
-     * Creates new form GruposView
-     */
-    public GruposView() {
+    public MatriculadosView() {
         initComponents();
     }
 
-    public void update(java.util.Observable updatedModel,Object parametros){
-       /*if (parametros != GrupoModel.GRUPOS_MODEL) return;
-       //textNombreCiclo.setText(model.getFiltro().getNombre());
-       ciclosFld.setModel(model.getCiclosModel());
-       this.revalidate();
-       ¨*/
-   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,7 +29,7 @@ public class GruposView extends javax.swing.JFrame implements java.util.Observer
 
         jScrollPane1 = new javax.swing.JScrollPane();
         gruposFld = new javax.swing.JTable();
-        agregarBtn = new javax.swing.JButton();
+        buscarBtn = new javax.swing.JButton();
         eliminarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,9 +47,19 @@ public class GruposView extends javax.swing.JFrame implements java.util.Observer
         ));
         jScrollPane1.setViewportView(gruposFld);
 
-        agregarBtn.setText("Agregar");
+        buscarBtn.setText("Buscar Cursos");
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarBtnActionPerformed(evt);
+            }
+        });
 
-        eliminarBtn.setText("Eliminar");
+        eliminarBtn.setText("Eliminar Curso");
+        eliminarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,9 +70,9 @@ public class GruposView extends javax.swing.JFrame implements java.util.Observer
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(agregarBtn)
+                    .addComponent(buscarBtn)
                     .addComponent(eliminarBtn))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,15 +80,25 @@ public class GruposView extends javax.swing.JFrame implements java.util.Observer
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(agregarBtn)
+                        .addComponent(buscarBtn)
                         .addGap(18, 18, 18)
                         .addComponent(eliminarBtn))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
+        eliminarBtn.getAccessibleContext().setAccessibleName("Eliminar Curso");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscarBtnActionPerformed
+
+    private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,26 +117,27 @@ public class GruposView extends javax.swing.JFrame implements java.util.Observer
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GruposView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MatriculadosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GruposView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MatriculadosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GruposView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MatriculadosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GruposView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MatriculadosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GruposView().setVisible(true);
+                new MatriculadosView().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton agregarBtn;
+    private javax.swing.JButton buscarBtn;
     private javax.swing.JButton eliminarBtn;
     private javax.swing.JTable gruposFld;
     private javax.swing.JScrollPane jScrollPane1;

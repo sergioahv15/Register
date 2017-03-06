@@ -19,6 +19,7 @@ import Register.presentation.view.CursoView;
 import Register.presentation.view.CursosView;
 import Register.presentation.view.EstudianteView;
 import Register.presentation.view.EstudiantesView;
+import Register.presentation.view.GrupoView;
 import Register.presentation.view.ProfesorView;
 import Register.presentation.view.ProfesoresView;
 import java.awt.Color;
@@ -71,6 +72,7 @@ public class Application {
     public static ProfesoresView PROFESORES_VIEW; 
     public static EstudianteView ESTUDIANTE_VIEW;
     public static EstudiantesView ESTUDIANTES_VIEW; 
+    public static GrupoView GRUPO_VIEW;
        
     public static  final int  MODO_AGREGAR=0;
     public static final int MODO_EDITAR=1;

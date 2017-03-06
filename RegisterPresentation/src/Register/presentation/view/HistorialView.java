@@ -5,40 +5,19 @@
  */
 package Register.presentation.view;
 
-import Register.presentation.controller.GruposController;
-import Register.presentation.model.GrupoModel;
-
 /**
  *
  * @author Fabio
  */
-public class GruposView extends javax.swing.JFrame implements java.util.Observer{
-    GruposController controller;
-    GrupoModel model;
+public class HistorialView extends javax.swing.JFrame {
+
     /**
-     * Creates new form CursoView
+     * Creates new form HistorialView
      */
-    public void setController(GruposController controller){
-        this.controller=controller;
-    }
-    public void setModel(GrupoModel model){
-        this.model=model;
-         model.addObserver(this);
-    }
-    /**
-     * Creates new form GruposView
-     */
-    public GruposView() {
+    public HistorialView() {
         initComponents();
     }
 
-    public void update(java.util.Observable updatedModel,Object parametros){
-       /*if (parametros != GrupoModel.GRUPOS_MODEL) return;
-       //textNombreCiclo.setText(model.getFiltro().getNombre());
-       ciclosFld.setModel(model.getCiclosModel());
-       this.revalidate();
-       ¨*/
-   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,14 +27,25 @@ public class GruposView extends javax.swing.JFrame implements java.util.Observer
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        estudianteLabel = new javax.swing.JLabel();
+        estudianteFld = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        gruposFld = new javax.swing.JTable();
-        agregarBtn = new javax.swing.JButton();
-        eliminarBtn = new javax.swing.JButton();
+        historialFld = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        gruposFld.setModel(new javax.swing.table.DefaultTableModel(
+        estudianteLabel.setText("Estudiante:");
+        estudianteLabel.setToolTipText("");
+
+        estudianteFld.setEditable(false);
+        estudianteFld.setColumns(17);
+        estudianteFld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estudianteFldActionPerformed(evt);
+            }
+        });
+
+        historialFld.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -66,40 +56,40 @@ public class GruposView extends javax.swing.JFrame implements java.util.Observer
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(gruposFld);
-
-        agregarBtn.setText("Agregar");
-
-        eliminarBtn.setText("Eliminar");
+        jScrollPane1.setViewportView(historialFld);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(agregarBtn)
-                    .addComponent(eliminarBtn))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(estudianteLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(estudianteFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(agregarBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(eliminarBtn))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(estudianteLabel)
+                    .addComponent(estudianteFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void estudianteFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estudianteFldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estudianteFldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,28 +108,28 @@ public class GruposView extends javax.swing.JFrame implements java.util.Observer
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GruposView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistorialView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GruposView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistorialView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GruposView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistorialView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GruposView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistorialView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GruposView().setVisible(true);
+                new HistorialView().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton agregarBtn;
-    private javax.swing.JButton eliminarBtn;
-    private javax.swing.JTable gruposFld;
+    private javax.swing.JTextField estudianteFld;
+    private javax.swing.JLabel estudianteLabel;
+    private javax.swing.JTable historialFld;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

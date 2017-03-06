@@ -5,37 +5,17 @@
  */
 package Register.presentation.view;
 
-import Register.presentation.controller.OfertaController;
-import Register.presentation.model.OfertaModel;
-
 /**
  *
  * @author Fabio
  */
-public class OfertaView extends javax.swing.JFrame implements java.util.Observer{
+public class MatriculaView extends javax.swing.JDialog {
 
-    OfertaController controller;
-    OfertaModel model;
-    
-    public void setController(OfertaController controller){
-        this.controller=controller;
-    }
-    public void setModel(OfertaModel model){
-        this.model=model;
-         model.addObserver(this);
-    }
-    
-   public void update(java.util.Observable updatedModel,Object parametros){
-       /*if (parametros != OfertaModel.OFERTA_MODEL) return;
-       textNombreOferta.setText(model.getFiltro().getNombre());
-       cursosTable.setModel(model.getOfertasModel());
-       this.revalidate();
-       */
-   }
     /**
-     * Creates new form OfertaView
+     * Creates new form MatriculaView
      */
-    public OfertaView() {
+    public MatriculaView(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -48,22 +28,13 @@ public class OfertaView extends javax.swing.JFrame implements java.util.Observer
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        carreraLabel = new javax.swing.JLabel();
-        carreraFld = new javax.swing.JComboBox<>();
-        cicloFld = new javax.swing.JComboBox<>();
-        cicloLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         cursosFld = new javax.swing.JTable();
+        matricularBtn = new javax.swing.JButton();
+        cicloLabel = new javax.swing.JLabel();
+        cicloFld = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        carreraLabel.setText("Carrera:");
-
-        carreraFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cicloFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
-
-        cicloLabel.setText("Ciclo:");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         cursosFld.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -76,42 +47,57 @@ public class OfertaView extends javax.swing.JFrame implements java.util.Observer
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        cursosFld.setToolTipText("");
+        cursosFld.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
+            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
+                cursosFldVetoableChange(evt);
+            }
+        });
         jScrollPane1.setViewportView(cursosFld);
+
+        matricularBtn.setText("Matricular");
+
+        cicloLabel.setText("Ciclo:");
+
+        cicloFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(carreraLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(carreraFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cicloLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cicloFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cicloFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(matricularBtn)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(carreraLabel)
-                    .addComponent(carreraFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cicloLabel)
                     .addComponent(cicloFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(matricularBtn)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cursosFldVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_cursosFldVetoableChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cursosFldVetoableChange
 
     /**
      * @param args the command line arguments
@@ -130,30 +116,36 @@ public class OfertaView extends javax.swing.JFrame implements java.util.Observer
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OfertaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MatriculaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OfertaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MatriculaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OfertaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MatriculaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OfertaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MatriculaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OfertaView().setVisible(true);
+                MatriculaView dialog = new MatriculaView(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> carreraFld;
-    private javax.swing.JLabel carreraLabel;
     private javax.swing.JComboBox<String> cicloFld;
     private javax.swing.JLabel cicloLabel;
     private javax.swing.JTable cursosFld;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton matricularBtn;
     // End of variables declaration//GEN-END:variables
 }
