@@ -14,33 +14,52 @@ public class Protocol {
     public static final String SERVER = "localhost";
     public static final int PORT = 1234;
     
-    public static final int SEARCH_CURSOS_DISPONIBLES=0;
-    public static final int UPDATE_CURSO=1;
-    public static final int GET_CARRERA=2;
-    public static final int GET_PROFESOR=3;
-    public static final int UPDATE_PROFESOR=4;
-    public static final int GET_ESTUDIANTES=5;
-    public static final int GET_CICLOS=6;
-    public static final int UPDATE_CICLOS=7;
-    public static final int OFERTA_ACAD=8;
-    public static final int SEARCH_CURSOS_ESTU=9;
-    public static final int SEARCH_GRUPOS_PROF=10;
-    public static final int GET_ESTU_GRUPO=11;
-    public static final int CLOSE=12;
+    public static final int SEARCH_CURSOS_NOMBRE=0;
+    public static final int SEARCH_CURSOS_CODIGO=1;
+    public static final int SEARCH_CURSOS_CARRERA=2;
+    public static final int UPDATE_CURSO=3;
+    
+    public static final int SEARCH_CARRERA_NOMBRE=4;
+    public static final int SEARCH_CARRERA_CODIGO=5;
+    public static final int UPDATE_CARRERA=6;
+    
+    public static final int SEARCH_PROFESOR_NOMBRE=7;
+    public static final int SEARCH_PROFESOR_CEDULA=8;
+    public static final int UPDATE_PROFESOR=9;
+   
+    public static final int SEARCH_ESTUDIANTES_NOMBRE=10;
+    public static final int SEARCH_ESTUDIANTES_CEDULA=11;
+    public static final int SEARCH_ESTUDIANTES_CARRERA=12;
+    public static final int UPDATE_ESTUDIANTE=13;
+    
+    public static final int SEARCH_CICLOS_ANYO=14;
+    public static final int UPDATE_CICLOS=15;
+    
+    public static final int OFERTA_ACADEMICA=16;
+    public static final int SEARCH_HISTORIAL_ACTIVO=17;
+    
+    public static final int CLOSE=18;
     
     public static final int ERROR_NO_ERROR=0;
-    public static final int ERROR_SEARCH_CURSOS_DISPONIBLES=1;
-    public static final int ERROR_UPDATE_CURSO=2;
-    public static final int ERROR_GET_CARRERA=3;
-    public static final int ERROR_GET_PROFESOR=4;
-    public static final int ERROR_UPDATE_PROFESOR=5; 
-    public static final int ERROR_GET_ESTUDIANTES=6;
-    public static final int ERROR_GET_CICLOS=7;
-    public static final int ERROR_UPDATE_CICLOS=8;
-    public static final int ERROR_OFERTA_ACAD=9;
-    public static final int ERROR_SEARCH_CURSOS_ESTU=10;
-    public static final int ERROR_SEARCH_GRUPOS_PROF=11;
-    public static final int ERROR_GET_ESTU_GRUPO=12;
+    public static final int ERROR_SEARCH_CURSOS_NOMBRE=1;
+    public static final int ERROR_SEARCH_CURSOS_CODIGO=2;
+    public static final int ERROR_SEARCH_CURSOS_CARRERA=3;
+    public static final int ERROR_UPDATE_CURSO=4;   
+    public static final int ERROR_GET_CARRERA_NOMBRE=5;
+    public static final int ERROR_GET_CARRERA_CODIGO=6;
+    public static final int ERROR_UPDATE_CARRERA=7;   
+    public static final int ERROR_GET_PROFESOR_NOMBRE=8;
+    public static final int ERROR_GET_PROFESOR_CEDULA=9;
+    public static final int ERROR_UPDATE_PROFESOR=10;  
+    public static final int ERROR_GET_ESTUDIANTES_NOMBRE=11;
+    public static final int ERROR_GET_ESTUDIANTES_CEDULA=12;
+    public static final int ERROR_GET_ESTUDIANTES_CARRERA=13;
+    public static final int ERROR_UPDATE_ESTUDIANTE=14;    
+    public static final int ERROR_GET_CICLOS_ANYO=15;
+    public static final int ERROR_UPDATE_CICLOS=16;   
+    public static final int ERROR_OFERTA_ACADEMICA=17;
+    public static final int ERROR_SEARCH_HISTORIAL_ACTIVO=18;
+   
     
     
 }
