@@ -7,20 +7,20 @@ package Register.presentation.controller;
 
 import Register.Application;
 import Register.Entities.Carrera;
-import Register.Entities.Curso;
-import Register.presentation.model.CursoModel;
-import Register.presentation.view.CursosView;
+import Register.Entities.Grupo;
+import Register.presentation.model.GrupoModel;
+import Register.presentation.view.GruposView;
 import java.util.List;
 
 /**
  *
- * @author Estudiante
+ * @author Fabio
  */
-public class CursosController {
-    CursosView view;
-    CursoModel model;
+public class GruposController {
+    GruposView view;
+    GrupoModel model;
     
-    public CursosController(CursosView view, CursoModel model) {
+    public GruposController(GruposView view, GrupoModel model) {
         this.view = view;
         this.model = model;
         view.setController(this);
@@ -28,38 +28,39 @@ public class CursosController {
     }
     
     public void buscar(){
-        model.getFiltro().setNombre(view.textNombreCurso.getText());
+       /* model.getFiltro().setNombre(view.textNombreGrupo.getText());
         Carrera filtro= new Carrera();
         filtro.setNombre(model.getFiltro().getNombre());
-        List<Curso> rows = Application.Model.search_CUR_CAR(filtro.getNombre());
-        //List<Curso> rows = Model.searchCursos(model.getFiltro());
-        model.setCursos(rows);
+        List<Grupo> rows = Application.Model.search_CUR_CAR(filtro.getNombre());
+        //List<Grupo> rows = Model.searchGrupos(model.getFiltro());
+        model.setGrupos(rows);
+        */
     }
 
     public void preAgregar(){
         model.clearErrors();
         model.setModo(Application.MODO_AGREGAR);
-        model.setCursoCurrent(new Curso());
-        Application.CURSO_VIEW.setVisible(true);
+        model.setGrupoCurrent(new Grupo());
+        Application.GRUPO_VIEW.setVisible(true);
     }
     
     public void editar(int row){
         model.clearErrors();
-        Curso seleccionada = model.getCursosModel().getRowAt(row); 
+        Grupo seleccionada = model.getGruposModel().getRowAt(row); 
         model.setModo(Application.MODO_EDITAR);
-        model.setCursoCurrent(seleccionada);
-        Application.CURSO_VIEW.setVisible(true);
+        model.setGrupoCurrent(seleccionada);
+        Application.GRUPO_VIEW.setVisible(true);
     }
 
     public void borrar(int row){
-        /*Curso seleccionada = model.getCursosModel().getRowAt(row); 
+        /*Grupo seleccionada = model.getGruposModel().getRowAt(row); 
         try {
-            Application.Model.deleteCurso(seleccionada);
+            Application.Model.deleteGrupo(seleccionada);
         } catch (Exception ex) {
             //todo
         }
-        List<Curso> rowsMod = Application.Model.searchCursos(model.getFiltro());
-        model.setCursos(rowsMod);
+        List<Grupo> rowsMod = Application.Model.searchGrupos(model.getFiltro());
+        model.setGrupos(rowsMod);
         */
     }
     

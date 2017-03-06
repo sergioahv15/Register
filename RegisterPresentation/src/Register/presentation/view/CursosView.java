@@ -52,30 +52,23 @@ public class CursosView extends javax.swing.JFrame implements java.util.Observer
         textCodigo = new javax.swing.JTextField();
         labelCodigo = new javax.swing.JLabel();
         labelCarrera = new javax.swing.JLabel();
-        textCarrera = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         cursosTable = new javax.swing.JTable();
+        carreraFld = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mantenimiento Cursos");
 
         labelNombreCurso.setText("Nombre:");
 
-        textNombreCurso.setColumns(8);
+        textNombreCurso.setColumns(17);
 
-        textCodigo.setColumns(8);
+        textCodigo.setColumns(5);
 
         labelCodigo.setText("Codigo:");
 
         labelCarrera.setText("Carrera:");
-
-        textCarrera.setColumns(8);
-        textCarrera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textCarreraActionPerformed(evt);
-            }
-        });
 
         btnBuscar.setText("buscar");
 
@@ -91,6 +84,8 @@ public class CursosView extends javax.swing.JFrame implements java.util.Observer
             }
         ));
         jScrollPane1.setViewportView(cursosTable);
+
+        carreraFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,11 +105,11 @@ public class CursosView extends javax.swing.JFrame implements java.util.Observer
                         .addComponent(textCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(labelCarrera)
-                        .addGap(18, 18, 18)
-                        .addComponent(textCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(carreraFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
                         .addComponent(btnBuscar)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,21 +121,17 @@ public class CursosView extends javax.swing.JFrame implements java.util.Observer
                     .addComponent(labelCodigo)
                     .addComponent(textCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelCarrera)
-                    .addComponent(textCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
+                    .addComponent(btnBuscar)
+                    .addComponent(carreraFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         labelCodigo.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void textCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCarreraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textCarreraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,12 +171,12 @@ public class CursosView extends javax.swing.JFrame implements java.util.Observer
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JComboBox<String> carreraFld;
     private javax.swing.JTable cursosTable;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCarrera;
     private javax.swing.JLabel labelCodigo;
     private javax.swing.JLabel labelNombreCurso;
-    private javax.swing.JTextField textCarrera;
     private javax.swing.JTextField textCodigo;
     public javax.swing.JTextField textNombreCurso;
     // End of variables declaration//GEN-END:variables

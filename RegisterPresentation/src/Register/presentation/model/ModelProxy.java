@@ -41,9 +41,18 @@ public class ModelProxy implements IModel{
             System.exit(-1);
         }        
     }    
+   
+    public void close(){
+        try {
+            out.writeInt(Protocol.CLOSE);
+            out.flush();
+        } catch (IOException ex) {
+            System.out.println("Error de comunicacion");
+        }
+    }
 
     @Override
-    public List<Curso> search_CUR_NOM(String nombre) {
+    public List<Curso> search_CUR_NOM(String nombre) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -53,7 +62,7 @@ public class ModelProxy implements IModel{
     }
 
     @Override
-    public List<Curso> search_CUR_CAR(Carrera carrera) {
+    public List<Curso> search_CUR_CAR(String carrera) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -63,12 +72,12 @@ public class ModelProxy implements IModel{
     }
 
     @Override
-    public Carrera search_CAR_NOM(String nombre) {
+    public List<Carrera> search_CAR_NOM(String nombre) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Carrera search_CAR_COD(String codigo) {
+    public List<Carrera> search_CAR_COD(String codigo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -103,7 +112,7 @@ public class ModelProxy implements IModel{
     }
 
     @Override
-    public List<Estudiante> search_EST_CAR(Carrera carrera) {
+    public List<Estudiante> search_EST_CAR(String carrera) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -150,15 +159,6 @@ public class ModelProxy implements IModel{
     @Override
     public List<Curso> search_HIS_GLOB(int ced) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-   
-    public void close(){
-        try {
-            out.writeInt(Protocol.CLOSE);
-            out.flush();
-        } catch (IOException ex) {
-            System.out.println("Error de comunicacion");
-        }
     }
    
 }

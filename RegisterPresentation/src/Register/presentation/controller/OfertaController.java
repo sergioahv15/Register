@@ -6,21 +6,19 @@
 package Register.presentation.controller;
 
 import Register.Application;
-import Register.Entities.Carrera;
 import Register.Entities.Curso;
-import Register.presentation.model.CursoModel;
-import Register.presentation.view.CursosView;
-import java.util.List;
+import Register.presentation.model.OfertaModel;
+import Register.presentation.view.OfertaView;
 
 /**
  *
- * @author Estudiante
+ * @author Fabio
  */
-public class CursosController {
-    CursosView view;
-    CursoModel model;
+public class OfertaController {
+    OfertaView view;
+    OfertaModel model;
     
-    public CursosController(CursosView view, CursoModel model) {
+    public OfertaController(OfertaView view, OfertaModel model) {
         this.view = view;
         this.model = model;
         view.setController(this);
@@ -28,38 +26,39 @@ public class CursosController {
     }
     
     public void buscar(){
-        model.getFiltro().setNombre(view.textNombreCurso.getText());
+        /*model.getFiltro().setNombre(view.textNombreOferta.getText());
         Carrera filtro= new Carrera();
         filtro.setNombre(model.getFiltro().getNombre());
-        List<Curso> rows = Application.Model.search_CUR_CAR(filtro.getNombre());
-        //List<Curso> rows = Model.searchCursos(model.getFiltro());
-        model.setCursos(rows);
+        List<Oferta> rows = Application.Model.search_CUR_CAR(filtro.getNombre());
+        //List<Oferta> rows = Model.searchOferta(model.getFiltro());
+        model.setOferta(rows);
+        */
     }
 
     public void preAgregar(){
         model.clearErrors();
         model.setModo(Application.MODO_AGREGAR);
-        model.setCursoCurrent(new Curso());
+        model.setOfertaCurrent(new Curso());
         Application.CURSO_VIEW.setVisible(true);
     }
     
     public void editar(int row){
         model.clearErrors();
-        Curso seleccionada = model.getCursosModel().getRowAt(row); 
+        Curso seleccionada = model.getOfertaModel().getRowAt(row); 
         model.setModo(Application.MODO_EDITAR);
-        model.setCursoCurrent(seleccionada);
+        model.setOfertaCurrent(seleccionada);
         Application.CURSO_VIEW.setVisible(true);
     }
 
     public void borrar(int row){
-        /*Curso seleccionada = model.getCursosModel().getRowAt(row); 
+        /*Oferta seleccionada = model.getOfertaModel().getRowAt(row); 
         try {
-            Application.Model.deleteCurso(seleccionada);
+            Application.Model.deleteOferta(seleccionada);
         } catch (Exception ex) {
             //todo
         }
-        List<Curso> rowsMod = Application.Model.searchCursos(model.getFiltro());
-        model.setCursos(rowsMod);
+        List<Oferta> rowsMod = Application.Model.searchOferta(model.getFiltro());
+        model.setOferta(rowsMod);
         */
     }
     

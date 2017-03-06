@@ -27,15 +27,7 @@ public class Horario {
         this.HoraFin = horaFin;
     }
 
-    public ArrayList<String> getDias() {
-        if(Dias.isEmpty()){
-            Dias.add("Lunes");
-            Dias.add("Martes");
-            Dias.add("Miercoles");
-            Dias.add("Jueves");
-            Dias.add("Viernes");
-            Dias.add("Sabado");
-        }
+    public ArrayList<String> getDias() {        
         return Dias;
     }
 
@@ -59,9 +51,20 @@ public class Horario {
         this.HoraFin = horaFin;
     }
 
+    public String printDias(){
+        String dias = "";
+        for(int i=0;i<Dias.size();i++){
+            if(Dias.size()>1 && i > 0){
+                dias += " y " + Dias.get(i);
+            }
+            dias += Dias.get(i);
+        }
+        return dias;
+    }
+    
     @Override
     public String toString() {
-        return "Horario{" + "dias=" + Dias + ", horaInicio=" + HoraInicio + ", horaFin=" + HoraFin + '}';
+        return "Horario: " + printDias() + "de " + HoraInicio + " a " + HoraFin;
     }
     
     
