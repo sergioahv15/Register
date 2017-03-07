@@ -5,16 +5,17 @@
  */
 package Register;
 
-import Register.presentation.controller.CursoController;
-import Register.presentation.controller.CursosController;
+import Register.Entities.Ciclo;
+import Register.presentation.controller.CiclosController;
 import Register.presentation.controller.EstudianteController;
 import Register.presentation.controller.EstudiantesController;
 import Register.presentation.controller.ProfesorController;
 import Register.presentation.controller.ProfesoresController;
-import Register.presentation.model.CursoModel;
+import Register.presentation.model.CicloModel;
 import Register.presentation.model.EstudianteModel;
 import Register.presentation.model.ModelProxy;
 import Register.presentation.model.ProfesorModel;
+import Register.presentation.view.CiclosView;
 import Register.presentation.view.CursoView;
 import Register.presentation.view.CursosView;
 import Register.presentation.view.EstudianteView;
@@ -37,10 +38,12 @@ public class Application {
      */
      public static void main(String[] args) {
        Model=new ModelProxy();
+       CICLO_ACTIVO = new Ciclo();
         //Model=new Model();
        // CursoModel cursoModel = new CursoModel();
         ProfesorModel profesorModel = new ProfesorModel();
         EstudianteModel estudianteModel = new EstudianteModel();
+        CicloModel cicloModel = new CicloModel();
         
         /*
         CursosView cursosView= new CursosView();
@@ -58,7 +61,11 @@ public class Application {
         EstudiantesController estudiantesController = new EstudiantesController(estudiantesView,estudianteModel);
         estudiantesView.setVisible(true);
         
-        
+        CiclosView ciclosView = new CiclosView();
+        CICLOS_VIEW = ciclosView;
+        CiclosController ciclosController = new CiclosController(ciclosView,cicloModel);
+        ciclosView.setVisible(true);
+                
         //CursoView cursoView = new CursoView(cursosView,true);
         //CURSO_VIEW=cursoView;
         //CursoController cursoController = new CursoController(cursoView,cursoModel);        
@@ -79,6 +86,8 @@ public class Application {
     public static ProfesoresView PROFESORES_VIEW; 
     public static EstudianteView ESTUDIANTE_VIEW;
     public static EstudiantesView ESTUDIANTES_VIEW; 
+    public static CiclosView CICLOS_VIEW;
+    public static Ciclo CICLO_ACTIVO;
     public static GrupoView GRUPO_VIEW;
        
     public static  final int  MODO_AGREGAR=0;
