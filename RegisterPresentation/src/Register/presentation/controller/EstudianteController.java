@@ -47,7 +47,7 @@ public class EstudianteController {
         
         nuevo.setEmail(view.emailFld.getText());
         
-        nuevo.setFechaNac(new Date());
+        nuevo.setFechaNac(view.fechaNacFld.getText());
         
         nuevo.setCarrera(new Carrera());
         

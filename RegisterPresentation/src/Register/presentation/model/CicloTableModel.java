@@ -47,23 +47,12 @@ public class CicloTableModel extends AbstractTableModel{
     public Object getValueAt(int row, int col) {
         Ciclo ciclo = rows.get(row);
         switch (cols[col]){
-           /* case ID: return ciclo.getId();
-            case NOMBRE: return ciclo.getNombre();
-            //case SEXO: return ciclo.getSexo();
-            case SEXO: 
-                if (ciclo.getSexo()=='M') return new ImageIcon( getClass().getResource( "male.png" ) ); 
-                else  return new ImageIcon( getClass().getResource( "female.png" ) );  
-            case ESTADO_CIVIL: return estadoCivil(ciclo);
-            //case ESTADO_CIVIL: return ciclo.getEstadoCivil().getDescripcion();
-            case PASATIEMPO_MUSICA: return ciclo.isPasatiempoMusica();
-            case PASATIEMPO_CINE: return ciclo.isPasatiempoCine();
-            case PASATIEMPO_DEPORTE: return ciclo.isPasatiempoDeporte();
-            case PASATIEMPO_VIDEOJUEGOS: return ciclo.isPasatiempoVideoJuegos();
-            case PASATIEMPO_COCINA: return ciclo.isPasatiempoCocina();
-            case PASATIEMPO_OTRO: return ciclo.isPasatiempoOtro();
-            case PASATIEMPO_OTROTEXTO: return ciclo.getPasatiempoOtroTexto();
-            */
-            default: return "";
+        case NUMERO: return ciclo.getNumero();
+        case ANYO: return ciclo.getAnyo();
+        case FECHA_INICIO: return ciclo.getFechaInicio();
+        case FECHA_FIN: return ciclo.getFechaFin();
+        case ACTIVO: return ciclo.isActivo(); 
+        default: return "";
         }
 
     }    

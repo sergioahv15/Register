@@ -32,7 +32,6 @@ public class CiclosController {
         Ciclo filtro= new Ciclo();
         filtro.setAnyo(model.getFiltro().getAnyo());
         List<Ciclo> rows = Application.Model.search_CIC_ANYO(filtro.getAnyo());
-        //List<Ciclo> rows = Model.searchCiclos(model.getFiltro());
         model.setCiclos(rows);
     }
 

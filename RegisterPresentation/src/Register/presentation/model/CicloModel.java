@@ -83,8 +83,8 @@ public class CicloModel extends java.util.Observable{
     }
     
     public void setCiclos(List<Ciclo> rows){
-        //int[] cols={CicloTableModel.ID,CicloTableModel.NOMBRE,CicloTableModel.SEXO,CicloTableModel.PASATIEMPO_CINE,CicloTableModel.ESTADO_CIVIL};
-        //setCiclosModel(new CicloTableModel(cols,rows));        
+        int[] cols={CicloTableModel.NUMERO,CicloTableModel.ANYO,CicloTableModel.FECHA_INICIO,CicloTableModel.FECHA_FIN,CicloTableModel.ACTIVO};
+        setCiclosModel(new CicloTableModel(cols,rows));        
     }
     
     public Ciclo getFiltro() {
