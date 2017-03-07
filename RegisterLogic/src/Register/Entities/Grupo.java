@@ -26,7 +26,7 @@ public class Grupo {
     public Grupo() {
         Profesor = new Profesor();
         Estudiantes= new ArrayList<>();
-        Notas = new ArrayList<>();
+        Notas = new ArrayList<Nota>();
         Horario = new Horario();
         Curso = new Curso();
     }
@@ -69,36 +69,75 @@ public class Grupo {
 
     public ArrayList<Estudiante> getEstudiantes() {
         if(Estudiantes.isEmpty()){
-           /* Estudiante e = new Estudiante();
+            Estudiante e = new Estudiante();
             DataBase db = new DataBase(null,null,null);
             try{
-                String SQL= "select * from estudiante e where e.curso like '%%%s%%'";
-                SQL= String.format(SQL,g.getCurso().getCodigo());
+                String SQL= "select * from matriculado m where m.grupo_numero_grupo like %d";   //REVISAR ESTO!!!
+                SQL= String.format(SQL,this.NumeroGrupo);
                 ResultSet rs= db.executeQuery(SQL);
                 while(rs.next()){
-                    Grupos.add(grupo(rs));
+                    Estudiantes.add(estudiante(rs));
                 }}
-                catch(SQLException ex){}*/
+                catch(SQLException ex){}
         }
         return Estudiantes;
     }
 
+    private Estudiante estudiante(ResultSet rs) throws SQLException{
+            Estudiante e = new Estudiante();
+        e.setNombre(rs.getString("nombre"));
+        e.setClave(rs.getString("clave"));
+        e.setCedula(rs.getInt("cedula"));
+        e.setEmail(rs.getString("email"));
+        e.setTel(rs.getInt("tel"));
+        e.setFechaNac(rs.getString("fecha_nac"));
+        e.setCarrera(carrera(rs));
+       // e.setHistorial(historial(rs));
+        return e;
+    }
+    
+    private Historial historial(ResultSet rs) throws SQLException{
+        Historial h = new Historial();
+        h.setEstudiante(estudiante(rs));
+        return h;
+    }
+    
+    private Carrera carrera(ResultSet rs) throws SQLException{
+        Carrera c = new Carrera();
+        c.setTitulo(rs.getString("titulo"));
+        c.setCodigo(rs.getString("codigo"));
+        c.setNombre(rs.getString("nombre"));
+        return c;
+    }
+    
     public void setEstudiantes(ArrayList<Estudiante> Estudiantes) {
         this.Estudiantes = Estudiantes;
     }
 
     public ArrayList<Nota> getNotas() {
+        if(Notas.isEmpty()){
+            Nota n= new Nota();
+            DataBase db = new DataBase(null,null,null);
+            try{
+                String SQL= "select * from nota n where n.grupo_numero_grupo like %d";   //REVISAR ESTO!!!
+                SQL= String.format(SQL,this.NumeroGrupo);
+                ResultSet rs= db.executeQuery(SQL);
+                while(rs.next()){
+                    Notas.add(nota(rs));
+                }}
+                catch(SQLException ex){}
+        }
         return Notas;
     }
     
-    
-    /*private Nota nota(ResultSet rs) throws SQLException{
+    private Nota nota(ResultSet rs) throws SQLException{
         Nota n = new Nota();
         n.setNota(rs.getInt("nota"));
         n.setEstudiante(estudiante(rs));
-        n.setGrupo(grupo(rs));
+        n.setGrupo(this);
         return n;
-    }*/
+    }
+    
 
     public void setNotas(ArrayList<Nota> Notas) {
         this.Notas = Notas;

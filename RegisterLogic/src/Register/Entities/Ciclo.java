@@ -16,8 +16,8 @@ public class Ciclo {
     
     private int Numero;
     private int Anyo;
-    private Date FechaInicio;
-    private Date FechaFin;
+    private String FechaInicio;
+    private String FechaFin;
     private boolean Activo;
     private ArrayList<Curso> Cursos;
     
@@ -26,12 +26,12 @@ public class Ciclo {
         Numero= 0;
         Anyo=1999;
         Activo = false;
-        FechaInicio= new Date();
-        FechaFin= new Date();
+        FechaInicio= "";
+        FechaFin= "";
         Cursos = new ArrayList<Curso>();
     }
 
-    public Ciclo(int numero, int anyo, Date fechaInicio, Date fechaFin,ArrayList<Curso> c, boolean a) {
+    public Ciclo(int numero, int anyo, String fechaInicio, String fechaFin,ArrayList<Curso> c, boolean a) {
         this.Numero = numero;
         this.Anyo = anyo;
         this.FechaInicio = fechaInicio;
@@ -76,19 +76,19 @@ public class Ciclo {
         this.Anyo = anyo;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return FechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.FechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public String getFechaFin() {
         return FechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(String fechaFin) {
         this.FechaFin = fechaFin;
     }
     

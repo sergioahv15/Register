@@ -38,7 +38,14 @@ public class Protocol {
     public static final int OFERTA_ACADEMICA=16;
     public static final int SEARCH_HISTORIAL_ACTIVO=17;
     
-    public static final int CLOSE=18;
+    public static final int ADD_CURSO=18;
+    public static final int ADD_CARRERA=19;
+    public static final int ADD_PROFESOR=20;
+    public static final int ADD_ESTUDIANTE=21;
+    public static final int ADD_CICLO=22;
+    
+    
+    public static final int CLOSE=23;
     
     public static final int ERROR_NO_ERROR=0;
     public static final int ERROR_SEARCH_CURSOS_NOMBRE=1;
@@ -59,7 +66,9 @@ public class Protocol {
     public static final int ERROR_UPDATE_CICLOS=16;   
     public static final int ERROR_OFERTA_ACADEMICA=17;
     public static final int ERROR_SEARCH_HISTORIAL_ACTIVO=18;
-   
-    
-    
+    public static final int ERROR_ADD_CARRERA=19;
+    public static final int ERROR_ADD_PROFESOR=20;
+    public static final int ERROR_ADD_ESTUDIANTE=21;
+    public static final int ERROR_ADD_CICLO=22;
+    public static final int ERROR_ADD_CURSO=23;
 }

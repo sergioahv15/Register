@@ -70,6 +70,15 @@ public class ModelWorker {
                 method = in.readInt();
                 System.out.println("Operacion: "+method);
                 switch(method){
+                case Protocol.ADD_CURSO:
+                    c=(Curso)in.readObject();
+                    try {
+                        Model.Add_CUR(c);
+                        out.writeInt(Protocol.ERROR_NO_ERROR);
+                    } catch (Exception e) {
+                        out.writeInt(Protocol.ERROR_ADD_CURSO);
+                    }
+                    break;
                 case Protocol.SEARCH_CURSOS_NOMBRE:
                     filtro=(String) in.readObject();
                     out.writeInt(Protocol.ERROR_NO_ERROR);
@@ -95,6 +104,15 @@ public class ModelWorker {
                         out.writeInt(Protocol.ERROR_UPDATE_CURSO);
                     }
                     break;
+                case Protocol.ADD_CARRERA:
+                    car=(Carrera)in.readObject();
+                    try {
+                        Model.Add_CAR(car);
+                        out.writeInt(Protocol.ERROR_NO_ERROR);
+                    } catch (Exception e) {
+                        out.writeInt(Protocol.ERROR_ADD_CARRERA);
+                    }
+                    break;
                 case Protocol.SEARCH_CARRERA_NOMBRE:
                     filtro=(String) in.readObject();
                     out.writeInt(Protocol.ERROR_NO_ERROR);
@@ -114,6 +132,15 @@ public class ModelWorker {
                             out.writeInt(Protocol.ERROR_UPDATE_CARRERA);
                         }
                     break;
+                case Protocol.ADD_PROFESOR:
+                    p=(Profesor)in.readObject();
+                    try {
+                        Model.Add_PRO(p);
+                        out.writeInt(Protocol.ERROR_NO_ERROR);
+                    } catch (Exception e) {
+                        out.writeInt(Protocol.ERROR_ADD_PROFESOR);
+                    }
+                    break;
                 case Protocol.SEARCH_PROFESOR_NOMBRE:
                     filtro=(String) in.readObject();
                     out.writeInt(Protocol.ERROR_NO_ERROR);
@@ -132,6 +159,15 @@ public class ModelWorker {
                         } catch (Exception e) {
                             out.writeInt(Protocol.ERROR_UPDATE_PROFESOR);
                         }
+                    break;
+                case Protocol.ADD_ESTUDIANTE:
+                    es=(Estudiante)in.readObject();
+                    try {
+                        Model.Add_EST(es);
+                        out.writeInt(Protocol.ERROR_NO_ERROR);
+                    } catch (Exception e) {
+                        out.writeInt(Protocol.ERROR_ADD_ESTUDIANTE);
+                    }
                     break;
                 case Protocol.SEARCH_ESTUDIANTES_NOMBRE:
                     filtro=(String) in.readObject();
@@ -156,6 +192,15 @@ public class ModelWorker {
                         } catch (Exception e) {
                             out.writeInt(Protocol.ERROR_UPDATE_ESTUDIANTE);
                         }
+                    break;
+                case Protocol.ADD_CICLO:
+                    ci=(Ciclo)in.readObject();
+                    try {
+                        Model.Add_CIC(ci);
+                        out.writeInt(Protocol.ERROR_NO_ERROR);
+                    } catch (Exception e) {
+                        out.writeInt(Protocol.ERROR_ADD_CICLO);
+                    }
                     break;
                 case Protocol.SEARCH_CICLOS_ANYO:
                     filtroInt=(Integer) in.readObject();

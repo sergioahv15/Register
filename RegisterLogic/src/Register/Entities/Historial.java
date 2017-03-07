@@ -16,42 +16,46 @@ import java.util.ArrayList;
  */
 public class Historial {
    
-    private Estudiante estudiante;
-    private ArrayList<Curso> historial;
+    private Estudiante Estudiante;
+    private ArrayList<Curso> Historial;
 
     public Historial(Estudiante Estudiante, ArrayList<Curso> Historial) {
-        this.estudiante = Estudiante;
-        this.historial = Historial;
+        this.Estudiante = Estudiante;
+        this.Historial = Historial;
     }
 
     public Historial() {
-        estudiante= null;
-        historial = null;
+        Estudiante= null;
+        Historial = null;
     }
 
     public Estudiante getEstudiante() {
-        return estudiante;
+        return Estudiante;
     }
 
     public void setEstudiante(Estudiante Estudiante) {
-        this.estudiante = Estudiante;
+        this.Estudiante = Estudiante;
     }
 
-    /*public ArrayList<Curso> getHistorial() {
-        if(historial.isEmpty()){
+
+    public ArrayList<Curso> getHistorial() {
+        if(Historial.isEmpty()){
             Curso c = new Curso();
             DataBase db = new DataBase(null,null,null);
             try{
-                String SQL= "select * from historial h where h.curso like %d";
+                String SQL= "select * from historial h where h.estudiante_cedula like %d";
                 SQL= String.format(SQL,c.getHistorial().getEstudiante().getCedula());
                 ResultSet rs= db.executeQuery(SQL);
                 while(rs.next()){
-                    historial.add(curso(rs));
+                    Historial.add(curso(rs));
                 }}
                 catch(SQLException ex){}
         }
-        return historial;
-    }*/
+
+        return Historial;
+
+    }
+
 
     private Curso curso(ResultSet rs) throws SQLException{
         Curso c = new Curso();
@@ -76,13 +80,13 @@ public class Historial {
         Ciclo c = new Ciclo();
         c.setNumero(rs.getInt("numero"));
         c.setAnyo(rs.getInt("anyo"));
-        c.setFechaInicio(rs.getDate("fecha_inicio"));
-        c.setFechaFin(rs.getDate("fecha_fin"));
+        c.setFechaInicio(rs.getString("fecha_inicio"));
+        c.setFechaFin(rs.getString("fecha_fin"));
         return c;
     }
     
     public void setHistorial(ArrayList<Curso> Historial) {
-        this.historial = Historial;
+        this.Historial = Historial;
     }
     
     

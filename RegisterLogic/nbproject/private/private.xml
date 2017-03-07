@@ -3,10 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Fabio/Documents/Lab_1_Moviles/Register/RegisterLogic/src/Register/Protocol.java</file>
-            <file>file:/C:/Users/Fabio/Documents/Lab_1_Moviles/Register/RegisterLogic/src/Register/Entities/Usuario.java</file>
-            <file>file:/C:/Users/Fabio/Documents/Lab_1_Moviles/Register/RegisterLogic/src/Register/logic/model/Model.java</file>
-            <file>file:/C:/Users/Fabio/Documents/Lab_1_Moviles/Register/RegisterLogic/src/Register/logic/model/DataBase.java</file>
+            <file>file:/C:/Users/Herrera/Documents/GitHub/Register/RegisterLogic/src/Register/logic/model/ModelWorker.java</file>
+            <file>file:/C:/Users/Herrera/Documents/GitHub/Register/RegisterLogic/src/Register/IModel.java</file>
+            <file>file:/C:/Users/Herrera/Documents/GitHub/Register/RegisterLogic/src/Register/Protocol.java</file>
+            <file>file:/C:/Users/Herrera/Documents/GitHub/Register/RegisterLogic/src/Register/Entities/Historial.java</file>
+            <file>file:/C:/Users/Herrera/Documents/GitHub/Register/RegisterLogic/src/Register/Entities/Horario.java</file>
+            <file>file:/C:/Users/Herrera/Documents/GitHub/Register/RegisterLogic/src/Register/logic/model/Model.java</file>
+            <file>file:/C:/Users/Herrera/Documents/GitHub/Register/RegisterLogic/src/Register/Entities/Grupo.java</file>
+            <file>file:/C:/Users/Herrera/Documents/GitHub/Register/RegisterLogic/src/Register/Entities/Ciclo.java</file>
+            <file>file:/C:/Users/Herrera/Documents/GitHub/Register/RegisterLogic/src/Register/Entities/Estudiante.java</file>
         </group>
     </open-files>
 </project-private>

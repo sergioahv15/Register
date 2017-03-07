@@ -123,7 +123,7 @@ public class Curso {
 
     private Grupo grupo(ResultSet rs) throws SQLException{
         Grupo g = new Grupo();
-        g.setNumeroGrupo(rs.getInt("num_grupo"));
+        g.setNumeroGrupo(rs.getInt("numero_grupo"));
         g.setProfesor(profesor(rs));
         g.setHorario(horario(rs));
         g.setCurso(this);

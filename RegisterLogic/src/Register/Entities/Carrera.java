@@ -68,7 +68,7 @@ public class Carrera {
             Curso c = new Curso();
             DataBase db = new DataBase(null,null,null);
             try{
-                String SQL= "select * from carrera c where c.curso like '%%%s%%'";
+                String SQL= "select * from curso c where c.carrera_codigo like '%%%s%%'";
                 SQL= String.format(SQL,c.getCarrera().getCodigo());
                 ResultSet rs= db.executeQuery(SQL);
                 while(rs.next()){
@@ -94,8 +94,8 @@ public class Carrera {
         Ciclo c = new Ciclo();
         c.setNumero(rs.getInt("numero"));
         c.setAnyo(rs.getInt("anyo"));
-        c.setFechaInicio(rs.getDate("fecha_inicio"));
-        c.setFechaFin(rs.getDate("fecha_fin"));
+        c.setFechaInicio(rs.getString("fecha_inicio"));
+        c.setFechaFin(rs.getString("fecha_fin"));
         return c;
     }
 

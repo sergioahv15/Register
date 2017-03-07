@@ -13,27 +13,76 @@ import java.util.ArrayList;
  */
 public class Horario {
     
-    private ArrayList<String> Dias;
+    private boolean Lunes;
+    private boolean Martes;
+    private boolean Miercoles;
+    private boolean Jueves;
+    private boolean Viernes;
     private String HoraInicio;
     private String HoraFin;
 
     public Horario() {
-        Dias = new ArrayList<>();
+        this.Lunes=false;
+        this.Martes=false;
+        this.Miercoles=false;
+        this.Jueves=false;
+        this.Viernes=false;
+        this.HoraInicio="";
+        this.HoraFin= "";
+                
     }
 
-    public Horario(ArrayList<String> dias, String horaInicio, String horaFin) {
-        this.Dias = dias;
+    public Horario(boolean l,boolean m,boolean k,boolean j,boolean v, String horaInicio, String horaFin) {
+        this.Lunes=l;
+        this.Martes=m;
+        this.Miercoles=k;
+        this.Jueves=j;
+        this.Viernes=v;
         this.HoraInicio = horaInicio;
         this.HoraFin = horaFin;
     }
 
-    public ArrayList<String> getDias() {        
-        return Dias;
+    public boolean isLunes() {
+        return Lunes;
     }
 
-    public void setDias(ArrayList<String> dias) {
-        this.Dias = dias;
+    public void setLunes(boolean Lunes) {
+        this.Lunes = Lunes;
     }
+
+    public boolean isMartes() {
+        return Martes;
+    }
+
+    public void setMartes(boolean Martes) {
+        this.Martes = Martes;
+    }
+
+    public boolean isMiercoles() {
+        return Miercoles;
+    }
+
+    public void setMiercoles(boolean Miercoles) {
+        this.Miercoles = Miercoles;
+    }
+
+    public boolean isJueves() {
+        return Jueves;
+    }
+
+    public void setJueves(boolean Jueves) {
+        this.Jueves = Jueves;
+    }
+
+    public boolean isViernes() {
+        return Viernes;
+    }
+
+    public void setViernes(boolean Viernes) {
+        this.Viernes = Viernes;
+    }
+
+   
 
     public String getHoraInicio() {
         return HoraInicio;
@@ -51,7 +100,7 @@ public class Horario {
         this.HoraFin = horaFin;
     }
 
-    public String printDias(){
+    /*public String printDias(){
         String dias = "";
         for(int i=0;i<Dias.size();i++){
             if(Dias.size()>1 && i > 0){
@@ -65,7 +114,7 @@ public class Horario {
     @Override
     public String toString() {
         return "Horario: " + printDias() + "de " + HoraInicio + " a " + HoraFin;
-    }
+    }*/
     
     
 }

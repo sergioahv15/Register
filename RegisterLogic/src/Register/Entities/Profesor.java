@@ -56,7 +56,7 @@ public class Profesor extends Usuario {
     
      private Grupo grupo(ResultSet rs) throws SQLException{
         Grupo g = new Grupo();
-        g.setNumeroGrupo(rs.getInt("num_grupo"));
+        g.setNumeroGrupo(rs.getInt("numero_grupo"));
         g.setProfesor(this);
         g.setHorario(horario(rs));
         g.setCurso(curso(rs));
@@ -87,8 +87,8 @@ public class Profesor extends Usuario {
         Ciclo c = new Ciclo();
         c.setNumero(rs.getInt("numero"));
         c.setAnyo(rs.getInt("anyo"));
-        c.setFechaInicio(rs.getDate("fecha_inicio"));
-        c.setFechaFin(rs.getDate("fecha_fin"));
+        c.setFechaInicio(rs.getString("fecha_inicio"));
+        c.setFechaFin(rs.getString("fecha_fin"));
         return c;
     }
     
