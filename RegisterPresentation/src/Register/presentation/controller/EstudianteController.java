@@ -49,13 +49,13 @@ public class EstudianteController {
         
         nuevo.setFechaNac(view.fechaNacFld.getText());
         
-        nuevo.setCarrera(new Carrera());
+        nuevo.setCarrera(new Carrera("1", "Ingenieria en Sistemas"));
         
         if (model.getErrores().isEmpty()){
             try{
                 switch(model.getModo()){
                     case Application.MODO_AGREGAR:
-                        //Application.Model.add(nuevo);
+                        Application.Model.Add_EST(nuevo);
                         model.setMensaje("PROFESOR AGREGADO");
                         model.setEstudianteCurrent(new Estudiante());
                         
@@ -69,7 +69,7 @@ public class EstudianteController {
                         
                         List<Estudiante> rowsMod = Application.Model.search_EST_NOM("");
                         model.setEstudiantes(rowsMod);
-                        //view.setVisible(false);
+                        view.setVisible(false);
                         break;
                 }
             }

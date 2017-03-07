@@ -55,7 +55,7 @@ public class EstudianteView extends javax.swing.JDialog implements java.util.Obs
         fechaNacFld = new javax.swing.JTextField();
         fechaNacLabel = new javax.swing.JLabel();
         CarreraLabel = new javax.swing.JLabel();
-        carreraFld = new javax.swing.JTextField();
+        carreraFld = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -110,12 +110,7 @@ public class EstudianteView extends javax.swing.JDialog implements java.util.Obs
 
         CarreraLabel.setText("Carrera:");
 
-        carreraFld.setColumns(20);
-        carreraFld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                carreraFldActionPerformed(evt);
-            }
-        });
+        carreraFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingenieria en Sistemas" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,7 +142,7 @@ public class EstudianteView extends javax.swing.JDialog implements java.util.Obs
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(emailFld, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(fechaNacFld, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(carreraFld, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(carreraFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(guardarBtn)
@@ -186,7 +181,7 @@ public class EstudianteView extends javax.swing.JDialog implements java.util.Obs
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarBtn)
                     .addComponent(cancelarBtn))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -211,10 +206,6 @@ public class EstudianteView extends javax.swing.JDialog implements java.util.Obs
     private void fechaNacFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaNacFldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fechaNacFldActionPerformed
-
-    private void carreraFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carreraFldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_carreraFldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,7 +269,7 @@ public class EstudianteView extends javax.swing.JDialog implements java.util.Obs
        
        fechaNacFld.setText(estudianteCurrent.getFechaNac().toString());
        
-       carreraFld.setText("");
+       carreraFld.setSelectedIndex(0);
        
         this.validate();
         if (!model.getMensaje().equals("")){
@@ -290,7 +281,7 @@ public class EstudianteView extends javax.swing.JDialog implements java.util.Obs
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CarreraLabel;
     private javax.swing.JButton cancelarBtn;
-    public javax.swing.JTextField carreraFld;
+    private javax.swing.JComboBox<String> carreraFld;
     public javax.swing.JTextField cedulaFld;
     private javax.swing.JLabel cedulaLabel;
     public javax.swing.JTextField emailFld;

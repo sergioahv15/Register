@@ -53,7 +53,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="emailFld" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="fechaNacFld" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="carreraFld" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="carreraFld" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -107,7 +107,7 @@
                   <Component id="guardarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cancelarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -208,15 +208,16 @@
         <Property name="text" type="java.lang.String" value="Carrera:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="carreraFld">
+    <Component class="javax.swing.JComboBox" name="carreraFld">
       <Properties>
-        <Property name="columns" type="int" value="20"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="Ingenieria en Sistemas"/>
+          </StringArray>
+        </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="carreraFldActionPerformed"/>
-      </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
   </SubComponents>

@@ -187,7 +187,21 @@ public class ModelProxy implements IModel{
 
     @Override
     public void update(Ciclo ciclo) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            out.writeInt(Protocol.UPDATE_CICLOS);
+            out.writeObject(ciclo);
+            out.flush();
+            int error = in.readInt();
+            if (error == Protocol.ERROR_NO_ERROR){
+            }
+            else{
+                throw new Exception("Ciclo no existe");
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            throw new Exception("Ciclo no existe");
+        }
     }
 
     @Override
@@ -217,7 +231,21 @@ public class ModelProxy implements IModel{
 
     @Override
     public void Add_EST(Estudiante c) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            out.writeInt(Protocol.ADD_ESTUDIANTE);
+            out.writeObject(c);
+            out.flush();
+            int error = in.readInt();
+            if (error == Protocol.ERROR_NO_ERROR){
+            }
+            else{
+                throw new Exception("Estudiante ya existe");
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            throw new Exception("Estudiante ya existe");
+        }
     }
 
     @Override

@@ -118,6 +118,11 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
         carreraLabel.setText("carrera:");
 
         agregarBtn.setText("Agregar Estudiante");
+        agregarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarBtnActionPerformed(evt);
+            }
+        });
 
         consultaBtn.setText("Consultar Historial");
         consultaBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +227,11 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
             controller.editar(row);
         }
     }//GEN-LAST:event_estudiantesFldMouseClicked
+
+    private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
+        Application.ESTUDIANTE_VIEW.setLocation(this.agregarBtn.getLocationOnScreen());
+        controller.preAgregar();
+    }//GEN-LAST:event_agregarBtnActionPerformed
 
     /**
      * @param args the command line arguments

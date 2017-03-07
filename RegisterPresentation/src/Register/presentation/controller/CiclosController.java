@@ -33,6 +33,9 @@ public class CiclosController {
         filtro.setAnyo(model.getFiltro().getAnyo());
         System.out.println(filtro.getAnyo());
         List<Ciclo> rows = Application.Model.search_CIC_ANYO(filtro.getAnyo());
+        for(Ciclo cic : rows){
+            if(cic.isActivo())Application.CICLO_ACTIVO = cic;
+        }
         model.setCiclos(rows);
     }
 
@@ -44,11 +47,20 @@ public class CiclosController {
     }
     
     public void editar(int row){
-        model.clearErrors();
-        Ciclo seleccionada = model.getCiclosModel().getRowAt(row); 
-        model.setModo(Application.MODO_EDITAR);
-        model.setCicloCurrent(seleccionada);
-        Application.CURSO_VIEW.setVisible(true);
+        model.clearErrors();        
+        Ciclo seleccionado = model.getCiclosModel().getRowAt(row);
+        try{
+            Ciclo currentActivo =  Application.CICLO_ACTIVO;                       
+            Application.Model.update(currentActivo);            
+            Application.Model.update(seleccionado);
+            currentActivo.setActivo(false); 
+            seleccionado.setActivo(true);
+            Application.CICLO_ACTIVO = seleccionado;
+            List<Ciclo> rows = Application.Model.search_CIC_ANYO(Integer.parseInt(view.anyoFld.getSelectedItem().toString()));
+            model.setCiclos(rows);
+        }catch(Exception e){
+            System.out.println("ME CAGO EN TODO LO CAGABLEEE!!!!!!1");
+        }
     }
 
     public void borrar(int row){

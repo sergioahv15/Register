@@ -125,7 +125,8 @@ public class CiclosView extends javax.swing.JFrame implements java.util.Observer
     }// </editor-fold>//GEN-END:initComponents
 
     private void activarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activarBtnActionPerformed
-       
+        int row = this.ciclosFld.getSelectedRow();
+        controller.editar(row);
     }//GEN-LAST:event_activarBtnActionPerformed
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
