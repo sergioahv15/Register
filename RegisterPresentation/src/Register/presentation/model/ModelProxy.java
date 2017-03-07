@@ -167,7 +167,22 @@ public class ModelProxy implements IModel{
 
     @Override
     public List<Ciclo> search_CIC_ANYO(int annio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            out.writeInt(Protocol.SEARCH_CICLOS_ANYO);
+            out.writeObject(annio);
+            out.flush();
+            int error = in.readInt();
+            List<Ciclo> ciclos = (List<Ciclo>) in.readObject();
+            
+            //
+            System.out.println(ciclos.get(0).getFechaInicio());
+            //
+            
+            return ciclos;
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            return new ArrayList<Ciclo>();
+        }
     }
 
     @Override

@@ -27,7 +27,7 @@ public class CiclosView extends javax.swing.JFrame implements java.util.Observer
     
    public void update(java.util.Observable updatedModel,Object parametros){
        if (parametros != CicloModel.CICLOS_MODEL) return;
-       //textNombreCiclo.setText(model.getFiltro().getNombre());
+       //anyoFld.setSelectedItem(model.getFiltro().getAnyo());
        ciclosFld.setModel(model.getCiclosModel());
        this.revalidate();
    }
@@ -61,6 +61,11 @@ public class CiclosView extends javax.swing.JFrame implements java.util.Observer
         anyoFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2017", "2018" }));
 
         buscarBtn.setText("Buscar");
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarBtnActionPerformed(evt);
+            }
+        });
 
         ciclosFld.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -120,8 +125,12 @@ public class CiclosView extends javax.swing.JFrame implements java.util.Observer
     }// </editor-fold>//GEN-END:initComponents
 
     private void activarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activarBtnActionPerformed
-       this.controller.buscar();
+       
     }//GEN-LAST:event_activarBtnActionPerformed
+
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        this.controller.buscar();
+    }//GEN-LAST:event_buscarBtnActionPerformed
 
     /**
      * @param args the command line arguments

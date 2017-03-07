@@ -31,6 +31,7 @@ public class CiclosController {
         model.getFiltro().setAnyo(Integer.parseInt(view.anyoFld.getSelectedItem().toString()));
         Ciclo filtro= new Ciclo();
         filtro.setAnyo(model.getFiltro().getAnyo());
+        System.out.println(filtro.getAnyo());
         List<Ciclo> rows = Application.Model.search_CIC_ANYO(filtro.getAnyo());
         model.setCiclos(rows);
     }
