@@ -35,7 +35,7 @@ public class Estudiante extends Usuario {
     }
 
     public Estudiante() {
-        super("",2,2);
+        super("",0,2);
         this.Nombre="";
         this.Tel=0;
         this.Email="";

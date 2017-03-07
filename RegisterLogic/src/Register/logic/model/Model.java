@@ -265,7 +265,7 @@ public class Model implements IModel{
         e.setEmail(rs.getString("email"));
         e.setTel(rs.getInt("tel"));
         e.setFechaNac(rs.getString("fecha_nac"));
-        e.setCarrera(carrera(rs));
+        //e.setCarrera());
         //e.setHistorial(historial(rs));
         return e;
     }
@@ -281,7 +281,7 @@ public class Model implements IModel{
     public void update(Estudiante e) throws Exception {
         String SQL="update estudiante set clave='%s',nombre='%s',tel='%d',email='%s',fecha_nac='%s' where cedula='%d'";  //REVISAR %d y decha de nac
         SQL= String.format(SQL, e.getClave(),e.getNombre(),e.getTel(),
-                e.getEmail(),e.getFechaNac());
+                e.getEmail(),e.getFechaNac(),e.getCedula());
         int count= database.executeUpdate(SQL);
         if(count==0){
             throw new Exception("estudiante no existe");
@@ -307,7 +307,18 @@ public class Model implements IModel{
 
     @Override
     public void update(Ciclo ciclo) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String SQL;
+        Boolean activo = ciclo.isActivo();
+        if(activo){
+            SQL = "update ciclo set activo=0 where fecha_inicio='%s'";
+        }else{
+            SQL = "update ciclo set activo=1 where fecha_inicio='%s'";
+        }
+        SQL= String.format(SQL, ciclo.getFechaInicio());
+        int count= database.executeUpdate(SQL);
+        if(count==0){
+            throw new Exception("ciclo no existe");
+        }
     }
 
     @Override
@@ -380,7 +391,7 @@ public class Model implements IModel{
 
     @Override
     public void Add_EST(Estudiante e) throws Exception {
-        String SQL="insert into profesor (cedula,nombre,tel,email,clave,carrera_codigo,fecha_nac)"
+        String SQL="insert into estudiante (cedula,nombre,tel,email,clave,carrera_codigo,fecha_nac)"
                 + "values(%d,'%s',%d,'%s','%s','%s','%s')";
         SQL=String.format(SQL,e.getCedula(),e.getNombre(),e.getTel(),e.getEmail(),e.getClave(),e.getCarrera().getCodigo(),
             e.getFechaNac());
