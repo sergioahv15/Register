@@ -5,14 +5,14 @@
  */
 package Register.Entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
  * @author Fabio
  */
-public class Ciclo {
+public class Ciclo implements Serializable{
     
     private int Numero;
     private int Anyo;

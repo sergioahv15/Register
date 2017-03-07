@@ -100,6 +100,9 @@ public class Model implements IModel{
         c.setAnyo(rs.getInt("anyo"));
         c.setFechaInicio(rs.getString("fecha_inicio"));
         c.setFechaFin(rs.getString("fecha_fin"));
+        int activo = rs.getInt("activo");
+        if(activo==1)c.setActivo(true);
+        else if(activo ==0)c.setActivo(false);
         return c;
     }
 
