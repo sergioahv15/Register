@@ -161,33 +161,23 @@ public class Model implements IModel{
     }
 
     @Override
-    public List<Profesor> search_PRO_NOM(String nombre) {
+    public List<Profesor> search_PRO(String nombre, int ced) {
         List<Profesor> resultado = new ArrayList<Profesor>();
+        String SQL;
         try {
-            String SQL="select * from profesor pro where pro.nombre like '%%%s%%'";
-            SQL = String.format(SQL, nombre);
+            if(ced!=0){ 
+                SQL="select * from profesor pro where pro.nombre like '%%%s%%' and pro.cedula like '%d'";
+                SQL = String.format(SQL, nombre, ced);
+            }else{
+                SQL="select * from profesor pro where pro.nombre like '%%%s%%'";
+                SQL = String.format(SQL, nombre);                
+            }
             ResultSet rs = database.executeQuery(SQL);
             while(rs.next()){
                 resultado.add(profesor(rs));
             }
-        } catch (Exception e) {
-        }
-         return resultado;
-    }
-
-    @Override
-    public List<Profesor> search_PRO_CED(int ced) {
-        List<Profesor> resultado = new ArrayList<Profesor>();
-        try {
-            String SQL="select * from profesor pro where pro.cedula like %d";
-            SQL = String.format(SQL, ced);
-            ResultSet rs = database.executeQuery(SQL);
-            while(rs.next()){
-                resultado.add(profesor(rs));
-            }
-        } catch (Exception e) {
-        }
-         return resultado;
+        } catch (Exception e) {}
+            return resultado;
     }
 
     private Profesor profesor(ResultSet rs) throws SQLException{
@@ -411,6 +401,7 @@ public class Model implements IModel{
             throw new Exception("Ciclo ya existente");
         }
     }
+    
 }
 
     

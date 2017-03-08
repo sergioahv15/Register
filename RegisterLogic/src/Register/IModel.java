@@ -30,8 +30,7 @@ public interface IModel {
       public void update(Carrera carrera)throws Exception;
       
       public void Add_PRO(Profesor p) throws Exception;
-      public List<Profesor> search_PRO_NOM(String nombre);
-      public List<Profesor> search_PRO_CED(int ced);
+      public List<Profesor> search_PRO(String nombre, int ced);
       public void update(Profesor profe)throws Exception;
       
       public void Add_EST(Estudiante c) throws Exception;

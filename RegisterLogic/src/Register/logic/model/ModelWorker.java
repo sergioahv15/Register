@@ -140,16 +140,12 @@ public class ModelWorker {
                     } catch (Exception e) {
                         out.writeInt(Protocol.ERROR_ADD_PROFESOR);
                     }
-                    break;
-                case Protocol.SEARCH_PROFESOR_NOMBRE:
+                    break;                  
+                case Protocol.SEARCH_PROFESOR:
                     filtro=(String) in.readObject();
-                    out.writeInt(Protocol.ERROR_NO_ERROR);
-                    out.writeObject(Model.search_PRO_NOM(filtro));
-                    break;
-                case Protocol.SEARCH_PROFESOR_CEDULA:
                     filtroInt=(Integer) in.readObject();
                     out.writeInt(Protocol.ERROR_NO_ERROR);
-                    out.writeObject(Model.search_PRO_CED(filtroInt));
+                    out.writeObject(Model.search_PRO(filtro,filtroInt));
                     break;
                 case Protocol.UPDATE_PROFESOR:
                     p=(Profesor)in.readObject();
