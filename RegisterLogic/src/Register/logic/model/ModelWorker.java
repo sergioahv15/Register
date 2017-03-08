@@ -59,6 +59,9 @@ public class ModelWorker {
         boolean continuar = true;
         int method;
         String filtro;
+        //***********
+        String filtro2;
+        //***********
         int filtroInt;
         Curso c;
         Carrera car;
@@ -164,21 +167,13 @@ public class ModelWorker {
                     } catch (Exception e) {
                         out.writeInt(Protocol.ERROR_ADD_ESTUDIANTE);
                     }
-                    break;
-                case Protocol.SEARCH_ESTUDIANTES_NOMBRE:
+                    break;                
+                case Protocol.SEARCH_ESTUDIANTES:
                     filtro=(String) in.readObject();
+                    filtroInt=(Integer) in.readObject();
+                    filtro2=(String) in.readObject();
                     out.writeInt(Protocol.ERROR_NO_ERROR);
-                    out.writeObject(Model.search_EST_NOM(filtro));
-                    break;
-                case Protocol.SEARCH_ESTUDIANTES_CEDULA:
-                     filtroInt=(Integer) in.readObject();
-                    out.writeInt(Protocol.ERROR_NO_ERROR);
-                    out.writeObject(Model.search_EST_CED(filtroInt));
-                    break;
-                case Protocol.SEARCH_ESTUDIANTES_CARRERA:
-                    filtro=(String) in.readObject();
-                    out.writeInt(Protocol.ERROR_NO_ERROR);
-                    out.writeObject(Model.search_EST_CAR(filtro));
+                    out.writeObject(Model.search_EST(filtro,filtroInt,filtro2));
                     break;
                 case Protocol.UPDATE_ESTUDIANTE:
                     es=(Estudiante)in.readObject();

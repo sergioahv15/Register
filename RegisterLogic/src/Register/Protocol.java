@@ -26,25 +26,23 @@ public class Protocol {
     public static final int SEARCH_PROFESOR=7;
     public static final int UPDATE_PROFESOR=8;
    
-    public static final int SEARCH_ESTUDIANTES_NOMBRE=9;
-    public static final int SEARCH_ESTUDIANTES_CEDULA=10;
-    public static final int SEARCH_ESTUDIANTES_CARRERA=11;
-    public static final int UPDATE_ESTUDIANTE=12;
+    public static final int SEARCH_ESTUDIANTES=9;
+    public static final int UPDATE_ESTUDIANTE=10;
     
-    public static final int SEARCH_CICLOS_ANYO=13;
-    public static final int UPDATE_CICLOS=14;
+    public static final int SEARCH_CICLOS_ANYO=11;
+    public static final int UPDATE_CICLOS=12;
     
-    public static final int OFERTA_ACADEMICA=15;
-    public static final int SEARCH_HISTORIAL_ACTIVO=16;
+    public static final int OFERTA_ACADEMICA=13;
+    public static final int SEARCH_HISTORIAL_ACTIVO=14;
     
-    public static final int ADD_CURSO=17;
-    public static final int ADD_CARRERA=18;
-    public static final int ADD_PROFESOR=19;
-    public static final int ADD_ESTUDIANTE=20;
-    public static final int ADD_CICLO=21;
+    public static final int ADD_CURSO=15;
+    public static final int ADD_CARRERA=16;
+    public static final int ADD_PROFESOR=17;
+    public static final int ADD_ESTUDIANTE=18;
+    public static final int ADD_CICLO=19;
     
     
-    public static final int CLOSE=22;
+    public static final int CLOSE=20;
     
     
     public static final int ERROR_NO_ERROR=0;

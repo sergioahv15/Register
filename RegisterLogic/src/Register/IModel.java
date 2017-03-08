@@ -34,11 +34,9 @@ public interface IModel {
       public void update(Profesor profe)throws Exception;
       
       public void Add_EST(Estudiante c) throws Exception;
-      public List<Estudiante> search_EST_NOM(String nombre);
-      public List<Estudiante> search_EST_CED(int ced);
-      public List<Estudiante> search_EST_CAR(String carrera);
+      public List<Estudiante> search_EST(String nombre, int ced , String carrera);
       public void update(Estudiante estu)throws Exception;
-      
+            
       public void Add_CIC(Ciclo c) throws Exception;
       public List<Ciclo> search_CIC_ANYO(int annio);
       public void update(Ciclo ciclo)throws Exception;

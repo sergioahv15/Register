@@ -200,51 +200,35 @@ public class Model implements IModel{
             throw new Exception("Profesor no existe");
         }
     }
-
+   
     @Override
-    public List<Estudiante> search_EST_NOM(String nombre) {
-        List<Estudiante> resultado = new ArrayList<>();
-        System.out.println(nombre);
-        try {
-            String SQL="select * from estudiante est where est.nombre like '%%%s%%'";
-            SQL = String.format(SQL, nombre);
-            ResultSet rs = database.executeQuery(SQL);
-            while(rs.next()){
-                resultado.add(estudiante(rs));
-            }
-        } catch (Exception e) { }
-        //System.out.println(resultado.toString());
-         return resultado;
-    }
-
-    @Override
-    public List<Estudiante> search_EST_CED(int ced) {
+    public List<Estudiante> search_EST(String nombre, int ced, String carrera) {
         List<Estudiante> resultado = new ArrayList<Estudiante>();
+        String SQL = "";
         try {
-            String SQL="select * from estudiante est where est.cedula like %d";
-            SQL = String.format(SQL, ced);
+            if(ced==0 && carrera.equals("Todas")){
+                SQL="select estudiante.clave, estudiante.cedula, estudiante.nombre, estudiante.tel, estudiante.email, estudiante.fecha_nac, carrera.nombre nom "+
+                        "from estudiante inner join carrera on estudiante.carrera_codigo=carrera.codigo where estudiante.nombre like '%%%s%%'";
+                SQL = String.format(SQL, nombre);
+            }else if(ced!=0 && carrera.equals("Todas")){
+                SQL="select estudiante.clave, estudiante.cedula, estudiante.nombre, estudiante.tel, estudiante.email, estudiante.fecha_nac, carrera.nombre as nom "+
+                        "from estudiante inner join carrera on estudiante.carrera_codigo=carrera.codigo where estudiante.nombre like '%%%s%%' and estudiante.cedula like %d";
+                SQL = String.format(SQL, nombre, ced);
+            }else if(ced==0 && (!carrera.equals("Todas"))){
+                SQL="select estudiante.clave, estudiante.cedula, estudiante.nombre, estudiante.tel, estudiante.email, estudiante.fecha_nac, carrera.nombre as nom "+
+                        "from estudiante inner join carrera on estudiante.carrera_codigo=carrera.codigo where estudiante.nombre like '%%%s%%' and carrera.nombre='%s'";
+                SQL = String.format(SQL, nombre, carrera);
+            }else if(ced!=0 && (!carrera.equals("Todas"))){
+                SQL="select estudiante.clave, estudiante.cedula, estudiante.nombre, estudiante.tel, estudiante.email, estudiante.fecha_nac, carrera.nombre as nom "+
+                        "from estudiante inner join carrera on estudiante.carrera_codigo=carrera.codigo where estudiante.nombre like '%%%s%%' and estudiante.cedula like %d and carrera.nombre='%s'";
+                SQL = String.format(SQL, nombre, ced, carrera);
+            }
             ResultSet rs = database.executeQuery(SQL);
             while(rs.next()){
                 resultado.add(estudiante(rs));
             }
-        } catch (Exception e) {
-        }
-         return resultado;
-    }
-
-    @Override
-    public List<Estudiante> search_EST_CAR(String carrera) {
-        List<Estudiante> resultado = new ArrayList<Estudiante>();
-        try {
-            String SQL="select * from estudiante est where est.carrera_codigo like '%%%s%%'";
-            SQL = String.format(SQL, carrera);
-            ResultSet rs = database.executeQuery(SQL);
-            while(rs.next()){
-                resultado.add(estudiante(rs));
-            }
-        } catch (Exception e) {
-        }
-         return resultado;
+        } catch (Exception e) {}
+            return resultado;
     }
     
     private Estudiante estudiante(ResultSet rs) throws SQLException{
@@ -255,7 +239,7 @@ public class Model implements IModel{
         e.setEmail(rs.getString("email"));
         e.setTel(rs.getInt("tel"));
         e.setFechaNac(rs.getString("fecha_nac"));
-        //e.setCarrera());
+        e.setCarrera(search_CAR_NOM(rs.getString("nom")).get(0));
         //e.setHistorial(historial(rs));
         return e;
     }
@@ -269,9 +253,9 @@ public class Model implements IModel{
 
     @Override
     public void update(Estudiante e) throws Exception {
-        String SQL="update estudiante set clave='%s',nombre='%s',tel='%d',email='%s',fecha_nac='%s' where cedula='%d'";  //REVISAR %d y decha de nac
+        String SQL="update estudiante set clave='%s',nombre='%s',tel='%d',email='%s',fecha_nac='%s',carrera_codigo='%s' where cedula=%d";  //REVISAR %d y decha de nac
         SQL= String.format(SQL, e.getClave(),e.getNombre(),e.getTel(),
-                e.getEmail(),e.getFechaNac(),e.getCedula());
+                e.getEmail(),e.getFechaNac(),e.getCarrera().getCodigo(),e.getCedula());
         int count= database.executeUpdate(SQL);
         if(count==0){
             throw new Exception("estudiante no existe");
@@ -400,8 +384,7 @@ public class Model implements IModel{
         if(count==0){
             throw new Exception("Ciclo ya existente");
         }
-    }
-    
+    }    
 }
 
     
