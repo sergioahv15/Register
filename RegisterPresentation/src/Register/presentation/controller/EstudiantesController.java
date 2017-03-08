@@ -6,6 +6,7 @@
 package Register.presentation.controller;
 
 import Register.Application;
+import Register.Entities.Carrera;
 import Register.Entities.Estudiante;
 import Register.presentation.model.EstudianteModel;
 import Register.presentation.view.EstudiantesView;
@@ -27,12 +28,37 @@ public class EstudiantesController {
     }
     
     public void buscar(){
+        /*
         model.getFiltro().setNombre(view.nombreFld.getText());
         Estudiante filtro= new Estudiante();
         filtro.setNombre(model.getFiltro().getNombre());
         List<Estudiante> rows = Application.Model.search_EST_NOM(filtro.getNombre());
         //List<Estudiante> rows = Model.searchEstudiantes(model.getFiltro());
         model.setEstudiantes(rows);
+        */
+        model.getFiltro().setNombre(view.nombreFld.getText());
+        Estudiante filtro= new Estudiante();
+        filtro.setNombre(model.getFiltro().getNombre());
+        if(view.cedulaFld.getText().equals("")){
+            model.getFiltro().setCedula(0);
+            filtro.setCedula(model.getFiltro().getCedula());
+        }
+        else{
+            model.getFiltro().setCedula(Integer.parseInt(view.cedulaFld.getText()));
+            filtro.setCedula(model.getFiltro().getCedula());
+        }
+        if(view.carreraFld.getSelectedItem().toString().equals("Todas")){
+            model.getFiltro().getCarrera().setNombre("Todas");
+            filtro.getCarrera().setNombre("Todas");
+        }else{
+            Carrera carreraEst = Application.Model.search_CAR_NOM(view.carreraFld.getSelectedItem().toString()).get(0);
+            model.getFiltro().setCarrera(carreraEst);
+            filtro.setCarrera(carreraEst);
+        }
+        List<Estudiante> rows = Application.Model.search_EST_NOM(filtro.getNombre());
+        //List<Estudiante> rows = Model.searchEstudiantes(model.getFiltro());
+        model.setEstudiantes(rows);
+        
     }
 
     public void preAgregar(){

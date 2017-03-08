@@ -6,8 +6,10 @@
 package Register.presentation.view;
 
 import Register.Application;
+import Register.Entities.Carrera;
 import Register.presentation.controller.EstudiantesController;
 import Register.presentation.model.EstudianteModel;
+import java.util.List;
 
 /**
  *
@@ -39,6 +41,13 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
     
     public EstudiantesView() {
         initComponents();
+        //
+        List<Carrera> carreras = Application.Model.search_CAR_NOM("");
+        this.carreraFld.addItem("Todas");
+        for(Carrera c : carreras){
+            this.carreraFld.addItem(c.getNombre());
+        }
+        //
     }
 
     /**
@@ -57,11 +66,11 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
         cedulaLabel = new javax.swing.JLabel();
         cedulaFld = new javax.swing.JTextField();
         buscarBtn = new javax.swing.JButton();
-        carreraFld = new javax.swing.JTextField();
         carreraLabel = new javax.swing.JLabel();
         agregarBtn = new javax.swing.JButton();
         consultaBtn = new javax.swing.JButton();
         matriculaBtn = new javax.swing.JButton();
+        carreraFld = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,13 +117,6 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
             }
         });
 
-        carreraFld.setColumns(17);
-        carreraFld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                carreraFldActionPerformed(evt);
-            }
-        });
-
         carreraLabel.setText("carrera:");
 
         agregarBtn.setText("Agregar Estudiante");
@@ -158,7 +160,7 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(carreraLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(carreraFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -178,9 +180,9 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
                     .addComponent(cedulaFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(carreraFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(carreraLabel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(carreraLabel)
+                    .addComponent(carreraFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,7 +192,7 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
                         .addComponent(consultaBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(matriculaBtn)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -203,10 +205,6 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
     private void cedulaFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulaFldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cedulaFldActionPerformed
-
-    private void carreraFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carreraFldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_carreraFldActionPerformed
 
     private void matriculaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matriculaBtnActionPerformed
         // TODO add your handling code here:
@@ -272,9 +270,9 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
     private javax.swing.JButton buscarBtn;
-    public javax.swing.JTextField carreraFld;
+    public javax.swing.JComboBox<String> carreraFld;
     private javax.swing.JLabel carreraLabel;
-    private javax.swing.JTextField cedulaFld;
+    public javax.swing.JTextField cedulaFld;
     private javax.swing.JLabel cedulaLabel;
     private javax.swing.JButton consultaBtn;
     private javax.swing.JTable estudiantesFld;

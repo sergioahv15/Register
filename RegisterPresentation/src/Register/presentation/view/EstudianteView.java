@@ -6,9 +6,11 @@
 package Register.presentation.view;
 
 import Register.Application;
+import Register.Entities.Carrera;
 import Register.Entities.Estudiante;
 import Register.presentation.controller.EstudianteController;
 import Register.presentation.model.EstudianteModel;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +26,12 @@ public class EstudianteView extends javax.swing.JDialog implements java.util.Obs
     public EstudianteView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //
+        List<Carrera> carreras = Application.Model.search_CAR_NOM("");
+        for(Carrera c : carreras){
+            this.carreraFld.addItem(c.getNombre());
+        }
+        //
     }
     
     public void setController(EstudianteController controller){
@@ -109,8 +117,6 @@ public class EstudianteView extends javax.swing.JDialog implements java.util.Obs
         fechaNacLabel.setText("Fecha Nacimiento:");
 
         CarreraLabel.setText("Carrera:");
-
-        carreraFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingenieria en Sistemas" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -251,6 +257,7 @@ public class EstudianteView extends javax.swing.JDialog implements java.util.Obs
 
     public void update(java.util.Observable updatedModel,Object parametros){
        
+        
         if (parametros != EstudianteModel.ESTUDIANTE_CURRENT) return;
        
        Estudiante estudianteCurrent = model.getEstudianteCurrent();
@@ -269,10 +276,13 @@ public class EstudianteView extends javax.swing.JDialog implements java.util.Obs
        
        emailFld.setText(estudianteCurrent.getEmail());
        
-       fechaNacFld.setText(estudianteCurrent.getFechaNac().toString());
+       fechaNacFld.setText(estudianteCurrent.getFechaNac());
        
-       carreraFld.setSelectedIndex(0);
-       
+       if(estudianteCurrent.getCarrera().getCodigo().equals("00000"))
+            carreraFld.setSelectedIndex(0);
+       else carreraFld.setSelectedItem(estudianteCurrent.getCarrera().getNombre());
+           
+              
         this.validate();
         if (!model.getMensaje().equals("")){
             JOptionPane.showMessageDialog(this, model.getMensaje(), "",JOptionPane.INFORMATION_MESSAGE);
