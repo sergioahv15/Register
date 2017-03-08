@@ -31,7 +31,7 @@ public class Profesor extends Usuario {
     }
 
     public Profesor() {
-        super("",1,1);
+        super("",0,1);
         this.Nombre="";
         this.Email="";
         this.Tel=00000000;

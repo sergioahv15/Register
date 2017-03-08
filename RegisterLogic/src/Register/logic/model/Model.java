@@ -204,7 +204,7 @@ public class Model implements IModel{
     public void update(Profesor p) throws Exception {
         String SQL="update profesor set clave='%s',nombre='%s',tel='%d',email='%s' where cedula='%d'";  //REVISAR %d
         SQL= String.format(SQL, p.getClave(),p.getNombre(),p.getTel(),
-                p.getEmail());
+                p.getEmail(),p.getCedula());
         int count= database.executeUpdate(SQL);
         if(count==0){
             throw new Exception("Profesor no existe");
