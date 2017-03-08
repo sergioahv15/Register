@@ -49,14 +49,12 @@ public class CiclosController {
     public void editar(int row){
         model.clearErrors();        
         Ciclo seleccionado = model.getCiclosModel().getRowAt(row);
-        try{
-            Ciclo currentActivo =  Application.CICLO_ACTIVO;                       
-            Application.Model.update(currentActivo);            
+        try{                          
             Application.Model.update(seleccionado);
-            currentActivo.setActivo(false); 
-            seleccionado.setActivo(true);
-            Application.CICLO_ACTIVO = seleccionado;
-            List<Ciclo> rows = Application.Model.search_CIC_ANYO(Integer.parseInt(view.anyoFld.getSelectedItem().toString()));
+            List<Ciclo> rows = Application.Model.search_CIC_ANYO(seleccionado.getAnyo());
+            for(Ciclo cic : rows){
+                if(cic.isActivo())Application.CICLO_ACTIVO = cic;
+            }
             model.setCiclos(rows);
         }catch(Exception e){
             System.out.println("ME CAGO EN TODO LO CAGABLEEE!!!!!!1");
