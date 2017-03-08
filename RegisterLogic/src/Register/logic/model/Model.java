@@ -281,15 +281,15 @@ public class Model implements IModel{
 
     @Override
     public void update(Ciclo ciclo) throws Exception {
-        String SQL;
-        Boolean activo = ciclo.isActivo();
-        if(activo){
-            SQL = "update ciclo set activo=0 where fecha_inicio='%s'";
-        }else{
-            SQL = "update ciclo set activo=1 where fecha_inicio='%s'";
+        int count;
+        String SQL1="update ciclo set activo=0 where numero=1 or numero =2";
+        String SQL2= "update ciclo set activo=1 where fecha_inicio='%s'";
+        count = database.executeUpdate(SQL1);
+        if(count==0){
+            throw new Exception("ciclo no existe");
         }
-        SQL= String.format(SQL, ciclo.getFechaInicio());
-        int count= database.executeUpdate(SQL);
+        SQL2= String.format(SQL2, ciclo.getFechaInicio());
+        count= database.executeUpdate(SQL2);
         if(count==0){
             throw new Exception("ciclo no existe");
         }
