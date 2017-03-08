@@ -216,7 +216,7 @@ public class ProfesoresView extends javax.swing.JFrame implements java.util.Obse
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
     private javax.swing.JButton buscarBtn;
-    private javax.swing.JTextField cedulaFld;
+    public javax.swing.JTextField cedulaFld;
     private javax.swing.JLabel cedulaLabel;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTextField nombreFld;

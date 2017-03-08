@@ -27,11 +27,41 @@ public class ProfesoresController {
     }
     
     public void buscar(){
+        /*
         model.getFiltro().setNombre(view.nombreFld.getText());
         Profesor filtro= new Profesor();
         filtro.setNombre(model.getFiltro().getNombre());
         List<Profesor> rows = Application.Model.search_PRO_NOM(filtro.getNombre());
         model.setProfesores(rows);
+        */        
+        
+        model.getFiltro().setNombre(view.nombreFld.getText());
+        Profesor filtro= new Profesor();
+        filtro.setNombre(model.getFiltro().getNombre());
+        if(view.cedulaFld.getText().equals("")){
+            model.getFiltro().setCedula(0);
+            filtro.setCedula(model.getFiltro().getCedula());
+        }
+        else{
+            model.getFiltro().setCedula(Integer.parseInt(view.cedulaFld.getText()));
+            filtro.setCedula(model.getFiltro().getCedula());
+        }                   
+        List<Profesor> rows = Application.Model.search_PRO(filtro.getNombre(),filtro.getCedula());
+        model.setProfesores(rows);
+        
+        /*
+        model.getFiltro().setNombre(view.nombreFld.getText());
+        Profesor filtro= new Profesor();
+        filtro.setNombre(model.getFiltro().getNombre());
+        List<Profesor> rows = Application.Model.search_PRO_NOM(filtro.getNombre());
+        if(!view.cedulaFld.getText().equals("")){
+            int cedu = Integer.parseInt(view.cedulaFld.getText());
+            for(Profesor p : rows){
+                if(p.getCedula()==cedu)
+            }
+        }
+        model.setProfesores(rows);
+        */
     }
 
     public void preAgregar(){

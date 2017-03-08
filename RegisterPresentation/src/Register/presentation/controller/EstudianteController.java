@@ -56,11 +56,12 @@ public class EstudianteController {
                 switch(model.getModo()){
                     case Application.MODO_AGREGAR:
                         Application.Model.Add_EST(nuevo);
-                        model.setMensaje("PROFESOR AGREGADO");
+                        model.setMensaje("ESTUDIANTE AGREGADO");
                         model.setEstudianteCurrent(new Estudiante());
                         
                         List<Estudiante> rowsAgr = Application.Model.search_EST_NOM("");
-                        model.setEstudiantes(rowsAgr);                        
+                        model.setEstudiantes(rowsAgr);
+                        view.setVisible(false);
                         break;
                     case Application.MODO_EDITAR:
                         Application.Model.update(nuevo);

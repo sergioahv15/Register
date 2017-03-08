@@ -53,15 +53,16 @@ public class ProfesorController {
                         model.setMensaje("PROFESOR AGREGADO");
                         model.setProfesorCurrent(new Profesor());
                         
-                        List<Profesor> rowsAgr = Application.Model.search_PRO_NOM(model.getFiltro().getNombre());
-                        model.setProfesores(rowsAgr);                        
+                        List<Profesor> rowsAgr = Application.Model.search_PRO(model.getFiltro().getNombre(),model.getFiltro().getCedula());
+                        model.setProfesores(rowsAgr); 
+                        view.setVisible(false);
                         break;
                     case Application.MODO_EDITAR:
                         Application.Model.update(nuevo);
                         model.setMensaje("PROFESOR MODIFICADADO");
                         model.setProfesorCurrent(nuevo);
                         
-                        List<Profesor> rowsMod = Application.Model.search_PRO_NOM(model.getFiltro().getNombre());
+                        List<Profesor> rowsMod = Application.Model.search_PRO(model.getFiltro().getNombre(),model.getFiltro().getCedula());
                         model.setProfesores(rowsMod);
                         view.setVisible(false);
                         break;
