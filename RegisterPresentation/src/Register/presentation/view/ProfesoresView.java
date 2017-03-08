@@ -56,6 +56,7 @@ public class ProfesoresView extends javax.swing.JFrame implements java.util.Obse
         jScrollPane1 = new javax.swing.JScrollPane();
         profesoresFld = new javax.swing.JTable();
         buscarBtn = new javax.swing.JButton();
+        agregarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,6 +103,13 @@ public class ProfesoresView extends javax.swing.JFrame implements java.util.Obse
             }
         });
 
+        agregarBtn.setText("Agregar Profesor");
+        agregarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,7 +128,9 @@ public class ProfesoresView extends javax.swing.JFrame implements java.util.Obse
                         .addGap(18, 18, 18)
                         .addComponent(buscarBtn))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(agregarBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +143,9 @@ public class ProfesoresView extends javax.swing.JFrame implements java.util.Obse
                     .addComponent(cedulaFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarBtn))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(agregarBtn))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -159,6 +171,11 @@ public class ProfesoresView extends javax.swing.JFrame implements java.util.Obse
             controller.editar(row);
         }
     }//GEN-LAST:event_profesoresFldMouseClicked
+
+    private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
+        Application.PROFESOR_VIEW.setLocation(this.agregarBtn.getLocationOnScreen());
+        controller.preAgregar();
+    }//GEN-LAST:event_agregarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,6 +214,7 @@ public class ProfesoresView extends javax.swing.JFrame implements java.util.Obse
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton agregarBtn;
     private javax.swing.JButton buscarBtn;
     private javax.swing.JTextField cedulaFld;
     private javax.swing.JLabel cedulaLabel;

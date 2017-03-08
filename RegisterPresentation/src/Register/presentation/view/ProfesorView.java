@@ -220,7 +220,9 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
         
        this.cedulaFld.setEnabled(model.getModo()==Application.MODO_AGREGAR);
        
-       cedulaFld.setText(String.valueOf(profesorCurrent.getCedula()));
+       Integer cedula=profesorCurrent.getCedula();
+       if(cedula==0)cedulaFld.setText("");
+       else cedulaFld.setText(cedula.toString());
        /*if (model.getErrores().get("id")!=null){
             idLbl.setBorder(Application.BORDER_ERROR);
             idLbl.setToolTipText(model.getErrores().get("id"));
@@ -242,7 +244,9 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
 
         emailFld.setText(profesorCurrent.getEmail());
         
-        telefonoFld.setText(String.valueOf(profesorCurrent.getTel()));
+        Integer telefono = profesorCurrent.getTel();
+       if(telefono==0)telefonoFld.setText("");
+       else telefonoFld.setText(telefono.toString());
         
         this.validate();
         if (!model.getMensaje().equals("")){
@@ -253,14 +257,14 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelarBtn;
-    private javax.swing.JTextField cedulaFld;
+    public javax.swing.JTextField cedulaFld;
     private javax.swing.JLabel cedulaLabel;
-    private javax.swing.JTextField emailFld;
+    public javax.swing.JTextField emailFld;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JButton guardarBtn;
-    private javax.swing.JTextField nombreFld;
+    public javax.swing.JTextField nombreFld;
     private javax.swing.JLabel nombreLabel;
-    private javax.swing.JTextField telefonoFld;
+    public javax.swing.JTextField telefonoFld;
     private javax.swing.JLabel telefonoLabel;
     // End of variables declaration//GEN-END:variables
 }

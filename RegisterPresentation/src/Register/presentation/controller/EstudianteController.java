@@ -64,7 +64,7 @@ public class EstudianteController {
                         break;
                     case Application.MODO_EDITAR:
                         Application.Model.update(nuevo);
-                        model.setMensaje("PROFESOR MODIFICADADO");
+                        model.setMensaje("ESTUDIANTE MODIFICADADO");
                         model.setEstudianteCurrent(nuevo);
                         
                         List<Estudiante> rowsMod = Application.Model.search_EST_NOM("");
@@ -75,7 +75,7 @@ public class EstudianteController {
             }
             catch(Exception e){
                 model.getErrores().put("id", "Estudiante ya existe");
-                model.setMensaje("PROFESOR YA EXISTE");
+                model.setMensaje("ESTUDIANTE YA EXISTE");
                 model.setEstudianteCurrent(nuevo);
             }
         }

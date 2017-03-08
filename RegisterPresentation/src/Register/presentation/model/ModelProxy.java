@@ -113,7 +113,21 @@ public class ModelProxy implements IModel{
 
     @Override
     public void update(Profesor profe) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            out.writeInt(Protocol.UPDATE_PROFESOR);
+            out.writeObject(profe);
+            out.flush();
+            int error = in.readInt();
+            if (error == Protocol.ERROR_NO_ERROR){
+            }
+            else{
+                throw new Exception("Profesor no existe");
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            throw new Exception("Profesor no existe");
+        }
     }
 
     @Override
@@ -226,7 +240,21 @@ public class ModelProxy implements IModel{
 
     @Override
     public void Add_PRO(Profesor p) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            out.writeInt(Protocol.ADD_PROFESOR);
+            out.writeObject(p);
+            out.flush();
+            int error = in.readInt();
+            if (error == Protocol.ERROR_NO_ERROR){
+            }
+            else{
+                throw new Exception("Profesor ya existe");
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            throw new Exception("Profesor ya existe");
+        }
     }
 
     @Override

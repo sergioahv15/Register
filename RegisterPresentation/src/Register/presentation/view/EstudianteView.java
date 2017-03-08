@@ -258,12 +258,14 @@ public class EstudianteView extends javax.swing.JDialog implements java.util.Obs
        this.cedulaFld.setEnabled(model.getModo()==Application.MODO_AGREGAR);
        
        Integer cedula=estudianteCurrent.getCedula();
-       cedulaFld.setText(cedula.toString());
+       if(cedula==0)cedulaFld.setText("");
+       else cedulaFld.setText(cedula.toString());
       
        nombreFld.setText(estudianteCurrent.getNombre());
        
        Integer telefono = estudianteCurrent.getTel();
-       telefonoFld.setText(telefono.toString());
+       if(telefono==0)telefonoFld.setText("");
+       else telefonoFld.setText(telefono.toString());
        
        emailFld.setText(estudianteCurrent.getEmail());
        
