@@ -157,10 +157,12 @@ public class ModelProxy implements IModel{
     }
 
     @Override
-    public List<Estudiante> search_EST_NOM(String nombre) {
+    public List<Estudiante> search_EST(String nombre, int ced, String carrera) {
         try {
-            out.writeInt(Protocol.SEARCH_ESTUDIANTES_NOMBRE);
+            out.writeInt(Protocol.SEARCH_ESTUDIANTES);
             out.writeObject(nombre);
+            out.writeObject(ced);
+            out.writeObject(carrera);
             out.flush();
             int error = in.readInt();
             List<Estudiante> estudiantes = (List<Estudiante>) in.readObject();
@@ -175,17 +177,7 @@ public class ModelProxy implements IModel{
             return new ArrayList<Estudiante>();
         }
     }
-
-    @Override
-    public List<Estudiante> search_EST_CED(int ced) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Estudiante> search_EST_CAR(String carrera) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     @Override
     public void update(Estudiante estu) throws Exception {
         try {
@@ -305,5 +297,5 @@ public class ModelProxy implements IModel{
     @Override
     public void Add_CIC(Ciclo c) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }   
 }

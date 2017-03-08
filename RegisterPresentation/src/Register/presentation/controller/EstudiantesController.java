@@ -55,8 +55,8 @@ public class EstudiantesController {
             model.getFiltro().setCarrera(carreraEst);
             filtro.setCarrera(carreraEst);
         }
-        List<Estudiante> rows = Application.Model.search_EST_NOM(filtro.getNombre());
-        //List<Estudiante> rows = Model.searchEstudiantes(model.getFiltro());
+                
+        List<Estudiante> rows = Application.Model.search_EST(filtro.getNombre(), filtro.getCedula(), filtro.getCarrera().getNombre());
         model.setEstudiantes(rows);
         
     }

@@ -49,7 +49,7 @@ public class EstudianteController {
         
         nuevo.setFechaNac(view.fechaNacFld.getText());
         
-        nuevo.setCarrera(new Carrera("1", "Ingenieria en Sistemas"));
+        nuevo.setCarrera(Application.Model.search_CAR_NOM(view.carreraFld.getSelectedItem().toString()).get(0));
         
         if (model.getErrores().isEmpty()){
             try{
@@ -59,7 +59,7 @@ public class EstudianteController {
                         model.setMensaje("ESTUDIANTE AGREGADO");
                         model.setEstudianteCurrent(new Estudiante());
                         
-                        List<Estudiante> rowsAgr = Application.Model.search_EST_NOM("");
+                        List<Estudiante> rowsAgr = Application.Model.search_EST("",0,"Todas");
                         model.setEstudiantes(rowsAgr);
                         view.setVisible(false);
                         break;
@@ -68,7 +68,7 @@ public class EstudianteController {
                         model.setMensaje("ESTUDIANTE MODIFICADADO");
                         model.setEstudianteCurrent(nuevo);
                         
-                        List<Estudiante> rowsMod = Application.Model.search_EST_NOM("");
+                        List<Estudiante> rowsMod = Application.Model.search_EST("",0,"Todas");
                         model.setEstudiantes(rowsMod);
                         view.setVisible(false);
                         break;

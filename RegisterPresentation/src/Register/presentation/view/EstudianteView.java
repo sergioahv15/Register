@@ -293,7 +293,7 @@ public class EstudianteView extends javax.swing.JDialog implements java.util.Obs
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CarreraLabel;
     private javax.swing.JButton cancelarBtn;
-    private javax.swing.JComboBox<String> carreraFld;
+    public javax.swing.JComboBox<String> carreraFld;
     public javax.swing.JTextField cedulaFld;
     private javax.swing.JLabel cedulaLabel;
     public javax.swing.JTextField emailFld;

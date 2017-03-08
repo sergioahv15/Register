@@ -43,7 +43,7 @@ public class EstudianteTableModel extends AbstractTableModel{
             case TELEFONO: return curso.getTel();
             case EMAIL: return curso.getEmail(); 
             case FECHA_NAC: return curso.getFechaNac(); 
-            case CARRERA: return curso.getCarrera(); 
+            case CARRERA: return curso.getCarrera().getNombre(); 
             default: return "";
         }
     }    
