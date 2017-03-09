@@ -118,36 +118,29 @@ public class Model implements IModel{
     }
 
     @Override
-    public List<Carrera> search_CAR_NOM(String nombre) {
+    public List<Carrera> search_CAR(String nombre, String codigo) {
         List<Carrera> resultado = new ArrayList<Carrera>();
+        String SQL="";
         try {
-            String SQL="select * from carrera car where car.nombre like '%%%s%%'";
-            SQL = String.format(SQL, nombre);
+            if(nombre.equals("") && codigo.equals("")){
+                SQL="select * from carrera";
+            }else if(!(nombre.equals("")) && codigo.equals("")){
+                SQL="select * from carrera car where car.nombre like '%%%s%%'";
+                SQL = String.format(SQL, nombre);
+            }else if(nombre.equals("") && !(codigo.equals(""))){
+                SQL="select * from carrera car where car.codigo like '%%%s%%'";
+                SQL = String.format(SQL, codigo);
+            }else if(!(nombre.equals("")) && !(codigo.equals(""))){
+                SQL="select * from carrera car where car.nombre like '%%%s%%' and car.codigo like '%%%s%%'";
+                SQL = String.format(SQL, nombre, codigo);
+            }            
             ResultSet rs = database.executeQuery(SQL);
             while(rs.next()){
                 resultado.add(carrera(rs));
             }
-        } catch (Exception e) {
-        }
-         return resultado;
-    }
-
-    @Override
-    public List<Carrera> search_CAR_COD(String codigo) {
-        List<Carrera> resultado = new ArrayList<Carrera>();
-        try {
-            String SQL="select * from carrera car where car.codigo like '%%%s%%'";
-            SQL = String.format(SQL, codigo);
-            ResultSet rs = database.executeQuery(SQL);
-            while(rs.next()){
-                resultado.add(carrera(rs));
-            }
-        } catch (Exception e) {
-        }
-         return resultado;
-    }
-
-    
+        } catch (Exception e) {}
+            return resultado;
+    }    
     
     @Override
     public void update(Carrera carrera) throws Exception {
@@ -239,7 +232,7 @@ public class Model implements IModel{
         e.setEmail(rs.getString("email"));
         e.setTel(rs.getInt("tel"));
         e.setFechaNac(rs.getString("fecha_nac"));
-        e.setCarrera(search_CAR_NOM(rs.getString("nom")).get(0));
+        e.setCarrera(search_CAR(rs.getString("nom"),"").get(0));//********************************
         //e.setHistorial(historial(rs));
         return e;
     }

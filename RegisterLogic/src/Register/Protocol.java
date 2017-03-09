@@ -19,27 +19,26 @@ public class Protocol {
     public static final int SEARCH_CURSOS_CARRERA=2;
     public static final int UPDATE_CURSO=3;
     
-    public static final int SEARCH_CARRERA_NOMBRE=4;
-    public static final int SEARCH_CARRERA_CODIGO=5;
-    public static final int UPDATE_CARRERA=6;
+    public static final int SEARCH_CARRERA=4;
+    public static final int UPDATE_CARRERA=5;
     
-    public static final int SEARCH_PROFESOR=7;
-    public static final int UPDATE_PROFESOR=8;
+    public static final int SEARCH_PROFESOR=6;
+    public static final int UPDATE_PROFESOR=7;
    
-    public static final int SEARCH_ESTUDIANTES=9;
-    public static final int UPDATE_ESTUDIANTE=10;
+    public static final int SEARCH_ESTUDIANTES=8;
+    public static final int UPDATE_ESTUDIANTE=9;
     
-    public static final int SEARCH_CICLOS_ANYO=11;
-    public static final int UPDATE_CICLOS=12;
+    public static final int SEARCH_CICLOS_ANYO=10;
+    public static final int UPDATE_CICLOS=11;
     
-    public static final int OFERTA_ACADEMICA=13;
-    public static final int SEARCH_HISTORIAL_ACTIVO=14;
+    public static final int OFERTA_ACADEMICA=12;
+    public static final int SEARCH_HISTORIAL_ACTIVO=13;
     
-    public static final int ADD_CURSO=15;
-    public static final int ADD_CARRERA=16;
-    public static final int ADD_PROFESOR=17;
-    public static final int ADD_ESTUDIANTE=18;
-    public static final int ADD_CICLO=19;
+    public static final int ADD_CURSO=14;
+    public static final int ADD_CARRERA=15;
+    public static final int ADD_PROFESOR=16;
+    public static final int ADD_ESTUDIANTE=17;
+    public static final int ADD_CICLO=18;
     
     
     public static final int CLOSE=20;
