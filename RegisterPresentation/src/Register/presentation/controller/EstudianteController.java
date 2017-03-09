@@ -49,7 +49,7 @@ public class EstudianteController {
         
         nuevo.setFechaNac(view.fechaNacFld.getText());
         
-        nuevo.setCarrera(Application.Model.search_CAR_NOM(view.carreraFld.getSelectedItem().toString()).get(0));
+        nuevo.setCarrera(Application.Model.search_CAR(view.carreraFld.getSelectedItem().toString(),"").get(0));
         
         if (model.getErrores().isEmpty()){
             try{

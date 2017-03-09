@@ -27,7 +27,7 @@ public class EstudianteView extends javax.swing.JDialog implements java.util.Obs
         super(parent, modal);
         initComponents();
         //
-        List<Carrera> carreras = Application.Model.search_CAR_NOM("");
+        List<Carrera> carreras = Application.Model.search_CAR("","");
         for(Carrera c : carreras){
             this.carreraFld.addItem(c.getNombre());
         }

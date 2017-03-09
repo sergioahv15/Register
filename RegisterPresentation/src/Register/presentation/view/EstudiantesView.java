@@ -42,7 +42,7 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
     public EstudiantesView() {
         initComponents();
         //
-        List<Carrera> carreras = Application.Model.search_CAR_NOM("");
+        List<Carrera> carreras = Application.Model.search_CAR("","");
         this.carreraFld.addItem("Todas");
         for(Carrera c : carreras){
             this.carreraFld.addItem(c.getNombre());

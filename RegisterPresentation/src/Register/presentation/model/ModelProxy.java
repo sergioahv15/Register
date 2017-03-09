@@ -72,38 +72,14 @@ public class ModelProxy implements IModel{
     }
 
     @Override
-    public List<Carrera> search_CAR_NOM(String nombre) {
+    public List<Carrera> search_CAR(String nombre, String codigo) {
         try {
-            out.writeInt(Protocol.SEARCH_CARRERA_NOMBRE);
+            out.writeInt(Protocol.SEARCH_CARRERA);
             out.writeObject(nombre);
-            out.flush();
-            int error = in.readInt();
-            List<Carrera> carreras = (List<Carrera>) in.readObject();
-            
-            //
-            System.out.println(carreras.get(0).getNombre());
-            //
-            
-            return carreras;
-        } catch (Exception ex) {
-            System.out.println("Error de comunicacion");
-            return new ArrayList<Carrera>();
-        }
-    }
-
-    @Override
-    public List<Carrera> search_CAR_COD(String codigo) {
-        try {
-            out.writeInt(Protocol.SEARCH_CARRERA_CODIGO);
             out.writeObject(codigo);
             out.flush();
             int error = in.readInt();
-            List<Carrera> carreras = (List<Carrera>) in.readObject();
-            
-            //
-            System.out.println(carreras.get(0).getNombre());
-            //
-            
+            List<Carrera> carreras = (List<Carrera>) in.readObject();            
             return carreras;
         } catch (Exception ex) {
             System.out.println("Error de comunicacion");
