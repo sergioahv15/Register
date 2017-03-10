@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author sergio
  */
-public class Historial {
+/*public class Historial {
    
     private Estudiante Estudiante;
     private ArrayList<Curso> Historial;
@@ -91,4 +91,4 @@ public class Historial {
     
     
     
-}
+}*/

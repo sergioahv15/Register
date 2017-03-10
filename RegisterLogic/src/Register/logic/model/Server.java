@@ -30,7 +30,7 @@ public class Server {
         }
     }
     
-    public void run(){
+    public void run() throws Exception{
         IModel Model = new Model();
 
         boolean continuar = true;
@@ -46,7 +46,7 @@ public class Server {
         }
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Server server = new Server();
         server.run();
     }

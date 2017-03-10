@@ -23,18 +23,18 @@ public class Curso {
     private Carrera Carrera;
     private ArrayList<Grupo> Grupos;
     Ciclo Ciclo;
-    Historial Historial;    //Necesaria para la carga de los cursos desde la clase Historial
+   
 
     public Curso() {
         Carrera= new Carrera();
         Grupos = new ArrayList<>();
         Ciclo= new Ciclo();
-        Historial = new Historial();
+        
         
     }
 
     public Curso(String codigo, String nombre, int creditos, int horasSemanales, Carrera c,ArrayList<Grupo> g,
-            Ciclo ci, Historial h) {
+            Ciclo ci) {
         this.Codigo = codigo;
         this.Nombre = nombre;
         this.Creditos = creditos;
@@ -42,19 +42,9 @@ public class Curso {
         this.Carrera=c;
         this.Grupos=g;
         this.Ciclo=ci;
-        this.Historial=h;
+      
     }
 
-    public Historial getHistorial() {
-        return Historial;
-    }
-
-    public void setHistorial(Historial Historial) {
-        this.Historial = Historial;
-    }
-
-    
-    
     public Ciclo getCiclo() {
         return Ciclo;
     }

@@ -19,19 +19,19 @@ public class Grupo {
     private int NumeroGrupo;
     private Profesor Profesor;
     private ArrayList<Estudiante> Estudiantes;
-    private ArrayList<Nota> Notas;
+    private ArrayList<String> Notas;
     Horario Horario;
     Curso Curso;
 
     public Grupo() {
         Profesor = new Profesor();
         Estudiantes= new ArrayList<>();
-        Notas = new ArrayList<Nota>();
+        Notas = new ArrayList<>();
         Horario = new Horario();
         Curso = new Curso();
     }
 
-    public Grupo(int NumeroGrupo, Profesor Profesor, ArrayList<Estudiante> Estudiantes, ArrayList<Nota> Notas,
+    public Grupo(int NumeroGrupo, Profesor Profesor, ArrayList<Estudiante> Estudiantes, ArrayList<String> Notas,
             Horario Horario,Curso c) {
         this.NumeroGrupo = NumeroGrupo;
         this.Profesor = Profesor;
@@ -69,7 +69,7 @@ public class Grupo {
 
     public ArrayList<Estudiante> getEstudiantes() {
         if(Estudiantes.isEmpty()){
-            Estudiante e = new Estudiante();
+            
             DataBase db = new DataBase(null,null,null);
             try{
                 String SQL= "select * from matriculado m where m.grupo_numero_grupo like %d";   //REVISAR ESTO!!!
@@ -114,12 +114,11 @@ public class Grupo {
         this.Estudiantes = Estudiantes;
     }
 
-    public ArrayList<Nota> getNotas() {
+    public ArrayList<String> getNotas() {
         if(Notas.isEmpty()){
-            Nota n= new Nota();
             DataBase db = new DataBase(null,null,null);
             try{
-                String SQL= "select * from nota n where n.grupo_numero_grupo like %d";   //REVISAR ESTO!!!
+                String SQL= "select * from nota n where n.grupo like %d";   //REVISAR ESTO!!!
                 SQL= String.format(SQL,this.NumeroGrupo);
                 ResultSet rs= db.executeQuery(SQL);
                 while(rs.next()){
@@ -130,16 +129,16 @@ public class Grupo {
         return Notas;
     }
     
-    private Nota nota(ResultSet rs) throws SQLException{
-        Nota n = new Nota();
-        n.setNota(rs.getInt("nota"));
-        n.setEstudiante(estudiante(rs));
-        n.setGrupo(this);
-        return n;
+    private String nota(ResultSet rs) throws SQLException{
+        String rubro;
+        String ced=rs.getString("cedula");
+        String nota=rs.getString("nota");
+        rubro=ced+" "+nota;
+        return rubro;
     }
     
 
-    public void setNotas(ArrayList<Nota> Notas) {
+    public void setNotas(ArrayList<String> Notas) {
         this.Notas = Notas;
     }
 
@@ -150,6 +149,9 @@ public class Grupo {
     public void setHorario(Horario Horario) {
         this.Horario = Horario;
     }
+    
+    
+   
 
     
 

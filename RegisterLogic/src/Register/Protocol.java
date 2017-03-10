@@ -41,8 +41,9 @@ public class Protocol {
     public static final int ADD_ESTUDIANTE=18;
     public static final int ADD_CICLO=19;
     
-    
-    public static final int CLOSE=20;
+    public static final int LOGIN=20;
+    public static final int LOGOUT=21;
+    public static final int CLOSE=22;
     
     
     public static final int ERROR_NO_ERROR=0;
@@ -69,4 +70,6 @@ public class Protocol {
     public static final int ERROR_ADD_ESTUDIANTE=21;
     public static final int ERROR_ADD_CICLO=22;
     public static final int ERROR_ADD_CURSO=23;
+    public static final int ERROR_LOGIN=24;
+    public static final int ERROR_LOGOUT=25;
 }

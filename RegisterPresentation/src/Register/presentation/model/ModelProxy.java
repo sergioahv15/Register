@@ -11,6 +11,7 @@ import Register.Entities.Curso;
 import Register.Entities.Estudiante;
 import Register.Entities.Grupo;
 import Register.Entities.Profesor;
+import Register.Entities.Usuario;
 import Register.IModel;
 import Register.Protocol;
 import java.io.IOException;
@@ -298,4 +299,14 @@ public class ModelProxy implements IModel{
     public void Add_CIC(Ciclo c) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }   
+
+    @Override
+    public Usuario login(String ced) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Usuario logout(int ced) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

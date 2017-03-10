@@ -19,7 +19,7 @@ public class Ciclo implements Serializable{
     private String FechaInicio;
     private String FechaFin;
     private boolean Activo;
-    private ArrayList<Curso> Cursos;
+    
     
     
     public Ciclo() {
@@ -28,15 +28,15 @@ public class Ciclo implements Serializable{
         Activo = false;
         FechaInicio= "";
         FechaFin= "";
-        Cursos = new ArrayList<Curso>();
+       
     }
 
-    public Ciclo(int numero, int anyo, String fechaInicio, String fechaFin,ArrayList<Curso> c, boolean a) {
+    public Ciclo(int numero, int anyo, String fechaInicio, String fechaFin, boolean a) {
         this.Numero = numero;
         this.Anyo = anyo;
         this.FechaInicio = fechaInicio;
         this.FechaFin = fechaFin;
-        this.Cursos= c;
+       
         this.Activo=a;
     }
 
@@ -48,17 +48,6 @@ public class Ciclo implements Serializable{
         this.Activo = Activo;
     }
 
-    
-    
-    public ArrayList<Curso> getCursos() {
-        return Cursos;
-    }
-
-    public void setCursos(ArrayList<Curso> Cursos) {
-        this.Cursos = Cursos;
-    }
-    
-    
 
     public int getNumero() {
         return Numero;

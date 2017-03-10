@@ -11,6 +11,7 @@ import Register.Entities.Curso;
 import Register.Entities.Estudiante;
 import Register.Entities.Grupo;
 import Register.Entities.Profesor;
+import Register.Entities.Usuario;
 import java.util.List;
 
 /**
@@ -43,6 +44,8 @@ public interface IModel {
       
       public List<Curso> ofertaAcad(String carrera, int ciclo);
       
+      public Usuario login (String ced);
+      public Usuario logout(int ced);
       
       public List<Curso> search_HIS_ACT(int ced);     
 

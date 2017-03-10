@@ -25,7 +25,7 @@ public abstract class Usuario implements Serializable{
     public Usuario() {
         this.Clave="";
         this.Cedula=0;
-        this.Tipo= 0;
+        this.Tipo= -1;
     }
 
     public String getClave() {

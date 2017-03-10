@@ -9,12 +9,13 @@ import Register.Entities.Carrera;
 import Register.Entities.Ciclo;
 import Register.Entities.Curso;
 import Register.Entities.Estudiante;
-import Register.Entities.Historial;
 import Register.Entities.Profesor;
+import Register.Entities.Usuario;
 import Register.IModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 /**
@@ -24,12 +25,67 @@ import java.util.List;
 public class Model implements IModel{
     
     private DataBase database;
+    Hashtable<String,Usuario> usuarios;
     
-    
-    public Model(){
+    public Model() throws Exception{
         database= new DataBase(null, null, null);
+        initAdministradores();
+    }
+    
+    void initAdministradores() throws Exception{
+        usuarios= new Hashtable<>();
+        usuarios.put("111",new Usuario("111",111 , 0) {});
+        usuariosEstudiante();
+        usuariosProfesor();
+     
+    }
+    
+    public void usuariosEstudiante()throws Exception{
+        
+        try {
+            String SQL="select * from estudiante";
+            ResultSet rs= database.executeQuery(SQL);
+            while(rs.next()){
+                Estudiante e= usuarioEstudiante(rs);
+                Object o= e.getCedula();
+                usuarios.put((String)o,e);
+            }
+        } catch (Exception e) {
+        }
+       
+    }
+    
+    private Estudiante usuarioEstudiante(ResultSet rs) throws SQLException{
+            Estudiante e = new Estudiante();
+        e.setClave(rs.getString("clave"));
+        e.setCedula(rs.getInt("cedula"));
+        
+        return e;
+    }
+    
+    public void usuariosProfesor()throws Exception{
+        
+        try {
+            String SQL="select * from profesor";
+            ResultSet rs= database.executeQuery(SQL);
+            while(rs.next()){
+                Profesor p= usuarioProfesor(rs);
+                Object o= p.getCedula();
+                usuarios.put((String)o, p);
+            }
+        } catch (Exception e) {
+        }
+        
     }
 
+    private Profesor usuarioProfesor(ResultSet rs) throws SQLException{
+        Profesor p = new Profesor();
+        p.setClave(rs.getString("clave"));
+        p.setCedula(rs.getInt("cedula"));
+        
+        return p;
+    }
+    
     @Override
     public List<Curso> search_CUR_NOM(String nombre)throws Exception{
         List<Curso> resultado = new ArrayList<Curso>();
@@ -240,15 +296,11 @@ public class Model implements IModel{
         e.setTel(rs.getInt("tel"));
         e.setFechaNac(rs.getString("fecha_nac"));
         e.setCarrera(search_CAR_NOM(rs.getString("nom")).get(0));
-        //e.setHistorial(historial(rs));
+       
         return e;
     }
     
-    private Historial historial(ResultSet rs) throws SQLException{
-        Historial h = new Historial();
-        h.setEstudiante(estudiante(rs));
-        return h;
-    }
+   
     
 
     @Override
@@ -331,10 +383,10 @@ public class Model implements IModel{
 
     @Override
     public void Add_CUR(Curso c) throws Exception {
-        String SQL="insert into curso (codigo,nombre,creditos,horas_semanales,ciclo,historial_estudiante_cedula,carrera_codigo)"
+        String SQL="insert into curso (codigo,nombre,creditos,horas_semanales,ciclo,carrera_codigo)"
                 + "values('%s','%s',%d,%d,%d,%d,'%s')";
         SQL=String.format(SQL,c.getCodigo(),c.getNombre(),c.getCreditos(),c.getHorasSemanales(),c.getCiclo().getNumero(),
-                c.getHistorial().getEstudiante().getCedula(),c.getCarrera());
+                c.getCarrera());
         int count= database.executeUpdate(SQL);
         if(count==0){
             throw new Exception("Curso ya existente");
@@ -385,6 +437,22 @@ public class Model implements IModel{
             throw new Exception("Ciclo ya existente");
         }
     }    
+
+    @Override
+    public Usuario login(String ced) {
+        return usuarios.get(ced);
+    }
+
+    @Override
+    public Usuario logout(int ced) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+  //String cadena = "texto de que quieras";
+   // String delimitadores= "[ .,;?!¡¿\'\"\\[\\]]+";
+   // String[] palabrasSeparadas = cadena.split(delimitadores);
+
+
 }
 
     

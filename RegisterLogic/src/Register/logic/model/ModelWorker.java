@@ -10,6 +10,7 @@ import Register.Entities.Ciclo;
 import Register.Entities.Curso;
 import Register.Entities.Estudiante;
 import Register.Entities.Profesor;
+import Register.Entities.Usuario;
 import Register.IModel;
 import Register.Protocol;
 import java.io.IOException;
@@ -68,6 +69,7 @@ public class ModelWorker {
         Profesor p;
         Estudiante es;
         Ciclo ci;
+        Usuario u;
         while (continuar) {
             try {
                 method = in.readInt();
@@ -207,6 +209,19 @@ public class ModelWorker {
                             out.writeInt(Protocol.ERROR_UPDATE_CICLOS);
                         }
                     break;
+                case Protocol.LOGIN:
+                    try {
+                        String ced=(String)in.readObject();
+                        u= Model.login(ced);
+                        if(u!=null){
+                            out.writeInt(Protocol.ERROR_NO_ERROR);
+                            out.writeObject(u);
+                        }
+                        else{
+                            out.writeInt(Protocol.ERROR_LOGIN);
+                        }
+                    } catch (ClassNotFoundException e) {
+                    }
                 case Protocol.CLOSE:
                     skt.close();
                     continuar = false;
