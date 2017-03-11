@@ -51,7 +51,7 @@ public class EstudiantesController {
             model.getFiltro().getCarrera().setNombre("Todas");
             filtro.getCarrera().setNombre("Todas");
         }else{
-            Carrera carreraEst = Application.Model.search_CAR_NOM(view.carreraFld.getSelectedItem().toString()).get(0);
+            Carrera carreraEst = Application.Model.search_CAR(view.carreraFld.getSelectedItem().toString(),"").get(0);
             model.getFiltro().setCarrera(carreraEst);
             filtro.setCarrera(carreraEst);
         }

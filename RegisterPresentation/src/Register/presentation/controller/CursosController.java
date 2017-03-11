@@ -28,12 +28,10 @@ public class CursosController {
     }
     
     public void buscar(){
-        model.getFiltro().setNombre(view.textNombreCurso.getText());
-        Carrera filtro= new Carrera();
-        filtro.setNombre(model.getFiltro().getNombre());
-        List<Curso> rows = Application.Model.search_CUR_CAR(filtro.getNombre());
-        //List<Curso> rows = Model.searchCursos(model.getFiltro());
-        model.setCursos(rows);
+        Curso filtro= new Curso();
+        filtro.getCarrera().setCodigo("");
+        List<Curso> rows = Application.Model.search_CUR(filtro.getNombre(),filtro.getCodigo(),filtro.getCarrera().getCodigo());
+        model.setCursos(rows); 
     }
 
     public void preAgregar(){

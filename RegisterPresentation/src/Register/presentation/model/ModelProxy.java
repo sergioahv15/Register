@@ -53,18 +53,25 @@ public class ModelProxy implements IModel{
     }
 
     @Override
-    public List<Curso> search_CUR_NOM(String nombre) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Curso> search_CUR_COD(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Curso> search_CUR_CAR(String carrera) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Curso> search_CUR(String nombre, String codigo, String carrera) {
+        try {
+            out.writeInt(Protocol.SEARCH_CURSOS);
+            out.writeObject(nombre);
+            out.writeObject(codigo);
+            out.writeObject(carrera);
+            out.flush();
+            int error = in.readInt();
+            List<Curso> cursos = (List<Curso>) in.readObject();
+            
+            //
+            System.out.println(cursos.get(0).getNombre());
+            //
+            
+            return cursos;
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            return new ArrayList<Curso>();
+        }
     }
 
     @Override
@@ -73,38 +80,14 @@ public class ModelProxy implements IModel{
     }
 
     @Override
-    public List<Carrera> search_CAR_NOM(String nombre) {
+    public List<Carrera> search_CAR(String nombre, String codigo) {
         try {
-            out.writeInt(Protocol.SEARCH_CARRERA_NOMBRE);
+            out.writeInt(Protocol.SEARCH_CARRERA);
             out.writeObject(nombre);
-            out.flush();
-            int error = in.readInt();
-            List<Carrera> carreras = (List<Carrera>) in.readObject();
-            
-            //
-            System.out.println(carreras.get(0).getNombre());
-            //
-            
-            return carreras;
-        } catch (Exception ex) {
-            System.out.println("Error de comunicacion");
-            return new ArrayList<Carrera>();
-        }
-    }
-
-    @Override
-    public List<Carrera> search_CAR_COD(String codigo) {
-        try {
-            out.writeInt(Protocol.SEARCH_CARRERA_CODIGO);
             out.writeObject(codigo);
             out.flush();
             int error = in.readInt();
-            List<Carrera> carreras = (List<Carrera>) in.readObject();
-            
-            //
-            System.out.println(carreras.get(0).getNombre());
-            //
-            
+            List<Carrera> carreras = (List<Carrera>) in.readObject();            
             return carreras;
         } catch (Exception ex) {
             System.out.println("Error de comunicacion");
