@@ -6,6 +6,7 @@
 package Register.Entities;
 
 import Register.logic.model.DataBase;
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author Fabio
  */
-public class Curso {
+public class Curso implements Serializable{
     
     private String Codigo;
     private String Nombre;

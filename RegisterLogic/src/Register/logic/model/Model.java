@@ -56,10 +56,14 @@ public class Model implements IModel{
     }
     
     private Estudiante usuarioEstudiante(ResultSet rs) throws SQLException{
-            Estudiante e = new Estudiante();
+        Estudiante e = new Estudiante();
+        e.setNombre(rs.getString("nombre"));
         e.setClave(rs.getString("clave"));
         e.setCedula(rs.getInt("cedula"));
-        
+        e.setEmail(rs.getString("email"));
+        e.setTel(rs.getInt("tel"));
+        e.setFechaNac(rs.getString("fecha_nac"));
+        e.setCarrera(search_CAR(rs.getString("nom"),"").get(0));//********************************
         return e;
     }
     
@@ -97,7 +101,7 @@ public class Model implements IModel{
                 SQL = String.format(SQL, nombre);
             }else if(!codigo.equals("") && carrera.equals("Todas")){
                 SQL="select curso.codigo, curso.nombre, curso.creditos, curso.horas_semanales, curso.ciclo, carrera.nombre nom "+
-                        "from curso inner join carrera on curso.carrera_codigo=carrera.codigo where curso.nombre like '%%%s%%' and curso.codigo like %d";
+                        "from curso inner join carrera on curso.carrera_codigo=carrera.codigo where curso.nombre like '%%%s%%' and curso.codigo like '%%%s%%'";
                 SQL = String.format(SQL, nombre, codigo);
             }else if(codigo.equals("") && (!carrera.equals("Todas"))){
                 SQL="select curso.codigo, curso.nombre, curso.creditos, curso.horas_semanales, curso.ciclo, carrera.nombre nom "+
@@ -105,7 +109,7 @@ public class Model implements IModel{
                 SQL = String.format(SQL, nombre, carrera);
             }else if(!codigo.equals("") && (!carrera.equals("Todas"))){
                 SQL="select curso.codigo, curso.nombre, curso.creditos, curso.horas_semanales, curso.ciclo, carrera.nombre nom "+
-                        "from curso inner join carrera on curso.carrera_codigo=carrera.codigo where curso.nombre like '%%%s%%' and curso.codigo like %d and carrera.nombre='%s'";
+                        "from curso inner join carrera on curso.carrera_codigo=carrera.codigo where curso.nombre like '%%%s%%' and curso.codigo like '%%%s%%' and carrera.nombre='%s'";
                 SQL = String.format(SQL, nombre, codigo, carrera);
             }
             ResultSet rs = database.executeQuery(SQL);
@@ -122,8 +126,8 @@ public class Model implements IModel{
         c.setNombre(rs.getString("nombre"));
         c.setCreditos(rs.getInt("creditos"));
         c.setHorasSemanales(rs.getInt("horas_semanales"));
-        c.setCarrera(carrera(rs));
-        c.setCiclo(ciclo(rs));
+        c.setCarrera(search_CAR(rs.getString("nom"),"").get(0));
+        //c.setCiclo(ciclo(rs));
         return c;
     }
     
