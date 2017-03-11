@@ -86,8 +86,8 @@ public class CursoModel extends java.util.Observable{
     }
     
     public void setCursos(List<Curso> rows){
-        //int[] cols={CursoTableModel.ID,CursoTableModel.NOMBRE,CursoTableModel.SEXO,CursoTableModel.PASATIEMPO_CINE,CursoTableModel.ESTADO_CIVIL};
-        //setCursosModel(new CursoTableModel(cols,rows));        
+        int[] cols={CursoTableModel.CODIGO,CursoTableModel.NOMBRE,CursoTableModel.CARRERA,CursoTableModel.CREDITOS,CursoTableModel.HORAS_SEMANALES};
+        setCursosModel(new CursoTableModel(cols,rows));        
     }
     
     public Curso getFiltro() {

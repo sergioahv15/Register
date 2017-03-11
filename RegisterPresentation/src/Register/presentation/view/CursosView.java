@@ -5,8 +5,11 @@
  */
 package Register.presentation.view;
 
+import Register.Application;
+import Register.Entities.Carrera;
 import Register.presentation.controller.CursosController;
 import Register.presentation.model.CursoModel;
+import java.util.List;
 
 /**
  *
@@ -26,17 +29,23 @@ public class CursosView extends javax.swing.JFrame implements java.util.Observer
     }
     
    public void update(java.util.Observable updatedModel,Object parametros){
-       /*if (parametros != CursoModel.CURSOS_MODEL) return;
+       if (parametros != CursoModel.CURSOS_MODEL) return;
        textNombreCurso.setText(model.getFiltro().getNombre());
        cursosTable.setModel(model.getCursosModel());
-       this.revalidate();
-       */
+       this.revalidate();       
    }
     /**
      * Creates new form NewJFrame
      */
     public CursosView() {
         initComponents();
+        //
+        List<Carrera> carreras = Application.Model.search_CAR("","");
+        this.carreraFld.addItem("Todas");
+        for(Carrera c : carreras){
+            this.carreraFld.addItem(c.getNombre());
+        }
+        //
     }
 
     /**
@@ -72,6 +81,11 @@ public class CursosView extends javax.swing.JFrame implements java.util.Observer
         labelCarrera.setText("Carrera:");
 
         btnBuscar.setText("buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         cursosTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,8 +99,6 @@ public class CursosView extends javax.swing.JFrame implements java.util.Observer
             }
         ));
         jScrollPane1.setViewportView(cursosTable);
-
-        carreraFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,7 +122,7 @@ public class CursosView extends javax.swing.JFrame implements java.util.Observer
                         .addComponent(carreraFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(btnBuscar)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,6 +145,10 @@ public class CursosView extends javax.swing.JFrame implements java.util.Observer
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        this.controller.buscar();
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,14 +187,14 @@ public class CursosView extends javax.swing.JFrame implements java.util.Observer
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JComboBox<String> carreraFld;
+    public javax.swing.JButton btnBuscar;
+    public javax.swing.JComboBox<String> carreraFld;
     private javax.swing.JTable cursosTable;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelCarrera;
-    private javax.swing.JLabel labelCodigo;
-    private javax.swing.JLabel labelNombreCurso;
-    private javax.swing.JTextField textCodigo;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JLabel labelCarrera;
+    public javax.swing.JLabel labelCodigo;
+    public javax.swing.JLabel labelNombreCurso;
+    public javax.swing.JTextField textCodigo;
     public javax.swing.JTextField textNombreCurso;
     // End of variables declaration//GEN-END:variables
 }

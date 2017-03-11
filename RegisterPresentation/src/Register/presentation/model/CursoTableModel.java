@@ -42,7 +42,7 @@ public class CursoTableModel extends AbstractTableModel{
         switch (cols[col]){
             case CODIGO: return curso.getCodigo();
             case NOMBRE: return curso.getNombre();
-            case CARRERA: return curso.getCarrera();
+            case CARRERA: return curso.getCarrera().getNombre();
             case CREDITOS: return curso.getCreditos();
             case HORAS_SEMANALES: return curso.getHorasSemanales();            
             default: return "";

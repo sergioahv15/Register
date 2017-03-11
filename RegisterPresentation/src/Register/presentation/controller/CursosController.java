@@ -29,8 +29,19 @@ public class CursosController {
     
     public void buscar(){
         Curso filtro= new Curso();
-        filtro.getCarrera().setCodigo("");
-        List<Curso> rows = Application.Model.search_CUR(filtro.getNombre(),filtro.getCodigo(),filtro.getCarrera().getCodigo());
+        model.getFiltro().setNombre(view.textNombreCurso.getText());
+        filtro.setNombre(model.getFiltro().getNombre());
+        model.getFiltro().setCodigo(view.textCodigo.getText());
+        filtro.setCodigo(model.getFiltro().getCodigo());
+        if(view.carreraFld.getSelectedItem().toString().equals("Todas")){
+            model.getFiltro().getCarrera().setNombre("Todas");
+            filtro.getCarrera().setNombre("Todas");
+        }else{
+            Carrera carreraCur = Application.Model.search_CAR(view.carreraFld.getSelectedItem().toString(),"").get(0);
+            model.getFiltro().setCarrera(carreraCur);
+            filtro.setCarrera(carreraCur);
+        }
+        List<Curso> rows = Application.Model.search_CUR(filtro.getNombre(),filtro.getCodigo(),filtro.getCarrera().getNombre());
         model.setCursos(rows); 
     }
 

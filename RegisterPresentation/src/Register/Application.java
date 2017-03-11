@@ -6,15 +6,10 @@
 package Register;
 
 import Register.Entities.Ciclo;
-import Register.presentation.controller.CiclosController;
-import Register.presentation.controller.EstudianteController;
-import Register.presentation.controller.EstudiantesController;
-import Register.presentation.controller.ProfesorController;
-import Register.presentation.controller.ProfesoresController;
-import Register.presentation.model.CicloModel;
-import Register.presentation.model.EstudianteModel;
+import Register.presentation.controller.CursoController;
+import Register.presentation.controller.CursosController;
+import Register.presentation.model.CursoModel;
 import Register.presentation.model.ModelProxy;
-import Register.presentation.model.ProfesorModel;
 import Register.presentation.view.CiclosView;
 import Register.presentation.view.CursoView;
 import Register.presentation.view.CursosView;
@@ -40,44 +35,50 @@ public class Application {
        Model=new ModelProxy();
        CICLO_ACTIVO = new Ciclo();
         //Model=new Model();
-       // CursoModel cursoModel = new CursoModel();
-        ProfesorModel profesorModel = new ProfesorModel();
-        EstudianteModel estudianteModel = new EstudianteModel();
-        CicloModel cicloModel = new CicloModel();
+        CursoModel cursoModel = new CursoModel();
+        //ProfesorModel profesorModel = new ProfesorModel();
+        //EstudianteModel estudianteModel = new EstudianteModel();
+        //CicloModel cicloModel = new CicloModel();
         
-        /*
+        
         CursosView cursosView= new CursosView();
         CURSOS_VIEW=cursosView;
         CursosController cursoscontroller = new CursosController(cursosView,cursoModel);
         cursosView.setVisible(true);
-        */
+        
+        /*
         ProfesoresView profesoresView= new ProfesoresView();
         PROFESORES_VIEW=profesoresView;
         ProfesoresController profesoresController = new ProfesoresController(profesoresView,profesorModel);
         profesoresView.setVisible(true);
-        
+        */
+
+        /*
         EstudiantesView estudiantesView= new EstudiantesView();
         ESTUDIANTES_VIEW=estudiantesView;
         EstudiantesController estudiantesController = new EstudiantesController(estudiantesView,estudianteModel);
         estudiantesView.setVisible(true);
-        
+        */
+
+        /*
         CiclosView ciclosView = new CiclosView();
         CICLOS_VIEW = ciclosView;
         CiclosController ciclosController = new CiclosController(ciclosView,cicloModel);
         ciclosView.setVisible(true);
-                
-        //CursoView cursoView = new CursoView(cursosView,true);
-        //CURSO_VIEW=cursoView;
-        //CursoController cursoController = new CursoController(cursoView,cursoModel);        
-        ProfesorView profesorView = new ProfesorView(profesoresView,true);
+        */
+
+        CursoView cursoView = new CursoView(cursosView,true);
+        CURSO_VIEW=cursoView;
+        CursoController cursoController = new CursoController(cursoView,cursoModel);        
+        //ProfesorView profesorView = new ProfesorView(profesoresView,true);
         
         
-        PROFESOR_VIEW=profesorView;
-        ProfesorController profesorController = new ProfesorController(profesorView,profesorModel);
+        //PROFESOR_VIEW=profesorView;
+        //ProfesorController profesorController = new ProfesorController(profesorView,profesorModel);
         
-        EstudianteView estudianteView = new EstudianteView(estudiantesView,true);
-        ESTUDIANTE_VIEW=estudianteView;
-        EstudianteController estudianteController = new EstudianteController(estudianteView,estudianteModel);   
+        //EstudianteView estudianteView = new EstudianteView(estudiantesView,true);
+        //ESTUDIANTE_VIEW=estudianteView;
+        //EstudianteController estudianteController = new EstudianteController(estudianteView,estudianteModel);   
      }
     
     public static CursoView CURSO_VIEW;
