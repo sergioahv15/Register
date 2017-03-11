@@ -87,48 +87,33 @@ public class Model implements IModel{
     }
     
     @Override
-    public List<Curso> search_CUR_NOM(String nombre)throws Exception{
+    public List<Curso> search_CUR(String nombre, String codigo, String carrera) {
         List<Curso> resultado = new ArrayList<Curso>();
+        String SQL = "";
         try {
-            String SQL="select * from curso cur where c.nombre like '%%%s%%'";
-            SQL = String.format(SQL, nombre);
+            if(codigo.equals("") && carrera.equals("Todas")){
+                SQL="select curso.codigo, curso.nombre, curso.creditos, curso.horas_semanales, curso.ciclo, carrera.nombre nom "+
+                        "from curso inner join carrera on curso.carrera_codigo=carrera.codigo where curso.nombre like '%%%s%%'";
+                SQL = String.format(SQL, nombre);
+            }else if(!codigo.equals("") && carrera.equals("Todas")){
+                SQL="select curso.codigo, curso.nombre, curso.creditos, curso.horas_semanales, curso.ciclo, carrera.nombre nom "+
+                        "from curso inner join carrera on curso.carrera_codigo=carrera.codigo where curso.nombre like '%%%s%%' and curso.codigo like %d";
+                SQL = String.format(SQL, nombre, codigo);
+            }else if(codigo.equals("") && (!carrera.equals("Todas"))){
+                SQL="select curso.codigo, curso.nombre, curso.creditos, curso.horas_semanales, curso.ciclo, carrera.nombre nom "+
+                        "from curso inner join carrera on curso.carrera_codigo=carrera.codigo where curso.nombre like '%%%s%%' and carrera.nombre='%s'";
+                SQL = String.format(SQL, nombre, carrera);
+            }else if(!codigo.equals("") && (!carrera.equals("Todas"))){
+                SQL="select curso.codigo, curso.nombre, curso.creditos, curso.horas_semanales, curso.ciclo, carrera.nombre nom "+
+                        "from curso inner join carrera on curso.carrera_codigo=carrera.codigo where curso.nombre like '%%%s%%' and curso.codigo like %d and carrera.nombre='%s'";
+                SQL = String.format(SQL, nombre, codigo, carrera);
+            }
             ResultSet rs = database.executeQuery(SQL);
             while(rs.next()){
                 resultado.add(curso(rs));
             }
-        } catch (Exception e) {
-        }
-         return resultado;
-    }
-    
-    @Override
-    public List<Curso> search_CUR_COD(String codigo) {
-        List<Curso> resultado = new ArrayList<Curso>();
-        try {
-            String SQL="select * from curso cur where c.codigo like '%%%s%%'";
-            SQL = String.format(SQL, codigo);
-            ResultSet rs = database.executeQuery(SQL);
-            while(rs.next()){
-                resultado.add(curso(rs));
-            }
-        } catch (Exception e) {
-        }
-         return resultado;
-    }
-
-    @Override
-    public List<Curso> search_CUR_CAR(String carrera) {
-        List<Curso> resultado = new ArrayList<Curso>();
-        try {
-            String SQL="select * from curso cur where c.carrera_codigo like '%%%s%%'";   //FIJARSE COMO SALE ATRIBUTO CARRERA DE CURSO EN LA BASE
-            SQL = String.format(SQL, carrera);
-            ResultSet rs = database.executeQuery(SQL);
-            while(rs.next()){
-                resultado.add(curso(rs));
-            }
-        } catch (Exception e) {
-        }
-         return resultado;
+        } catch (Exception e) {}
+            return resultado;
     }
     
     private Curso curso(ResultSet rs) throws SQLException{
@@ -174,34 +159,29 @@ public class Model implements IModel{
     }
 
     @Override
-    public List<Carrera> search_CAR_NOM(String nombre) {
+    public List<Carrera> search_CAR(String nombre, String codigo) {
         List<Carrera> resultado = new ArrayList<Carrera>();
+        String SQL="";
         try {
-            String SQL="select * from carrera car where car.nombre like '%%%s%%'";
-            SQL = String.format(SQL, nombre);
+            if(nombre.equals("") && codigo.equals("")){
+                SQL="select * from carrera";
+            }else if(!(nombre.equals("")) && codigo.equals("")){
+                SQL="select * from carrera car where car.nombre like '%%%s%%'";
+                SQL = String.format(SQL, nombre);
+            }else if(nombre.equals("") && !(codigo.equals(""))){
+                SQL="select * from carrera car where car.codigo like '%%%s%%'";
+                SQL = String.format(SQL, codigo);
+            }else if(!(nombre.equals("")) && !(codigo.equals(""))){
+                SQL="select * from carrera car where car.nombre like '%%%s%%' and car.codigo like '%%%s%%'";
+                SQL = String.format(SQL, nombre, codigo);
+            }            
             ResultSet rs = database.executeQuery(SQL);
             while(rs.next()){
                 resultado.add(carrera(rs));
             }
-        } catch (Exception e) {
-        }
-         return resultado;
-    }
-
-    @Override
-    public List<Carrera> search_CAR_COD(String codigo) {
-        List<Carrera> resultado = new ArrayList<Carrera>();
-        try {
-            String SQL="select * from carrera car where car.codigo like '%%%s%%'";
-            SQL = String.format(SQL, codigo);
-            ResultSet rs = database.executeQuery(SQL);
-            while(rs.next()){
-                resultado.add(carrera(rs));
-            }
-        } catch (Exception e) {
-        }
-         return resultado;
-    }
+        } catch (Exception e) {}
+            return resultado;
+    } 
 
     
     
@@ -295,7 +275,7 @@ public class Model implements IModel{
         e.setEmail(rs.getString("email"));
         e.setTel(rs.getInt("tel"));
         e.setFechaNac(rs.getString("fecha_nac"));
-        e.setCarrera(search_CAR_NOM(rs.getString("nom")).get(0));
+        e.setCarrera(search_CAR(rs.getString("nom"),"").get(0));
        
         return e;
     }

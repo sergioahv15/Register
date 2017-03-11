@@ -62,6 +62,7 @@ public class ModelWorker {
         String filtro;
         //***********
         String filtro2;
+        String filtro3;
         //***********
         int filtroInt;
         Curso c;
@@ -84,21 +85,12 @@ public class ModelWorker {
                         out.writeInt(Protocol.ERROR_ADD_CURSO);
                     }
                     break;
-                case Protocol.SEARCH_CURSOS_NOMBRE:
+                case Protocol.SEARCH_CURSOS:
                     filtro=(String) in.readObject();
+                    filtro2=(String) in.readObject();
+                    filtro3=(String) in.readObject();
                     out.writeInt(Protocol.ERROR_NO_ERROR);
-                    out.writeObject(Model.search_CUR_NOM(filtro));
-                    break;
-                case Protocol.SEARCH_CURSOS_CODIGO:
-                    filtro=(String) in.readObject();
-                    out.writeInt(Protocol.ERROR_NO_ERROR);
-                    out.writeObject(Model.search_CUR_COD(filtro));
-                    break;
-                
-                case Protocol.SEARCH_CURSOS_CARRERA:
-                    filtro=(String) in.readObject();
-                    out.writeInt(Protocol.ERROR_NO_ERROR);
-                    out.writeObject(Model.search_CUR_CAR(filtro));
+                    out.writeObject(Model.search_CUR(filtro,filtro2,filtro3));
                     break;
                 case Protocol.UPDATE_CURSO:
                     c= (Curso)in.readObject();
@@ -118,15 +110,11 @@ public class ModelWorker {
                         out.writeInt(Protocol.ERROR_ADD_CARRERA);
                     }
                     break;
-                case Protocol.SEARCH_CARRERA_NOMBRE:
+                case Protocol.SEARCH_CARRERA:
                     filtro=(String) in.readObject();
+                    filtro2=(String) in.readObject();
                     out.writeInt(Protocol.ERROR_NO_ERROR);
-                    out.writeObject(Model.search_CAR_NOM(filtro));
-                    break;
-                case Protocol.SEARCH_CARRERA_CODIGO:
-                    filtro=(String) in.readObject();
-                    out.writeInt(Protocol.ERROR_NO_ERROR);
-                    out.writeObject(Model.search_CUR_COD(filtro));
+                    out.writeObject(Model.search_CAR(filtro,filtro2));
                     break;
                 case Protocol.UPDATE_CARRERA:
                      car=(Carrera)in.readObject();
