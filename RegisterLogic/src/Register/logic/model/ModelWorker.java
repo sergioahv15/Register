@@ -101,6 +101,15 @@ public class ModelWorker {
                         out.writeInt(Protocol.ERROR_UPDATE_CURSO);
                     }
                     break;
+                case Protocol.DELETE_CURSO:
+                    c= (Curso)in.readObject();
+                    try {
+                        Model.delete(c);
+                        out.writeInt(Protocol.ERROR_NO_ERROR);
+                    } catch (Exception e) {
+                        out.writeInt(Protocol.ERROR_UPDATE_CURSO);
+                    }
+                    break;
                 case Protocol.ADD_CARRERA:
                     car=(Carrera)in.readObject();
                     try {

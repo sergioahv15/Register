@@ -16,31 +16,32 @@ public class Protocol {
     
     public static final int SEARCH_CURSOS=0;
     public static final int UPDATE_CURSO=1;
+    public static final int DELETE_CURSO=2;
     
-    public static final int SEARCH_CARRERA=2;
-    public static final int UPDATE_CARRERA=3;
+    public static final int SEARCH_CARRERA=3;
+    public static final int UPDATE_CARRERA=4;
     
-    public static final int SEARCH_PROFESOR=4;
-    public static final int UPDATE_PROFESOR=5;
+    public static final int SEARCH_PROFESOR=5;
+    public static final int UPDATE_PROFESOR=6;
    
-    public static final int SEARCH_ESTUDIANTES=6;
-    public static final int UPDATE_ESTUDIANTE=7;
+    public static final int SEARCH_ESTUDIANTES=7;
+    public static final int UPDATE_ESTUDIANTE=8;
     
-    public static final int SEARCH_CICLOS_ANYO=8;
-    public static final int UPDATE_CICLOS=9;
+    public static final int SEARCH_CICLOS_ANYO=9;
+    public static final int UPDATE_CICLOS=10;
     
-    public static final int OFERTA_ACADEMICA=10;
-    public static final int SEARCH_HISTORIAL_ACTIVO=11;
+    public static final int OFERTA_ACADEMICA=11;
+    public static final int SEARCH_HISTORIAL_ACTIVO=12;
     
-    public static final int ADD_CURSO=12;
-    public static final int ADD_CARRERA=13;
-    public static final int ADD_PROFESOR=14;
-    public static final int ADD_ESTUDIANTE=15;
-    public static final int ADD_CICLO=16;
+    public static final int ADD_CURSO=13;
+    public static final int ADD_CARRERA=14;
+    public static final int ADD_PROFESOR=15;
+    public static final int ADD_ESTUDIANTE=16;
+    public static final int ADD_CICLO=17;
     
-    public static final int LOGIN=17;
-    public static final int LOGOUT=18;
-    public static final int CLOSE=19;
+    public static final int LOGIN=18;
+    public static final int LOGOUT=19;
+    public static final int CLOSE=20;
     
     
     public static final int ERROR_NO_ERROR=0;

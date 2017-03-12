@@ -30,8 +30,10 @@ public class Curso implements Serializable{
         Carrera= new Carrera();
         Grupos = new ArrayList<>();
         Ciclo= new Ciclo();
-        
-        
+        this.Codigo = "";
+        this.Nombre = "";
+        this.Creditos = 0;
+        this.HorasSemanales = 0;        
     }
 
     public Curso(String codigo, String nombre, int creditos, int horasSemanales, Carrera c,ArrayList<Grupo> g,
@@ -43,7 +45,6 @@ public class Curso implements Serializable{
         this.Carrera=c;
         this.Grupos=g;
         this.Ciclo=ci;
-      
     }
 
     public Ciclo getCiclo() {

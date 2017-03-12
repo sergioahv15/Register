@@ -22,6 +22,7 @@ public interface IModel {
       public void Add_CUR(Curso c) throws Exception;
       public List<Curso> search_CUR(String nombre, String codigo, String carrera);
       public void update(Curso curso)throws Exception;
+      public void delete(Curso curso) throws Exception;
       
       public void Add_CAR(Carrera c) throws Exception;
       public List<Carrera> search_CAR(String nombre, String codigo);

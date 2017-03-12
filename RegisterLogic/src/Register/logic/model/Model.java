@@ -120,6 +120,16 @@ public class Model implements IModel{
             return resultado;
     }
     
+    @Override
+    public void delete(Curso curso) throws Exception {
+        String SQL="delete from curso where codigo='%s'";     
+        SQL = String.format(SQL, curso.getCodigo());
+        int count= database.executeUpdate(SQL);
+        if(count==0){
+            throw new Exception("Persona no existe");
+        }        
+    }
+    
     private Curso curso(ResultSet rs) throws SQLException{
         Curso c = new Curso();
         c.setCodigo(rs.getString("codigo"));
@@ -153,9 +163,10 @@ public class Model implements IModel{
 
      @Override
     public void update(Curso c) throws Exception {
+        System.out.println(c);
         String SQL="update curso set nombre='%s',creditos='%d',"
-                + "horas_semanales='%d' where codigo='%s';";
-        SQL= String.format(SQL,c.getNombre(),c.getCreditos(),c.getHorasSemanales());
+                + "horas_semanales='%d' where codigo='%s'";
+        SQL= String.format(SQL,c.getNombre(),c.getCreditos(),c.getHorasSemanales(),c.getCodigo());
         int count= database.executeUpdate(SQL);
         if (count ==0){
         throw new Exception("Curso no existente");
@@ -367,10 +378,10 @@ public class Model implements IModel{
 
     @Override
     public void Add_CUR(Curso c) throws Exception {
-        String SQL="insert into curso (codigo,nombre,creditos,horas_semanales,ciclo,carrera_codigo)"
-                + "values('%s','%s',%d,%d,%d,%d,'%s')";
-        SQL=String.format(SQL,c.getCodigo(),c.getNombre(),c.getCreditos(),c.getHorasSemanales(),c.getCiclo().getNumero(),
-                c.getCarrera());
+        System.out.println(c);
+        String SQL="insert into curso (codigo,nombre,creditos,horas_semanales,ciclo,historial_estudiante_cedula,carrera_codigo)"
+                + " values('%s','%s',%d,%d,1,1,'%s')";
+        SQL=String.format(SQL,c.getCodigo(),c.getNombre(),c.getCreditos(),c.getHorasSemanales(),c.getCarrera().getCodigo());
         int count= database.executeUpdate(SQL);
         if(count==0){
             throw new Exception("Curso ya existente");
@@ -435,8 +446,7 @@ public class Model implements IModel{
   //String cadena = "texto de que quieras";
    // String delimitadores= "[ .,;?!¡¿\'\"\\[\\]]+";
    // String[] palabrasSeparadas = cadena.split(delimitadores);
-
-
+    
 }
 
     
