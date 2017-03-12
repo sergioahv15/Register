@@ -7,7 +7,7 @@ package Register.presentation.controller;
 
 import Register.Application;
 import Register.Entities.Carrera;
-import Register.Entities.Carrera;
+import Register.Entities.Curso;
 import Register.presentation.model.CarreraModel;
 import Register.presentation.view.CarrerasView;
 import java.util.List;
@@ -37,12 +37,12 @@ public class CarrerasController {
         model.setCarreras(rows);        
     }
 
-    public void preAgregar(){
-        /*model.clearErrors();
-        model.setModo(Application.MODO_AGREGAR);
-        model.setCarreraCurrent(new Carrera());
-        Application.CARRERA_VIEW.setVisible(true);
-        */
+    public void preAgregar(int row){
+        Carrera seleccionada = model.getCarrerasModel().getRowAt(row);
+        Application.CARRERA_CURRENT = seleccionada;
+        List<Curso> rows = Application.Model.search_CUR("","",Application.CARRERA_CURRENT.getNombre());
+        Application.CURSO_MODEL.setCursos(rows); 
+        Application.CURSOS_CARRERA_VIEW.setVisible(true);
     }
     
     public void editar(int row){

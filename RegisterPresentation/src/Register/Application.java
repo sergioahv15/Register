@@ -5,13 +5,18 @@
  */
 package Register;
 
+import Register.Entities.Carrera;
 import Register.Entities.Ciclo;
+import Register.presentation.controller.CarrerasController;
 import Register.presentation.controller.CursoController;
 import Register.presentation.controller.CursosController;
+import Register.presentation.model.CarreraModel;
 import Register.presentation.model.CursoModel;
 import Register.presentation.model.ModelProxy;
+import Register.presentation.view.CarrerasView;
 import Register.presentation.view.CiclosView;
 import Register.presentation.view.CursoView;
+import Register.presentation.view.CursosCarreraView;
 import Register.presentation.view.CursosView;
 import Register.presentation.view.EstudianteView;
 import Register.presentation.view.EstudiantesView;
@@ -34,18 +39,30 @@ public class Application {
      public static void main(String[] args) {
        Model=new ModelProxy();
        CICLO_ACTIVO = new Ciclo();
+       CARRERA_CURRENT = new Carrera();
         //Model=new Model();
         CursoModel cursoModel = new CursoModel();
+        CURSO_MODEL = cursoModel;
         //ProfesorModel profesorModel = new ProfesorModel();
         //EstudianteModel estudianteModel = new EstudianteModel();
         //CicloModel cicloModel = new CicloModel();
+        CarreraModel carreraModel = new CarreraModel();
+        
+        CarrerasView carrerasView= new CarrerasView();
+        CARRERAS_VIEW=carrerasView;
+        CarrerasController carrerasController = new CarrerasController(carrerasView,carreraModel);
+        carrerasView.setVisible(true);
         
         
         CursosView cursosView= new CursosView();
         CURSOS_VIEW=cursosView;
-        CursosController cursoscontroller = new CursosController(cursosView,cursoModel);
+        CursosController cursosController = new CursosController(cursosView,cursoModel);
         cursosView.setVisible(true);
         
+        CursosCarreraView cursosCarreraView = new CursosCarreraView();
+        CURSOS_CARRERA_VIEW = cursosCarreraView;
+        
+        cursosController.setView2(cursosCarreraView);
         /*
         ProfesoresView profesoresView= new ProfesoresView();
         PROFESORES_VIEW=profesoresView;
@@ -67,7 +84,7 @@ public class Application {
         ciclosView.setVisible(true);
         */
 
-        CursoView cursoView = new CursoView(cursosView,true);
+        CursoView cursoView = new CursoView(cursosCarreraView,true);
         CURSO_VIEW=cursoView;
         CursoController cursoController = new CursoController(cursoView,cursoModel);        
         //ProfesorView profesorView = new ProfesorView(profesoresView,true);
@@ -82,7 +99,11 @@ public class Application {
      }
     
     public static CursoView CURSO_VIEW;
-    public static CursosView CURSOS_VIEW; 
+    public static CursosView CURSOS_VIEW;
+    public static CursoModel CURSO_MODEL;
+    public static CarrerasView CARRERAS_VIEW;
+    public static Carrera CARRERA_CURRENT;
+    public static CursosCarreraView CURSOS_CARRERA_VIEW;
     public static ProfesorView PROFESOR_VIEW;
     public static ProfesoresView PROFESORES_VIEW; 
     public static EstudianteView ESTUDIANTE_VIEW;

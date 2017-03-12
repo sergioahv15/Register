@@ -5,6 +5,8 @@
  */
 package Register.presentation.view;
 
+import Register.Application;
+import Register.Entities.Curso;
 import Register.presentation.controller.CursoController;
 import Register.presentation.model.CursoModel;
 import javax.swing.JOptionPane;
@@ -51,8 +53,6 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
         horasFld = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        carreraFld = new javax.swing.JTextField();
-        carreraLablel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -101,15 +101,6 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
             }
         });
 
-        carreraFld.setColumns(20);
-        carreraFld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                carreraFldActionPerformed(evt);
-            }
-        });
-
-        carreraLablel.setText("Carrera");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,11 +116,7 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(horasLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(horasFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(carreraLablel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(carreraFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(horasFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nombreLabel)
@@ -164,15 +151,11 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(horasFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(horasLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(carreraFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(carreraLablel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnCancelar))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -195,12 +178,8 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+        this.controller.guardar();
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void carreraFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carreraFldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_carreraFldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,24 +225,24 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
     
     public void update(java.util.Observable updatedModel,Object parametros){
        
-        /*if (parametros != PersonaModel.PERSONA_CURRENT) return;
+        if (parametros != CursoModel.CURSO_CURRENT) return;
        
-       Persona personaCurrent = model.getPersonaCurrent();
+       Curso cursoCurrent = model.getCursoCurrent();
         
-       this.idFld.setEnabled(model.getModo()==Application.MODO_AGREGAR);
+       this.codigoFld.setEnabled(model.getModo()==Application.MODO_AGREGAR);
        
-       idFld.setText(personaCurrent.getId());
-       if (model.getErrores().get("id")!=null){
+       codigoFld.setText(cursoCurrent.getCodigo());
+        /*if (model.getErrores().get("id")!=null){
             idLbl.setBorder(Application.BORDER_ERROR);
             idLbl.setToolTipText(model.getErrores().get("id"));
         }
         else{
             idLbl.setBorder(null);
             idLbl.setToolTipText("");
-        }
+        }*/
 
-        nombreFld.setText(personaCurrent.getNombre());
-        if (model.getErrores().get("nombre")!=null){
+        nombreFld.setText(cursoCurrent.getNombre());
+        /*if (model.getErrores().get("nombre")!=null){
             nombreLbl.setBorder(Application.BORDER_ERROR);
             nombreLbl.setToolTipText(model.getErrores().get("nombre"));
         }
@@ -271,68 +250,30 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
            nombreLbl.setBorder(null);
            nombreLbl.setToolTipText("");
         }
-
-        if (personaCurrent.getSexo()=='F'){
-            sexoFldFem.setSelected(true);
-        }
-        else if(personaCurrent.getSexo()=='M'){
-            sexoFldMasc.setSelected(true);  
-        }
-        else{
-            this.sexoFld.clearSelection();
-        }
-        if (model.getErrores().get("sexo")!=null){
-            sexoLbl.setBorder(Application.BORDER_ERROR);
-            sexoLbl.setToolTipText(model.getErrores().get("sexo"));
-        }
-        else{
-           sexoLbl.setBorder(null);
-           sexoLbl.setToolTipText("");
-         }
-        estadoFld.setModel(model.getEstadosCiviles());
-        estadoFld.setSelectedItem(personaCurrent.getEstadoCivil());
-        pasatiempoFldMusica.setSelected(personaCurrent.isPasatiempoMusica());
-        pasatiempoFldCine.setSelected(personaCurrent.isPasatiempoCine());
-        pasatiempoFldDeporte.setSelected(personaCurrent.isPasatiempoDeporte());
-        pasatiempoFldVideoJuegos.setSelected(personaCurrent.isPasatiempoVideoJuegos());
-        pasatiempoFldCocina.setSelected(personaCurrent.isPasatiempoCocina());
-        pasatiempoFldOtro.setSelected(personaCurrent.isPasatiempoOtro());
-        if (personaCurrent.isPasatiempoOtro()){
-            pasatiempoFldOtroDescripcion.setVisible(true);
-            pasatiempoFldOtroDescripcion.setText(model.getPersonaCurrent().getPasatiempoOtroTexto());
-            if (model.getErrores().get("pasatiempoOtroDescripcion")!=null){
-                pasatiempoFldOtro.setBorder(Application.BORDER_ERROR);
-                pasatiempoFldOtro.setBorderPainted(true); 
-                pasatiempoFldOtro.setToolTipText(model.getErrores().get("pasatiempoOtroDescripcion"));
-            }
-            else{
-                pasatiempoFldOtro.setBorder(null);
-                pasatiempoFldOtro.setBorderPainted(false); 
-                pasatiempoFldOtro.setToolTipText("");
-            }
-        }
-        else{
-            pasatiempoFldOtroDescripcion.setVisible(false);
-        }
+        */
+        
+        creditosFld.setText(String.valueOf(cursoCurrent.getCreditos()));
+        
+        horasFld.setText(String.valueOf(cursoCurrent.getHorasSemanales()));
+        
+                
         this.validate();
         if (!model.getMensaje().equals("")){
             JOptionPane.showMessageDialog(this, model.getMensaje(), "",JOptionPane.INFORMATION_MESSAGE);
         }
-    */
+    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnGuardar;
-    private javax.swing.JTextField carreraFld;
-    private javax.swing.JLabel carreraLablel;
-    private javax.swing.JTextField codigoFld;
-    private javax.swing.JLabel codigoLabel;
-    private javax.swing.JTextField creditosFld;
-    private javax.swing.JLabel creditosLabel;
-    private javax.swing.JTextField horasFld;
-    private javax.swing.JLabel horasLabel;
-    private javax.swing.JTextField nombreFld;
-    private javax.swing.JLabel nombreLabel;
+    public javax.swing.JButton btnCancelar;
+    public javax.swing.JButton btnGuardar;
+    public javax.swing.JTextField codigoFld;
+    public javax.swing.JLabel codigoLabel;
+    public javax.swing.JTextField creditosFld;
+    public javax.swing.JLabel creditosLabel;
+    public javax.swing.JTextField horasFld;
+    public javax.swing.JLabel horasLabel;
+    public javax.swing.JTextField nombreFld;
+    public javax.swing.JLabel nombreLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -27,78 +27,60 @@ public class CursoController {
     }
 
     public void guardar(){
-        /*
-        Curso nueva = new Curso();
+        
+        Curso nuevo = new Curso();
         model.clearErrors();
         
-        nueva.setId(view.idFld.getText());
-        if (view.idFld.getText().length()==0){
+        nuevo.setCodigo(view.codigoFld.getText());
+        /*if (view.idFld.getText().length()==0){
             model.getErrores().put("id", "Id requerido");
-        }
+        }*/
         
-        nueva.setNombre(view.nombreFld.getText());
-        if (view.nombreFld.getText().length()==0){
+        nuevo.setNombre(view.nombreFld.getText());
+        /*if (view.nombreFld.getText().length()==0){
             model.getErrores().put("nombre", "Nombre requerido");
         }
+        */
         
-        if (view.sexoFldFem.isSelected()) nueva.setSexo('F');
-        else if (view.sexoFldMasc.isSelected()) nueva.setSexo('M');
-        else nueva.setSexo(' ');
-        if (!view.sexoFldFem.isSelected() && !view.sexoFldMasc.isSelected()){
-            model.getErrores().put("sexo", "Sexo requerido");
-        }
+        nuevo.setCarrera(Application.Model.search_CAR(Application.CARRERA_CURRENT.getNombre(),"").get(0));
         
-        nueva.setEstadoCivil((EstadoCivil) view.estadoFld.getSelectedItem());
+        nuevo.setCreditos(Integer.parseInt(view.creditosFld.getText()));
         
-        nueva.setPasatiempoMusica(view.pasatiempoFldMusica.isSelected());
+        nuevo.setHorasSemanales(Integer.parseInt(view.horasFld.getText()));
         
-        nueva.setPasatiempoCine(view.pasatiempoFldCine.isSelected());
-        
-        nueva.setPasatiempoDeporte(view.pasatiempoFldDeporte.isSelected());
-        
-        nueva.setPasatiempoVideoJuegos(view.pasatiempoFldVideoJuegos.isSelected());
-        
-        nueva.setPasatiempoCocina(view.pasatiempoFldCocina.isSelected());
-        
-        nueva.setPasatiempoOtro(view.pasatiempoFldOtro.isSelected());
-        
-        nueva.setPasatiempoOtroTexto(view.pasatiempoFldOtroDescripcion.getText());
-        if (view.pasatiempoFldOtro.isSelected() && view.pasatiempoFldOtroDescripcion.getText().length()==0){
-            model.getErrores().put("pasatiempoOtroDescripcion", "Pasatiempo requerido");
-        }
-        
+                //**************************** OJO CON EL CICLO QUE SE LE ASIGNA **********************************
+                        
         if (model.getErrores().isEmpty()){
             try{
                 switch(model.getModo()){
                     case Application.MODO_AGREGAR:
-                        Application.Model.addCurso(nueva);
-                        model.setMensaje("CURSO AGREGADA");
-                        model.setCursoCurrent(new Curso());
-                        
-                        List<Curso> rowsAgr = Application.Model.searchCursos(model.getFiltro());
-                        model.setCursos(rowsAgr);                        
+                        Application.Model.Add_CUR(nuevo);
+                        model.setMensaje("CURSO AGREGADO");
+                        model.setCursoCurrent(new Curso());                        
+                        List<Curso> rowsAgr = Application.Model.search_CUR("","",Application.CARRERA_CURRENT.getNombre());
+                        model.setCursos(rowsAgr);  
+                        view.setVisible(false);
                         break;
                     case Application.MODO_EDITAR:
-                        Application.Model.updateCurso(nueva);
-                        model.setMensaje("CURSO MODIFICADADA");
-                        model.setCursoCurrent(nueva);
-                        
-                        List<Curso> rowsMod = Application.Model.searchCursos(model.getFiltro());
+                        Application.Model.update(nuevo);
+                        model.setMensaje("CURSO MODIFICADADO");
+                        model.setCursoCurrent(nuevo);                        
+                        List<Curso> rowsMod = Application.Model.search_CUR("","",Application.CARRERA_CURRENT.getNombre());
                         model.setCursos(rowsMod);
-                        //view.setVisible(false);
+                        view.setVisible(false);
                         break;
                 }
             }
             catch(Exception e){
                 model.getErrores().put("id", "Curso ya existe");
                 model.setMensaje("CURSO YA EXISTE");
-                model.setCursoCurrent(nueva);
+                model.setCursoCurrent(nuevo);
             }
         }
         else{
             model.setMensaje("HAY ERRORES ...");
-            model.setCursoCurrent(nueva);
+            model.setCursoCurrent(nuevo);
         }
-        */
+        
     }
 }

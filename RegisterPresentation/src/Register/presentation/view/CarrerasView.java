@@ -5,6 +5,7 @@
  */
 package Register.presentation.view;
 
+import Register.Application;
 import Register.presentation.controller.CarrerasController;
 import Register.presentation.model.CarreraModel;
 
@@ -85,6 +86,11 @@ public class CarrerasView extends javax.swing.JFrame implements java.util.Observ
         codigoFld.setColumns(7);
 
         editarBtn.setText("Editar Carrera");
+        editarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarBtnActionPerformed(evt);
+            }
+        });
 
         buscarBtn.setText("Buscar");
         buscarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -143,6 +149,12 @@ public class CarrerasView extends javax.swing.JFrame implements java.util.Observ
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         this.controller.buscar();
     }//GEN-LAST:event_buscarBtnActionPerformed
+
+    private void editarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarBtnActionPerformed
+        int row = this.carrerasFld.getSelectedRow();
+        Application.CURSOS_CARRERA_VIEW.setLocation(this.editarBtn.getLocationOnScreen());
+        controller.preAgregar(row);
+    }//GEN-LAST:event_editarBtnActionPerformed
 
     /**
      * @param args the command line arguments

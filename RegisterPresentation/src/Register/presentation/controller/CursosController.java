@@ -9,6 +9,7 @@ import Register.Application;
 import Register.Entities.Carrera;
 import Register.Entities.Curso;
 import Register.presentation.model.CursoModel;
+import Register.presentation.view.CursosCarreraView;
 import Register.presentation.view.CursosView;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import java.util.List;
 public class CursosController {
     CursosView view;
     CursoModel model;
+    CursosCarreraView view2;
     
     public CursosController(CursosView view, CursoModel model) {
         this.view = view;
@@ -26,6 +28,14 @@ public class CursosController {
         view.setController(this);
         view.setModel(model);
     }
+    
+    //*********************************************
+    public void setView2(CursosCarreraView view2){
+        this.view2 = view2;
+        view2.setController(this);
+        view2.setModel(this.model);
+    }
+    //*********************************************
     
     public void buscar(){
         Curso filtro= new Curso();
@@ -61,15 +71,14 @@ public class CursosController {
     }
 
     public void borrar(int row){
-        /*Curso seleccionada = model.getCursosModel().getRowAt(row); 
+        Curso seleccionado = model.getCursosModel().getRowAt(row); 
         try {
-            Application.Model.deleteCurso(seleccionada);
+            Application.Model.delete(seleccionado);
         } catch (Exception ex) {
             //todo
         }
-        List<Curso> rowsMod = Application.Model.searchCursos(model.getFiltro());
-        model.setCursos(rowsMod);
-        */
+        List<Curso> rowsMod = Application.Model.search_CUR("","",Application.CARRERA_CURRENT.getNombre());
+        model.setCursos(rowsMod);        
     }
     
     public void close(){

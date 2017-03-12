@@ -51,12 +51,13 @@ public class EstudianteController {
         
         nuevo.setCarrera(Application.Model.search_CAR(view.carreraFld.getSelectedItem().toString(),"").get(0));
         
+        
         if (model.getErrores().isEmpty()){
             try{
                 switch(model.getModo()){
                     case Application.MODO_AGREGAR:
                         Application.Model.Add_EST(nuevo);
-                        model.setMensaje("ESTUDIANTE AGREGADO");
+                        model.setMensaje("CURSO AGREGADO");
                         model.setEstudianteCurrent(new Estudiante());
                         
                         List<Estudiante> rowsAgr = Application.Model.search_EST("",0,"Todas");
