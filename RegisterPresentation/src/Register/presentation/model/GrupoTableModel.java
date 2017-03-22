@@ -40,7 +40,7 @@ public class GrupoTableModel extends AbstractTableModel{
         switch (cols[col]){
             case NUMERO: return grupo.getNumeroGrupo();
             case PROFE: return grupo.getProfesor().getNombre();
-            case HORARIO: return grupo.toString();       
+            case HORARIO: return grupo.getHorario();       
             default: return "";
         }
     }    

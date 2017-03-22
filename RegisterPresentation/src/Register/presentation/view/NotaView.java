@@ -5,12 +5,19 @@
  */
 package Register.presentation.view;
 
+import Register.Application;
+import Register.Entities.Estudiante;
+import Register.presentation.controller.NotaController;
+import Register.presentation.model.NotaModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Fabio
  */
-public class NotaView extends javax.swing.JDialog {
-
+public class NotaView extends javax.swing.JDialog implements java.util.Observer{
+    NotaController controller;
+    NotaModel model;
     /**
      * Creates new form NotaView
      */
@@ -19,6 +26,13 @@ public class NotaView extends javax.swing.JDialog {
         initComponents();
     }
 
+    public void setController(NotaController controller){
+        this.controller=controller;
+    }
+    public void setModel(NotaModel model){
+        this.model=model;
+         model.addObserver(this);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -136,7 +150,7 @@ public class NotaView extends javax.swing.JDialog {
     }//GEN-LAST:event_cedulaFldActionPerformed
 
     private void guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtnActionPerformed
-        // TODO add your handling code here:
+        this.controller.guardar();
     }//GEN-LAST:event_guardarBtnActionPerformed
 
     private void notaFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notaFldActionPerformed
@@ -184,15 +198,38 @@ public class NotaView extends javax.swing.JDialog {
             }
         });
     }
+    
+    public void update(java.util.Observable updatedModel,Object parametros){
+       
+        
+        if (parametros != NotaModel.NOTA_CURRENT) return;
+        if(!model.getNotaCurrent().equals("")){
+            String notaCurrent = model.getNotaCurrent();
+            String delimitador = " ";
+            String[] nota = notaCurrent.split(delimitador);
+            int cedulaEst = Integer.parseInt(nota[0]);
+            Estudiante est = Application.Model.search_EST("",cedulaEst, "Todas").get(0);
+            Application.ESTUDIANTE_CURRENT=est;
+            nombreFld.setText(est.getNombre());
+            cedulaFld.setText(String.valueOf(est.getCedula()));
+
+            if(nota.length==3) notaFld.setText("");
+            else notaFld.setText(nota[1]);
+        }
+        this.validate();
+        if (!model.getMensaje().equals("")){
+            JOptionPane.showMessageDialog(this, model.getMensaje(), "",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancelarBtn;
-    private javax.swing.JTextField cedulaFld;
-    private javax.swing.JLabel cedulaLabel;
-    private javax.swing.JButton guardarBtn;
-    private javax.swing.JTextField nombreFld;
-    private javax.swing.JLabel nombreLabel;
-    private javax.swing.JTextField notaFld;
-    private javax.swing.JLabel notaLabel;
+    public javax.swing.JButton cancelarBtn;
+    public javax.swing.JTextField cedulaFld;
+    public javax.swing.JLabel cedulaLabel;
+    public javax.swing.JButton guardarBtn;
+    public javax.swing.JTextField nombreFld;
+    public javax.swing.JLabel nombreLabel;
+    public javax.swing.JTextField notaFld;
+    public javax.swing.JLabel notaLabel;
     // End of variables declaration//GEN-END:variables
 }

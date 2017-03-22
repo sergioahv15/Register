@@ -5,12 +5,26 @@
  */
 package Register.presentation.view;
 
+import Register.presentation.controller.GruposController;
+import Register.presentation.model.GrupoModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Fabio
  */
-public class MatriculaView extends javax.swing.JDialog {
-
+public class MatriculaView extends javax.swing.JDialog implements java.util.Observer{
+    GruposController controller;
+    GrupoModel model;
+    
+    public void setController(GruposController controller){
+        this.controller=controller;
+    }
+    public void setModel(GrupoModel model){
+        this.model=model;
+         model.addObserver(this);
+    }
     /**
      * Creates new form MatriculaView
      */
@@ -19,6 +33,12 @@ public class MatriculaView extends javax.swing.JDialog {
         initComponents();
     }
 
+    public void update(java.util.Observable updatedModel,Object parametros){
+       if (parametros != GrupoModel.GRUPOS_MODEL) return;
+       gruposFld.setModel(model.getGruposModel());
+       this.revalidate();       
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,14 +49,16 @@ public class MatriculaView extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        cursosFld = new javax.swing.JTable();
+        gruposFld = new javax.swing.JTable();
         matricularBtn = new javax.swing.JButton();
         cicloLabel = new javax.swing.JLabel();
         cicloFld = new javax.swing.JComboBox<>();
+        buscarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Matricular Grupos");
 
-        cursosFld.setModel(new javax.swing.table.DefaultTableModel(
+        gruposFld.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -47,19 +69,31 @@ public class MatriculaView extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        cursosFld.setToolTipText("");
-        cursosFld.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
+        gruposFld.setToolTipText("");
+        gruposFld.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
             public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
-                cursosFldVetoableChange(evt);
+                gruposFldVetoableChange(evt);
             }
         });
-        jScrollPane1.setViewportView(cursosFld);
+        jScrollPane1.setViewportView(gruposFld);
 
         matricularBtn.setText("Matricular");
+        matricularBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                matricularBtnActionPerformed(evt);
+            }
+        });
 
         cicloLabel.setText("Ciclo:");
 
         cicloFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
+
+        buscarBtn.setText("Buscar Grupos");
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,7 +105,9 @@ public class MatriculaView extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cicloLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cicloFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cicloFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buscarBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -84,20 +120,34 @@ public class MatriculaView extends javax.swing.JDialog {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cicloLabel)
-                    .addComponent(cicloFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cicloFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarBtn))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(matricularBtn)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(matricularBtn))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cursosFldVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_cursosFldVetoableChange
+    private void gruposFldVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_gruposFldVetoableChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_cursosFldVetoableChange
+    }//GEN-LAST:event_gruposFldVetoableChange
+
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        this.controller.buscar();
+    }//GEN-LAST:event_buscarBtnActionPerformed
+
+    private void matricularBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matricularBtnActionPerformed
+        int row = this.gruposFld.getSelectedRow();
+        try {
+            controller.matricular(row);
+        } catch (Exception ex) {
+            Logger.getLogger(MatriculaView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_matricularBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,10 +192,11 @@ public class MatriculaView extends javax.swing.JDialog {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cicloFld;
-    private javax.swing.JLabel cicloLabel;
-    private javax.swing.JTable cursosFld;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton matricularBtn;
+    public javax.swing.JButton buscarBtn;
+    public javax.swing.JComboBox<String> cicloFld;
+    public javax.swing.JLabel cicloLabel;
+    private javax.swing.JTable gruposFld;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JButton matricularBtn;
     // End of variables declaration//GEN-END:variables
 }

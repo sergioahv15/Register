@@ -5,8 +5,13 @@
  */
 package Register.presentation.view;
 
+import Register.Application;
+import Register.Entities.Grupo;
+import Register.Entities.Profesor;
 import Register.presentation.controller.GrupoController;
 import Register.presentation.model.GrupoModel;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +26,12 @@ public class GrupoView extends javax.swing.JDialog implements java.util.Observer
     public GrupoView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //
+        List<Profesor> profes = Application.Model.search_PRO("",0);
+        for(Profesor p : profes){
+            this.profeFld.addItem(p.getNombre());
+        }
+        //
     }
     
     public void setController(GrupoController controller){
@@ -42,10 +53,9 @@ public class GrupoView extends javax.swing.JDialog implements java.util.Observer
     private void initComponents() {
 
         numeroLabel = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        numeroFld = new javax.swing.JTextField();
         horarioLabel = new javax.swing.JLabel();
         profeLabel = new javax.swing.JLabel();
-        profesorFld = new javax.swing.JTextField();
         guardarBtn = new javax.swing.JButton();
         cancelarBtn = new javax.swing.JButton();
         diaFld1 = new javax.swing.JComboBox<>();
@@ -54,26 +64,26 @@ public class GrupoView extends javax.swing.JDialog implements java.util.Observer
         inicioLabel = new javax.swing.JLabel();
         finLabel = new javax.swing.JLabel();
         finFld = new javax.swing.JComboBox<>();
+        profeFld = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Editar Grupo");
 
         numeroLabel.setText("Numero:");
 
-        jTextField1.setColumns(5);
+        numeroFld.setColumns(5);
 
         horarioLabel.setText("Dias:");
 
         profeLabel.setText("Profesor:");
         profeLabel.setName(""); // NOI18N
 
-        profesorFld.setColumns(17);
-        profesorFld.addActionListener(new java.awt.event.ActionListener() {
+        guardarBtn.setText("Guardar");
+        guardarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                profesorFldActionPerformed(evt);
+                guardarBtnActionPerformed(evt);
             }
         });
-
-        guardarBtn.setText("Guardar");
 
         cancelarBtn.setText("Cancelar");
         cancelarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -82,17 +92,22 @@ public class GrupoView extends javax.swing.JDialog implements java.util.Observer
             }
         });
 
-        diaFld1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-----", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" }));
+        diaFld1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-----", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes" }));
+        diaFld1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diaFld1ActionPerformed(evt);
+            }
+        });
 
-        diaFld2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-----", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" }));
+        diaFld2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-----", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes" }));
 
-        inicioFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00" }));
+        inicioFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm" }));
 
         inicioLabel.setText("Hora Inicio:");
 
         finLabel.setText("Hora Fin:");
 
-        finFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00" }));
+        finFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,11 +135,11 @@ public class GrupoView extends javax.swing.JDialog implements java.util.Observer
                                 .addComponent(diaFld1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(diaFld2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(numeroFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(profeLabel)
                         .addGap(26, 26, 26)
-                        .addComponent(profesorFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(profeFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(58, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -139,7 +154,7 @@ public class GrupoView extends javax.swing.JDialog implements java.util.Observer
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numeroLabel)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(numeroFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(horarioLabel)
@@ -156,24 +171,28 @@ public class GrupoView extends javax.swing.JDialog implements java.util.Observer
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(profeLabel)
-                    .addComponent(profesorFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(profeFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarBtn)
                     .addComponent(cancelarBtn))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void profesorFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profesorFldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_profesorFldActionPerformed
-
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelarBtnActionPerformed
+
+    private void diaFld1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaFld1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_diaFld1ActionPerformed
+
+    private void guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtnActionPerformed
+        this.controller.guardar();
+    }//GEN-LAST:event_guardarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,94 +238,76 @@ public class GrupoView extends javax.swing.JDialog implements java.util.Observer
 
     public void update(java.util.Observable updatedModel,Object parametros){
        
-        /*if (parametros != PersonaModel.PERSONA_CURRENT) return;
+       if (parametros != GrupoModel.GRUPO_CURRENT) return;
        
-       Persona personaCurrent = model.getPersonaCurrent();
+       Grupo grupoCurrent = model.getGrupoCurrent();
         
-       this.idFld.setEnabled(model.getModo()==Application.MODO_AGREGAR);
+       //this.numeroFld.setEnabled(model.getModo()==Application.MODO_AGREGAR);
+              
+       Integer numero=grupoCurrent.getNumeroGrupo();
+       if(numero==0)numeroFld.setText("");
+       else numeroFld.setText(numero.toString());
        
-       idFld.setText(personaCurrent.getId());
-       if (model.getErrores().get("id")!=null){
-            idLbl.setBorder(Application.BORDER_ERROR);
-            idLbl.setToolTipText(model.getErrores().get("id"));
-        }
-        else{
-            idLbl.setBorder(null);
-            idLbl.setToolTipText("");
-        }
-
-        nombreFld.setText(personaCurrent.getNombre());
-        if (model.getErrores().get("nombre")!=null){
-            nombreLbl.setBorder(Application.BORDER_ERROR);
-            nombreLbl.setToolTipText(model.getErrores().get("nombre"));
-        }
-        else{
-           nombreLbl.setBorder(null);
-           nombreLbl.setToolTipText("");
-        }
-
-        if (personaCurrent.getSexo()=='F'){
-            sexoFldFem.setSelected(true);
-        }
-        else if(personaCurrent.getSexo()=='M'){
-            sexoFldMasc.setSelected(true);  
-        }
-        else{
-            this.sexoFld.clearSelection();
-        }
-        if (model.getErrores().get("sexo")!=null){
-            sexoLbl.setBorder(Application.BORDER_ERROR);
-            sexoLbl.setToolTipText(model.getErrores().get("sexo"));
-        }
-        else{
-           sexoLbl.setBorder(null);
-           sexoLbl.setToolTipText("");
-         }
-        estadoFld.setModel(model.getEstadosCiviles());
-        estadoFld.setSelectedItem(personaCurrent.getEstadoCivil());
-        pasatiempoFldMusica.setSelected(personaCurrent.isPasatiempoMusica());
-        pasatiempoFldCine.setSelected(personaCurrent.isPasatiempoCine());
-        pasatiempoFldDeporte.setSelected(personaCurrent.isPasatiempoDeporte());
-        pasatiempoFldVideoJuegos.setSelected(personaCurrent.isPasatiempoVideoJuegos());
-        pasatiempoFldCocina.setSelected(personaCurrent.isPasatiempoCocina());
-        pasatiempoFldOtro.setSelected(personaCurrent.isPasatiempoOtro());
-        if (personaCurrent.isPasatiempoOtro()){
-            pasatiempoFldOtroDescripcion.setVisible(true);
-            pasatiempoFldOtroDescripcion.setText(model.getPersonaCurrent().getPasatiempoOtroTexto());
-            if (model.getErrores().get("pasatiempoOtroDescripcion")!=null){
-                pasatiempoFldOtro.setBorder(Application.BORDER_ERROR);
-                pasatiempoFldOtro.setBorderPainted(true); 
-                pasatiempoFldOtro.setToolTipText(model.getErrores().get("pasatiempoOtroDescripcion"));
-            }
-            else{
-                pasatiempoFldOtro.setBorder(null);
-                pasatiempoFldOtro.setBorderPainted(false); 
-                pasatiempoFldOtro.setToolTipText("");
-            }
-        }
-        else{
-            pasatiempoFldOtroDescripcion.setVisible(false);
-        }
+       String dia1="";
+       if(grupoCurrent.isLunes()){
+               dia1="Lunes";
+               diaFld1.setSelectedItem(dia1);
+       }else if(grupoCurrent.isMartes()){
+               dia1="Martes";
+               diaFld1.setSelectedItem(dia1);
+       }else if(grupoCurrent.isMiercoles()){
+               dia1="Miercoles";
+               diaFld1.setSelectedItem(dia1);
+       }else if(grupoCurrent.isJueves()){
+               dia1="Jueves";
+               diaFld1.setSelectedItem(dia1);
+       }else if(grupoCurrent.isViernes()){
+               dia1="Viernes";
+               diaFld1.setSelectedItem(dia1);
+       }else diaFld1.setSelectedIndex(0);
+       
+       
+       if(grupoCurrent.isLunes() && !(dia1.equals("Lunes")))
+            diaFld2.setSelectedItem("Lunes");
+       else if(grupoCurrent.isMartes() && !(dia1.equals("Martes")))
+            diaFld2.setSelectedItem("Martes");
+       else if(grupoCurrent.isMiercoles() && !(dia1.equals("Miercoles")))
+            diaFld2.setSelectedItem("Miercoles");
+       else if(grupoCurrent.isJueves() && !(dia1.equals("Jueves")))
+            diaFld2.setSelectedItem("Jueves");
+       else if(grupoCurrent.isViernes() && !(dia1.equals("Viernes")))
+            diaFld2.setSelectedItem("Viernes");
+       else diaFld2.setSelectedIndex(0);
+       
+       if(!grupoCurrent.getHoraInicio().equals(""))
+            inicioFld.setSelectedItem(grupoCurrent.getHoraInicio());
+       else inicioFld.setSelectedIndex(0);
+       if(!grupoCurrent.getHoraFin().equals(""))
+            finFld.setSelectedItem(grupoCurrent.getHoraFin());
+       else finFld.setSelectedIndex(0);
+       if(!grupoCurrent.getProfesor().getNombre().equals(""))       
+            profeFld.setSelectedItem(grupoCurrent.getProfesor().getNombre());
+       else profeFld.setSelectedIndex(0);
+               
         this.validate();
         if (!model.getMensaje().equals("")){
             JOptionPane.showMessageDialog(this, model.getMensaje(), "",JOptionPane.INFORMATION_MESSAGE);
-        }
-    */
+        }    
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancelarBtn;
-    private javax.swing.JComboBox<String> diaFld1;
-    private javax.swing.JComboBox<String> diaFld2;
-    private javax.swing.JComboBox<String> finFld;
-    private javax.swing.JLabel finLabel;
-    private javax.swing.JButton guardarBtn;
-    private javax.swing.JLabel horarioLabel;
-    private javax.swing.JComboBox<String> inicioFld;
-    private javax.swing.JLabel inicioLabel;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel numeroLabel;
-    private javax.swing.JLabel profeLabel;
-    private javax.swing.JTextField profesorFld;
+    public javax.swing.JButton cancelarBtn;
+    public javax.swing.JComboBox<String> diaFld1;
+    public javax.swing.JComboBox<String> diaFld2;
+    public javax.swing.JComboBox<String> finFld;
+    public javax.swing.JLabel finLabel;
+    public javax.swing.JButton guardarBtn;
+    public javax.swing.JLabel horarioLabel;
+    public javax.swing.JComboBox<String> inicioFld;
+    public javax.swing.JLabel inicioLabel;
+    public javax.swing.JTextField numeroFld;
+    public javax.swing.JLabel numeroLabel;
+    public javax.swing.JComboBox<String> profeFld;
+    public javax.swing.JLabel profeLabel;
     // End of variables declaration//GEN-END:variables
 }

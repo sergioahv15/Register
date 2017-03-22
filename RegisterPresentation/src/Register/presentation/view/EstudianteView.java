@@ -66,6 +66,7 @@ public class EstudianteView extends javax.swing.JDialog implements java.util.Obs
         carreraFld = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Editar Estudiante");
 
         cancelarBtn.setText("Cancelar");
 

@@ -78,12 +78,12 @@ public class OfertaModel extends java.util.Observable{
     private void initCursos(){
         filtro = new Curso();
         List<Curso> rows = new ArrayList<Curso>();
-        setCurso(rows);
+        setCursos(rows);
     }
     
-    public void setCurso(List<Curso> rows){
-        //int[] cols={CursoTableModel.ID,CursoTableModel.NOMBRE,CursoTableModel.SEXO,CursoTableModel.PASATIEMPO_CINE,CursoTableModel.ESTADO_CIVIL};
-        //setCursoModel(new CursoTableModel(cols,rows));        
+    public void setCursos(List<Curso> rows){
+        int[] cols={CursoTableModel.CODIGO,CursoTableModel.NOMBRE,CursoTableModel.CARRERA,CursoTableModel.CREDITOS,CursoTableModel.HORAS_SEMANALES};
+        setCursosModel(new CursoTableModel(cols,rows));        
     }
     
     public Curso getFiltro() {
@@ -106,7 +106,7 @@ public class OfertaModel extends java.util.Observable{
         notifyObservers(OFERTAS_MODEL);
     }
     
-    public void setCursoModel(CursoTableModel ofertasModel) {
+    public void setCursosModel(CursoTableModel ofertasModel) {
         this.ofertasModel = ofertasModel;
         setChanged();
         notifyObservers(OFERTAS_MODEL);

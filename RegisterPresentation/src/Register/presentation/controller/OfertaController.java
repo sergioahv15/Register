@@ -6,9 +6,12 @@
 package Register.presentation.controller;
 
 import Register.Application;
+import Register.Entities.Carrera;
 import Register.Entities.Curso;
+import Register.Entities.Grupo;
 import Register.presentation.model.OfertaModel;
 import Register.presentation.view.OfertaView;
+import java.util.List;
 
 /**
  *
@@ -26,20 +29,29 @@ public class OfertaController {
     }
     
     public void buscar(){
-        /*model.getFiltro().setNombre(view.textNombreOferta.getText());
-        Carrera filtro= new Carrera();
-        filtro.setNombre(model.getFiltro().getNombre());
-        List<Oferta> rows = Application.Model.search_CUR_CAR(filtro.getNombre());
-        //List<Oferta> rows = Model.searchOferta(model.getFiltro());
-        model.setOferta(rows);
-        */
+        Curso filtro= new Curso();        
+        if(view.carreraFld.getSelectedItem().toString().equals("Todas")){
+            model.getFiltro().getCarrera().setNombre("Todas");
+            filtro.getCarrera().setNombre("Todas");
+        }else{
+            Carrera carreraCur = Application.Model.search_CAR(view.carreraFld.getSelectedItem().toString(),"").get(0);
+            model.getFiltro().setCarrera(carreraCur);
+            filtro.setCarrera(carreraCur);
+        }
+        int cicloSelec = Integer.parseInt(view.cicloFld.getSelectedItem().toString());
+        model.getFiltro().getCiclo().setNumero(cicloSelec);
+        filtro.getCiclo().setNumero(cicloSelec);
+        List<Curso> rows = Application.Model.search_CUR(filtro.getCarrera().getNombre(),filtro.getCiclo().getNumero());
+        model.setCursos(rows);        
     }
 
-    public void preAgregar(){
-        model.clearErrors();
-        model.setModo(Application.MODO_AGREGAR);
-        model.setOfertaCurrent(new Curso());
-        Application.CURSO_VIEW.setVisible(true);
+    public void preAgregar(int row){
+        Curso seleccionado = model.getOfertaModel().getRowAt(row);
+        Application.CURSO_CURRENT = seleccionado;
+        List<Grupo> rows = Application.Model.search_GRU(seleccionado.getCodigo(),"");
+        System.out.println(rows.toString());
+        Application.GRUPO_MODEL.setGrupos(rows); 
+        Application.GRUPOS_VIEW.setVisible(true);
     }
     
     public void editar(int row){

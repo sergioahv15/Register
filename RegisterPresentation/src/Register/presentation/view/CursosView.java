@@ -67,7 +67,7 @@ public class CursosView extends javax.swing.JFrame implements java.util.Observer
         cursosTable = new javax.swing.JTable();
         carreraFld = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mantenimiento Cursos");
 
         labelNombreCurso.setText("Nombre:");

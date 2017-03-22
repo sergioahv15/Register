@@ -5,12 +5,38 @@
  */
 package Register.presentation.view;
 
+import Register.Application;
+import Register.Entities.Grupo;
+import Register.Entities.Profesor;
+import Register.presentation.controller.GruposController;
+import Register.presentation.model.GrupoModel;
+import java.util.List;
+
 /**
  *
  * @author Fabio
  */
-public class GruposProfeView extends javax.swing.JFrame {
-
+public class GruposProfeView extends javax.swing.JFrame implements java.util.Observer{
+    GruposController controller;
+    GrupoModel model;
+    /**
+     * Creates new form CursoView
+     */
+    public void setController(GruposController controller){
+        this.controller=controller;
+    }
+    public void setModel(GrupoModel model){
+        this.model=model;
+         model.addObserver(this);
+    }
+    
+    public void update(java.util.Observable updatedModel,Object parametros){
+       if (parametros != GrupoModel.GRUPOS_MODEL) return;
+       //textNombreCiclo.setText(model.getFiltro().getNombre());
+       gruposFld.setModel(model.getGruposModel());
+       this.revalidate();
+    }
+    
     /**
      * Creates new form GruposProfeView
      */
@@ -30,8 +56,10 @@ public class GruposProfeView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         gruposFld = new javax.swing.JTable();
         verNotasBtn = new javax.swing.JButton();
+        buscarBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Grupos por Profesor");
 
         gruposFld.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -46,10 +74,17 @@ public class GruposProfeView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(gruposFld);
 
-        verNotasBtn.setText("Ver Notas");
+        verNotasBtn.setText("Calificaciones");
         verNotasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 verNotasBtnActionPerformed(evt);
+            }
+        });
+
+        buscarBtn.setText("Obtener Grupos");
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarBtnActionPerformed(evt);
             }
         });
 
@@ -61,7 +96,9 @@ public class GruposProfeView extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(verNotasBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buscarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(verNotasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -69,8 +106,11 @@ public class GruposProfeView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(verNotasBtn)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buscarBtn)
+                        .addGap(16, 16, 16)
+                        .addComponent(verNotasBtn)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -78,8 +118,14 @@ public class GruposProfeView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void verNotasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verNotasBtnActionPerformed
-        // TODO add your handling code here:
+        int row = this.gruposFld.getSelectedRow();
+        Application.NOTAS_VIEW.setLocation(this.verNotasBtn.getLocationOnScreen());
+        controller.verNotas(row);
     }//GEN-LAST:event_verNotasBtnActionPerformed
+
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        this.controller.buscarG();
+    }//GEN-LAST:event_buscarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,8 +163,9 @@ public class GruposProfeView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton buscarBtn;
     private javax.swing.JTable gruposFld;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton verNotasBtn;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JButton verNotasBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -72,7 +72,8 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
         matriculaBtn = new javax.swing.JButton();
         carreraFld = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Mantenimiento de Estudiantes");
 
         estudiantesFld.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -207,7 +208,9 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
     }//GEN-LAST:event_cedulaFldActionPerformed
 
     private void matriculaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matriculaBtnActionPerformed
-        // TODO add your handling code here:
+        int row = this.estudiantesFld.getSelectedRow();
+        Application.MATRICULADOS_VIEW.setLocation(this.matriculaBtn.getLocationOnScreen());
+        controller.preAgregar(row);
     }//GEN-LAST:event_matriculaBtnActionPerformed
 
     private void consultaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaBtnActionPerformed
@@ -268,17 +271,17 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton agregarBtn;
-    private javax.swing.JButton buscarBtn;
+    public javax.swing.JButton agregarBtn;
+    public javax.swing.JButton buscarBtn;
     public javax.swing.JComboBox<String> carreraFld;
-    private javax.swing.JLabel carreraLabel;
+    public javax.swing.JLabel carreraLabel;
     public javax.swing.JTextField cedulaFld;
-    private javax.swing.JLabel cedulaLabel;
-    private javax.swing.JButton consultaBtn;
+    public javax.swing.JLabel cedulaLabel;
+    public javax.swing.JButton consultaBtn;
     private javax.swing.JTable estudiantesFld;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton matriculaBtn;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JButton matriculaBtn;
     public javax.swing.JTextField nombreFld;
-    private javax.swing.JLabel nombreLabel;
+    public javax.swing.JLabel nombreLabel;
     // End of variables declaration//GEN-END:variables
 }

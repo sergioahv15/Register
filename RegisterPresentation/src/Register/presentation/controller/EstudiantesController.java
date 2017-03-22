@@ -7,7 +7,9 @@ package Register.presentation.controller;
 
 import Register.Application;
 import Register.Entities.Carrera;
+import Register.Entities.Curso;
 import Register.Entities.Estudiante;
+import Register.Entities.Grupo;
 import Register.presentation.model.EstudianteModel;
 import Register.presentation.view.EstudiantesView;
 import java.util.List;
@@ -28,14 +30,6 @@ public class EstudiantesController {
     }
     
     public void buscar(){
-        /*
-        model.getFiltro().setNombre(view.nombreFld.getText());
-        Estudiante filtro= new Estudiante();
-        filtro.setNombre(model.getFiltro().getNombre());
-        List<Estudiante> rows = Application.Model.search_EST_NOM(filtro.getNombre());
-        //List<Estudiante> rows = Model.searchEstudiantes(model.getFiltro());
-        model.setEstudiantes(rows);
-        */
         model.getFiltro().setNombre(view.nombreFld.getText());
         Estudiante filtro= new Estudiante();
         filtro.setNombre(model.getFiltro().getNombre());
@@ -66,6 +60,21 @@ public class EstudiantesController {
         model.setModo(Application.MODO_AGREGAR);
         model.setEstudianteCurrent(new Estudiante());
         Application.ESTUDIANTE_VIEW.setVisible(true);
+    }
+    
+    public void preAgregar(int row){
+        /*Estudiante seleccionado = model.getEstudiantesModel().getRowAt(row);
+        Application.ESTUDIANTE_CURRENT = seleccionado;
+        Application.CARRERA_CURRENT = seleccionado.getCarrera();
+        List<Grupo> rows = Application.Model.search_GRU("",Application.CARRERA_CURRENT.getCodigo());
+        //Application.GRUPO_MODEL.setGrupos(rows); 
+        Application.MATRICULADOS_VIEW.setVisible(true);
+        */
+        Estudiante seleccionado = model.getEstudiantesModel().getRowAt(row);
+        Application.ESTUDIANTE_CURRENT = seleccionado;
+        List<Grupo> rows = Application.Model.search_GRU(seleccionado.getCedula());
+        Application.GRUPO_MODEL.setGrupos(rows); 
+        Application.MATRICULADOS_VIEW.setVisible(true);
     }
     
     public void editar(int row){

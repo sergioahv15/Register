@@ -5,6 +5,7 @@
  */
 package Register.console.model;
 
+import Register.Entities.Ciclo;
 import Register.Entities.Usuario;
 import java.util.Hashtable;
 
@@ -15,9 +16,11 @@ import java.util.Hashtable;
 public class Model extends java.util.Observable {
     Hashtable<String,String> errores;
     Usuario Usuario;
+    Ciclo ciclo;
     
     public Model(){
         Usuario=null;
+        ciclo = null;
         clearErrors();
     }
     
@@ -49,5 +52,15 @@ public class Model extends java.util.Observable {
         setChanged();
         notifyObservers(); 
     }
+
+    public Ciclo getCiclo() {
+        return ciclo;
+    }
+
+    public void setCiclo(Ciclo ciclo) {
+        this.ciclo = ciclo;
+    }
+    
+    
     
 }

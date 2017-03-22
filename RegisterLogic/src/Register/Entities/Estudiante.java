@@ -29,7 +29,7 @@ public class Estudiante extends Usuario {
 
     public Estudiante(String nombre, int tel, String email, String fechaNac,Carrera c,ArrayList<Grupo> historial,
             String clave, int cedula) {
-        super(clave, cedula, 2);
+        super(clave, cedula, "estudiante");
         this.Nombre = nombre;
         this.Tel = tel;
         this.Email = email;
@@ -37,9 +37,17 @@ public class Estudiante extends Usuario {
         this.Carrera= c;
         this.Historial=historial;
     }
+    
+    public Estudiante(String Nombre, int Tel, String Email, String FechaNac, String clave, int cedula) {
+        super(clave, cedula, "estudiante");
+        this.Nombre = Nombre;
+        this.Tel = Tel;
+        this.Email = Email;
+        this.FechaNac = FechaNac;
+    }
 
     public Estudiante() {
-        super("",0,2);
+        super("",0,"estudiante");
         this.Nombre="";
         this.Tel=0;
         this.Email="";
@@ -70,7 +78,6 @@ public class Estudiante extends Usuario {
         Grupo g = new Grupo();
         g.setNumeroGrupo(rs.getInt("numero_grupo"));
         g.setProfesor(profesor(rs));
-        g.setHorario(horario(rs));
         g.setCurso(curso(rs));
         return g;
     }
@@ -114,13 +121,6 @@ public class Estudiante extends Usuario {
         if(activo==1)c.setActivo(true);
         else if(activo ==0)c.setActivo(false);
         return c;
-    }
-
-     private Horario horario(ResultSet rs) throws SQLException{
-        Horario h = new Horario();
-        h.setHoraFin(rs.getString("hora_fin"));
-        h.setHoraInicio(rs.getString("hora_ ini"));
-        return h;
     }
     
     public void setHistorial(ArrayList<Grupo> Historial) {

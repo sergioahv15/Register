@@ -9,6 +9,7 @@ import Register.Entities.Carrera;
 import Register.Entities.Ciclo;
 import Register.Entities.Curso;
 import Register.Entities.Estudiante;
+import Register.Entities.Grupo;
 import Register.Entities.Profesor;
 import Register.Entities.Usuario;
 import Register.IModel;
@@ -65,8 +66,11 @@ public class ModelWorker {
         String filtro3;
         //***********
         int filtroInt;
+        int filtroInt2;
+        int filtroInt3;
         Curso c;
         Carrera car;
+        Grupo g;
         Profesor p;
         Estudiante es;
         Ciclo ci;
@@ -92,10 +96,68 @@ public class ModelWorker {
                     out.writeInt(Protocol.ERROR_NO_ERROR);
                     out.writeObject(Model.search_CUR(filtro,filtro2,filtro3));
                     break;
+                case Protocol.SEARCH_CURSOS2:
+                    filtro=(String) in.readObject();
+                    filtroInt=(Integer) in.readObject();
+                    out.writeInt(Protocol.ERROR_NO_ERROR);
+                    out.writeObject(Model.search_CUR(filtro,filtroInt));
+                    break;
+                case Protocol.SEARCH_GRUPOS:
+                    filtro=(String) in.readObject();
+                    filtro2=(String) in.readObject();
+                    out.writeInt(Protocol.ERROR_NO_ERROR);
+                    out.writeObject(Model.search_GRU(filtro,filtro2));
+                    break;
+                case Protocol.SEARCH_GRUPOS2:
+                    filtroInt=(Integer) in.readObject();
+                    out.writeInt(Protocol.ERROR_NO_ERROR);
+                    out.writeObject(Model.search_GRU(filtroInt));
+                    break;
+                case Protocol.SEARCH_GRUPOS3:
+                    filtroInt=(Integer) in.readObject();
+                    filtro=(String) in.readObject();
+                    out.writeInt(Protocol.ERROR_NO_ERROR);
+                    out.writeObject(Model.search_GRU(filtroInt,filtro));
+                    break;
+                case Protocol.SEARCH_GRUPOS4:
+                    filtroInt=(Integer) in.readObject();
+                    out.writeInt(Protocol.ERROR_NO_ERROR);
+                    out.writeObject(Model.search_GRU_PRO(filtroInt));
+                    break;
+                case Protocol.SEARCH_NOTAS:
+                    filtroInt=(Integer) in.readObject();
+                    out.writeInt(Protocol.ERROR_NO_ERROR);
+                    out.writeObject(Model.search_NOTAS(filtroInt));
+                    break; 
+                case Protocol.SEARCH_HISTORIAL_ACTIVO:
+                    filtroInt=(Integer) in.readObject();
+                    out.writeInt(Protocol.ERROR_NO_ERROR);
+                    out.writeObject(Model.search_HIST(filtroInt));
+                    break; 
                 case Protocol.UPDATE_CURSO:
                     c= (Curso)in.readObject();
                     try {
                         Model.update(c);
+                        out.writeInt(Protocol.ERROR_NO_ERROR);
+                    } catch (Exception e) {
+                        out.writeInt(Protocol.ERROR_UPDATE_CURSO);
+                    }
+                    break;
+                case Protocol.UPDATE_NOTA:
+                    filtroInt=(Integer) in.readObject();
+                    filtroInt2=(Integer) in.readObject();
+                    filtroInt3=(Integer) in.readObject();
+                    try {
+                        Model.updateNota(filtroInt,filtroInt2,filtroInt3);
+                        out.writeInt(Protocol.ERROR_NO_ERROR);
+                    } catch (Exception e) {
+                        out.writeInt(Protocol.ERROR_UPDATE_CURSO);
+                    }
+                    break;
+                case Protocol.UPDATE_GRUPO:
+                    g= (Grupo)in.readObject();
+                    try {
+                        Model.update(g);
                         out.writeInt(Protocol.ERROR_NO_ERROR);
                     } catch (Exception e) {
                         out.writeInt(Protocol.ERROR_UPDATE_CURSO);
@@ -110,10 +172,39 @@ public class ModelWorker {
                         out.writeInt(Protocol.ERROR_UPDATE_CURSO);
                     }
                     break;
+                case Protocol.DELETE_GRUPO_MATRICULADO:
+                    filtroInt=(Integer) in.readObject();
+                    filtroInt2=(Integer) in.readObject();
+                    try {
+                        Model.delete(filtroInt,filtroInt2);
+                        out.writeInt(Protocol.ERROR_NO_ERROR);
+                    } catch (Exception e) {
+                        out.writeInt(Protocol.ERROR_UPDATE_CURSO);
+                    }
+                    break;
+                case Protocol.MATRICULAR_GRUPO:
+                    filtroInt=(Integer) in.readObject();
+                    filtroInt2=(Integer) in.readObject();
+                    try {
+                        Model.matricular(filtroInt,filtroInt2);
+                        out.writeInt(Protocol.ERROR_NO_ERROR);
+                    } catch (Exception e) {
+                        out.writeInt(Protocol.ERROR_UPDATE_CURSO);
+                    }
+                    break;
                 case Protocol.ADD_CARRERA:
                     car=(Carrera)in.readObject();
                     try {
                         Model.Add_CAR(car);
+                        out.writeInt(Protocol.ERROR_NO_ERROR);
+                    } catch (Exception e) {
+                        out.writeInt(Protocol.ERROR_ADD_CARRERA);
+                    }
+                    break;
+                case Protocol.ADD_GRUPO:
+                    g=(Grupo)in.readObject();
+                    try {
+                        Model.Add_GRU(g);
                         out.writeInt(Protocol.ERROR_NO_ERROR);
                     } catch (Exception e) {
                         out.writeInt(Protocol.ERROR_ADD_CARRERA);
@@ -192,11 +283,13 @@ public class ModelWorker {
                         out.writeInt(Protocol.ERROR_ADD_CICLO);
                     }
                     break;
-                case Protocol.SEARCH_CICLOS_ANYO:
+                case Protocol.SEARCH_CICLOS:
                     filtroInt=(Integer) in.readObject();
+                    filtroInt2=(Integer) in.readObject();
                     out.writeInt(Protocol.ERROR_NO_ERROR);
-                    out.writeObject(Model.search_CIC_ANYO(filtroInt));
+                    out.writeObject(Model.search_CIC(filtroInt,filtroInt2));
                     break;
+                
                 case Protocol.UPDATE_CICLOS:
                     ci=(Ciclo)in.readObject();
                     try {
@@ -206,19 +299,16 @@ public class ModelWorker {
                             out.writeInt(Protocol.ERROR_UPDATE_CICLOS);
                         }
                     break;
-                case Protocol.LOGIN:
-                    try {
-                        String ced=(String)in.readObject();
-                        u= Model.login(ced);
-                        if(u!=null){
-                            out.writeInt(Protocol.ERROR_NO_ERROR);
-                            out.writeObject(u);
-                        }
-                        else{
-                            out.writeInt(Protocol.ERROR_LOGIN);
-                        }
-                    } catch (ClassNotFoundException e) {
-                    }
+                case Protocol.LOGIN:                    
+                    filtroInt=(Integer)in.readObject();
+                    filtro=(String)in.readObject();
+                    out.writeInt(Protocol.ERROR_NO_ERROR);
+                    out.writeObject(Model.login(filtroInt,filtro));
+                    break;
+                case Protocol.SEARCH_CICLO_ACTUAL:
+                    out.writeInt(Protocol.ERROR_NO_ERROR);
+                    out.writeObject(Model.search_CIC_ACTUAL());
+                    break;
                 case Protocol.CLOSE:
                     skt.close();
                     continuar = false;

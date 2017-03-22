@@ -75,6 +75,27 @@ public class ModelProxy implements IModel{
     }
 
     @Override
+    public List<Curso> search_CUR(String carrera, int ciclo) {
+        try {
+            out.writeInt(Protocol.SEARCH_CURSOS2);
+            out.writeObject(carrera);
+            out.writeObject(ciclo);
+            out.flush();
+            int error = in.readInt();
+            List<Curso> cursos = (List<Curso>) in.readObject();
+            
+            //
+            System.out.println(cursos.get(0).getNombre());
+            //
+            
+            return cursos;
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            return new ArrayList<Curso>();
+        }
+    }
+    
+    @Override
     public void delete(Curso curso) throws Exception {
         try {
             out.writeInt(Protocol.DELETE_CURSO);
@@ -90,6 +111,46 @@ public class ModelProxy implements IModel{
         } catch (Exception ex) {
             System.out.println("Error de comunicacion");
             throw new Exception("Curso no existe");
+        }
+    }
+    
+    @Override
+    public void delete(int grupo, int estudiante) throws Exception {
+        try {
+            out.writeInt(Protocol.DELETE_GRUPO_MATRICULADO);
+            out.writeObject(grupo);
+            out.writeObject(estudiante);
+            out.flush();
+            int error = in.readInt();
+            if (error == Protocol.ERROR_NO_ERROR){
+            }
+            else{
+                throw new Exception("Grupo no existe");
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            throw new Exception("Grupo no existe");
+        }
+    }
+    
+    @Override
+    public void matricular(int grupo, int estudiante) throws Exception {
+        try {
+            out.writeInt(Protocol.MATRICULAR_GRUPO);
+            out.writeObject(grupo);
+            out.writeObject(estudiante);
+            out.flush();
+            int error = in.readInt();
+            if (error == Protocol.ERROR_NO_ERROR){
+            }
+            else{
+                throw new Exception("Grupo no existe");
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            throw new Exception("Grupo no existe");
         }
     }
     
@@ -196,6 +257,139 @@ public class ModelProxy implements IModel{
     }
     
     @Override
+    public void Add_GRU(Grupo grupo) throws Exception {
+        try {
+            out.writeInt(Protocol.ADD_GRUPO);
+            out.writeObject(grupo);
+            out.flush();
+            int error = in.readInt();
+            if (error == Protocol.ERROR_NO_ERROR){
+            }
+            else{
+                throw new Exception("Grupo ya existe");
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            throw new Exception("Grupo ya existe");
+        }
+    }
+
+    @Override
+    public List<Grupo> search_GRU(String curso,String carrera) {
+        try {
+            out.writeInt(Protocol.SEARCH_GRUPOS);
+            out.writeObject(curso);
+            out.writeObject(carrera);
+            out.flush();
+            int error = in.readInt();
+            List<Grupo> grupos = (List<Grupo>) in.readObject();            
+            //
+            System.out.println(grupos.get(0).getProfesor());
+            //            
+            return grupos;
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            return new ArrayList<Grupo>();
+        }
+    }
+    
+    @Override
+    public List<Grupo> search_GRU(int estudiante) {
+        try {
+            out.writeInt(Protocol.SEARCH_GRUPOS2);
+            out.writeObject(estudiante);
+            out.flush();
+            int error = in.readInt();
+            List<Grupo> grupos = (List<Grupo>) in.readObject();            
+            //
+            System.out.println(grupos.get(0).getProfesor());
+            //            
+            return grupos;
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            return new ArrayList<Grupo>();
+        }
+    }
+    
+    @Override
+    public List<Grupo> search_GRU_PRO(int profesor) {
+        try {
+            out.writeInt(Protocol.SEARCH_GRUPOS4);
+            out.writeObject(profesor);
+            out.flush();
+            int error = in.readInt();
+            List<Grupo> grupos = (List<Grupo>) in.readObject();            
+            //
+            System.out.println(grupos.get(0).getProfesor());
+            //            
+            return grupos;
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            return new ArrayList<Grupo>();
+        }
+    }
+    
+    @Override
+    public List<Grupo> search_GRU(int ciclo,String carrera) {
+        try {
+            out.writeInt(Protocol.SEARCH_GRUPOS3);
+            out.writeObject(ciclo);
+            out.writeObject(carrera);
+            out.flush();
+            int error = in.readInt();
+            List<Grupo> grupos = (List<Grupo>) in.readObject();            
+            //
+            System.out.println(grupos.get(0).getProfesor());
+            //            
+            return grupos;
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            return new ArrayList<Grupo>();
+        }
+    }
+
+    @Override
+    public void update(Grupo grupo) throws Exception {
+        try {
+            out.writeInt(Protocol.UPDATE_GRUPO);
+            out.writeObject(grupo);
+            out.flush();
+            int error = in.readInt();
+            if (error == Protocol.ERROR_NO_ERROR){
+            }
+            else{
+                throw new Exception("Grupo no existe");
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            throw new Exception("Grupo no existe");
+        }
+    }
+    
+    @Override
+    public void updateNota(int grupo, int estudiante, int nota) throws Exception {
+        try {
+            out.writeInt(Protocol.UPDATE_NOTA);
+            out.writeObject(grupo);
+            out.writeObject(estudiante);
+            out.writeObject(nota);
+            out.flush();
+            int error = in.readInt();
+            if (error == Protocol.ERROR_NO_ERROR){
+            }
+            else{
+                throw new Exception("Nota no existe");
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            throw new Exception("Nota no existe");
+        }
+    }
+    
+    @Override
     public void update(Estudiante estu) throws Exception {
         try {
             out.writeInt(Protocol.UPDATE_ESTUDIANTE);
@@ -215,10 +409,11 @@ public class ModelProxy implements IModel{
     }
 
     @Override
-    public List<Ciclo> search_CIC_ANYO(int annio) {
+    public List<Ciclo> search_CIC(int annio,int numero) {
         try {
-            out.writeInt(Protocol.SEARCH_CICLOS_ANYO);
+            out.writeInt(Protocol.SEARCH_CICLOS);
             out.writeObject(annio);
+            out.writeObject(numero);
             out.flush();
             int error = in.readInt();
             List<Ciclo> ciclos = (List<Ciclo>) in.readObject();
@@ -331,12 +526,76 @@ public class ModelProxy implements IModel{
     }   
 
     @Override
-    public Usuario login(String ced) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String login(int ced, String clave) {
+        try {
+            out.writeInt(Protocol.LOGIN);
+            out.writeObject(ced);
+            out.writeObject(clave);
+            out.flush();
+            int error = in.readInt();
+            String tipo = (String) in.readObject();
+            
+            System.out.println(tipo);
+            
+            return tipo;
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            return new String();
+        }
     }
 
     @Override
     public Usuario logout(int ced) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }   
+    }
+
+    @Override
+    public ArrayList<String> search_NOTAS(int grupo) {
+        try {
+            out.writeInt(Protocol.SEARCH_NOTAS);
+            out.writeObject(grupo);
+            out.flush();
+            int error = in.readInt();
+            ArrayList<String> notas = (ArrayList<String>) in.readObject();
+            return notas;
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            return new ArrayList<String>();
+        }
+    }
+
+    @Override
+    public ArrayList<String> search_HIST(int estudiante) {
+        try {
+            out.writeInt(Protocol.SEARCH_HISTORIAL_ACTIVO);
+            out.writeObject(estudiante);
+            out.flush();
+            int error = in.readInt();
+            ArrayList<String> notas = (ArrayList<String>) in.readObject();
+            return notas;
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            return new ArrayList<String>();
+        }
+    }
+
+    @Override
+    public Ciclo search_CIC_ACTUAL() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Usuario search_USU(int cedula) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(Usuario u) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void ADD_USU(Usuario u) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

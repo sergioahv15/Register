@@ -28,6 +28,12 @@ public class Carrera implements Serializable{
         this.Cursos=c;
     }
     
+    public Carrera(String Codigo, String Nombre,String titulo) {
+        this.Codigo = Codigo;
+        this.Nombre = Nombre;
+        this.Titulo=titulo;
+    }
+    
     public Carrera(String Codigo, String Nombre) {
         this.Codigo = Codigo;
         this.Nombre = Nombre;
@@ -65,7 +71,7 @@ public class Carrera implements Serializable{
     }
 
     public ArrayList<Curso> getCursos() {
-        if(Cursos.isEmpty()){
+        /*if(Cursos.isEmpty()){
             Curso c = new Curso();
             DataBase db = new DataBase(null,null,null);
             try{
@@ -76,11 +82,11 @@ public class Carrera implements Serializable{
                     Cursos.add(curso(rs));
                 }}
                 catch(SQLException ex){}
-        }
+        }*/
         return Cursos;
     }
     
-    private Curso curso(ResultSet rs) throws SQLException{
+    /*private Curso curso(ResultSet rs) throws SQLException{
         Curso c = new Curso();
         c.setCodigo(rs.getString("codigo"));
         c.setNombre(rs.getString("nombre"));
@@ -98,12 +104,18 @@ public class Carrera implements Serializable{
         c.setFechaInicio(rs.getString("fecha_inicio"));
         c.setFechaFin(rs.getString("fecha_fin"));
         return c;
-    }
+    }*/
 
     public void setCursos(ArrayList<Curso> Cursos) {
         this.Cursos = Cursos;
     }
     
-    
+     @Override
+    public String toString() {
+        return "Carrera{" + "Codigo=" + Codigo + ", Nombre=" + Nombre + ", Titulo=" + Titulo + '}';
+                //this.getCursos().toString();
+                
+        
+    }
     
 }

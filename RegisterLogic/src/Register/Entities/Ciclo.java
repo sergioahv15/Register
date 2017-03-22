@@ -24,7 +24,7 @@ public class Ciclo implements Serializable{
     
     public Ciclo() {
         Numero= 0;
-        Anyo=1999;
+        Anyo=0;
         Activo = false;
         FechaInicio= "";
         FechaFin= "";
@@ -83,7 +83,7 @@ public class Ciclo implements Serializable{
     
     @Override
     public String toString() {
-        return "Ciclo{" + "numero=" + Numero + ", anyo=" + Anyo + ", fechaInicio=" + FechaInicio + ", fechaFin=" + FechaFin + '}';
+        return "Ciclo{" +" numero=" + Numero + ", anyo=" + Anyo + ", fechaInicio=" + FechaInicio + ", fechaFin=" + FechaFin + "activo="+ Activo+ '}';
     }
 
     public void getNumero(int aInt) {

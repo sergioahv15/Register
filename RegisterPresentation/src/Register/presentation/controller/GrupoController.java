@@ -5,8 +5,11 @@
  */
 package Register.presentation.controller;
 
+import Register.Application;
+import Register.Entities.Grupo;
 import Register.presentation.model.GrupoModel;
 import Register.presentation.view.GrupoView;
+import java.util.List;
 
 /**
  *
@@ -24,78 +27,67 @@ public class GrupoController {
     }
 
     public void guardar(){
-        /*
-        Grupo nueva = new Grupo();
+        
+        Grupo nuevo = new Grupo();
         model.clearErrors();
         
-        nueva.setId(view.idFld.getText());
-        if (view.idFld.getText().length()==0){
-            model.getErrores().put("id", "Id requerido");
-        }
+        nuevo.setNumeroGrupo(Integer.parseInt(view.numeroFld.getText()));
+                
+        nuevo.setProfesor(Application.Model.search_PRO(view.profeFld.getSelectedItem().toString(), 0).get(0));
         
-        nueva.setNombre(view.nombreFld.getText());
-        if (view.nombreFld.getText().length()==0){
-            model.getErrores().put("nombre", "Nombre requerido");
-        }
+        nuevo.setCurso(Application.Model.search_CUR("", Application.CURSO_CURRENT.getCodigo(), "Todas").get(0));
         
-        if (view.sexoFldFem.isSelected()) nueva.setSexo('F');
-        else if (view.sexoFldMasc.isSelected()) nueva.setSexo('M');
-        else nueva.setSexo(' ');
-        if (!view.sexoFldFem.isSelected() && !view.sexoFldMasc.isSelected()){
-            model.getErrores().put("sexo", "Sexo requerido");
-        }
+        nuevo.setHoraInicio(view.inicioFld.getSelectedItem().toString());
+        nuevo.setHoraFin(view.finFld.getSelectedItem().toString());
         
-        nueva.setEstadoCivil((EstadoCivil) view.estadoFld.getSelectedItem());
+        String dia1 = view.diaFld1.getSelectedItem().toString();
+        String dia2 = view.diaFld2.getSelectedItem().toString();
         
-        nueva.setPasatiempoMusica(view.pasatiempoFldMusica.isSelected());
+        if(dia1.equals("Lunes")) nuevo.setLunes(true);
+        else if(dia1.equals("Martes")) nuevo.setMartes(true);
+        else if(dia1.equals("Miercoles")) nuevo.setMiercoles(true);
+        else if(dia1.equals("Jueves")) nuevo.setJueves(true);
+        else if(dia1.equals("Viernes")) nuevo.setViernes(true);
         
-        nueva.setPasatiempoCine(view.pasatiempoFldCine.isSelected());
-        
-        nueva.setPasatiempoDeporte(view.pasatiempoFldDeporte.isSelected());
-        
-        nueva.setPasatiempoVideoJuegos(view.pasatiempoFldVideoJuegos.isSelected());
-        
-        nueva.setPasatiempoCocina(view.pasatiempoFldCocina.isSelected());
-        
-        nueva.setPasatiempoOtro(view.pasatiempoFldOtro.isSelected());
-        
-        nueva.setPasatiempoOtroTexto(view.pasatiempoFldOtroDescripcion.getText());
-        if (view.pasatiempoFldOtro.isSelected() && view.pasatiempoFldOtroDescripcion.getText().length()==0){
-            model.getErrores().put("pasatiempoOtroDescripcion", "Pasatiempo requerido");
-        }
+        if(!dia1.equals("Lunes") && dia2.equals("Lunes")) nuevo.setLunes(true);
+        else if(!dia1.equals("Martes") && dia2.equals("Martes")) nuevo.setMartes(true);
+        else if(!dia1.equals("Miercoles") && dia2.equals("Miercoles")) nuevo.setMiercoles(true);
+        else if(!dia1.equals("Jueves") && dia2.equals("Jueves")) nuevo.setJueves(true);
+        else if(!dia1.equals("Viernes") && dia2.equals("Viernes")) nuevo.setViernes(true);
         
         if (model.getErrores().isEmpty()){
             try{
                 switch(model.getModo()){
                     case Application.MODO_AGREGAR:
-                        Application.Model.addGrupo(nueva);
-                        model.setMensaje("CURSO AGREGADA");
+                        Application.Model.Add_GRU(nuevo);
+                        model.setMensaje("GRUPO AGREGADO");
                         model.setGrupoCurrent(new Grupo());
                         
-                        List<Grupo> rowsAgr = Application.Model.searchGrupos(model.getFiltro());
-                        model.setGrupos(rowsAgr);                        
+                        List<Grupo> rowsAgr = Application.Model.search_GRU(Application.CURSO_CURRENT.getCodigo(),"");
+                        model.setGrupos(rowsAgr); 
+                        view.setVisible(false);
                         break;
                     case Application.MODO_EDITAR:
-                        Application.Model.updateGrupo(nueva);
-                        model.setMensaje("CURSO MODIFICADADA");
-                        model.setGrupoCurrent(nueva);
+                        Application.Model.update(nuevo);
+                        model.setMensaje("GRUPO MODIFICADO");
+                        model.setGrupoCurrent(nuevo);
                         
-                        List<Grupo> rowsMod = Application.Model.searchGrupos(model.getFiltro());
+                        List<Grupo> rowsMod = Application.Model.search_GRU(Application.CURSO_CURRENT.getCodigo(),"");
                         model.setGrupos(rowsMod);
-                        //view.setVisible(false);
+                        view.setVisible(false);
                         break;
                 }
             }
             catch(Exception e){
                 model.getErrores().put("id", "Grupo ya existe");
                 model.setMensaje("CURSO YA EXISTE");
-                model.setGrupoCurrent(nueva);
+                model.setGrupoCurrent(nuevo);
             }
         }
         else{
             model.setMensaje("HAY ERRORES ...");
-            model.setGrupoCurrent(nueva);
+            model.setGrupoCurrent(nuevo);
         }
-        */
+        
     }
 }

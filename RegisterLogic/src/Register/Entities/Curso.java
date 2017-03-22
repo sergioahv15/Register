@@ -47,6 +47,13 @@ public class Curso implements Serializable{
         this.Ciclo=ci;
     }
 
+    public Curso(String codigo, String nombre, int creditos, int horasSemanales) {
+        this.Codigo = codigo;
+        this.Nombre = nombre;
+        this.Creditos = creditos;
+        this.HorasSemanales = horasSemanales;
+    }
+    
     public Ciclo getCiclo() {
         return Ciclo;
     }
@@ -117,7 +124,6 @@ public class Curso implements Serializable{
         Grupo g = new Grupo();
         g.setNumeroGrupo(rs.getInt("numero_grupo"));
         g.setProfesor(profesor(rs));
-        g.setHorario(horario(rs));
         g.setCurso(this);
         return g;
         
@@ -131,13 +137,6 @@ public class Curso implements Serializable{
         p.setTel(rs.getInt("tel"));
         p.setEmail(rs.getString("email"));
         return p;
-    }
-    
-    private Horario horario(ResultSet rs) throws SQLException{
-        Horario h = new Horario();
-        h.setHoraFin(rs.getString("hora_fin"));
-        h.setHoraInicio(rs.getString("hora_ ini"));
-        return h;
     }
     
     

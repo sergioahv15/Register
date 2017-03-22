@@ -68,7 +68,7 @@ public class GrupoModel extends java.util.Observable{
     public void setGrupoCurrent(Grupo grupoCurrent) {
         this.grupoCurrent = grupoCurrent;
         setChanged();
-        notifyObservers(CURSO_CURRENT);        
+        notifyObservers(GRUPO_CURRENT);        
     }
 
 //======== GRUPOS ===========
@@ -82,8 +82,8 @@ public class GrupoModel extends java.util.Observable{
     }
     
     public void setGrupos(List<Grupo> rows){
-        //int[] cols={GrupoTableModel.ID,GrupoTableModel.NOMBRE,GrupoTableModel.SEXO,GrupoTableModel.PASATIEMPO_CINE,GrupoTableModel.ESTADO_CIVIL};
-        //setGruposModel(new GrupoTableModel(cols,rows));        
+        int[] cols={GrupoTableModel.NUMERO,GrupoTableModel.PROFE,GrupoTableModel.HORARIO};
+        setGruposModel(new GrupoTableModel(cols,rows));        
     }
     
     public Grupo getFiltro() {
@@ -101,18 +101,18 @@ public class GrupoModel extends java.util.Observable{
     public void addObserver(java.util.Observer o) {
         super.addObserver(o);
         setChanged();
-        notifyObservers(CURSO_CURRENT);
+        notifyObservers(GRUPO_CURRENT);
         setChanged();        
-        notifyObservers(CURSOS_MODEL);
+        notifyObservers(GRUPOS_MODEL);
     }
     
     public void setGruposModel(GrupoTableModel gruposModel) {
         this.gruposModel = gruposModel;
         setChanged();
-        notifyObservers(CURSOS_MODEL);
+        notifyObservers(GRUPOS_MODEL);
     }
     
-    public static Integer CURSO_CURRENT=1;
-    public static Integer CURSOS_MODEL=2;
+    public static Integer GRUPO_CURRENT=1;
+    public static Integer GRUPOS_MODEL=2;
 }
 

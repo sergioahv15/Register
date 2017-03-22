@@ -6,16 +6,16 @@
 package Register.Entities;
 
 import Register.logic.model.DataBase;
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author Herrera
  */
-public class Profesor extends Usuario {
+public class Profesor extends Usuario implements Serializable{
     
     private String Nombre;
     private int Tel;
@@ -23,7 +23,7 @@ public class Profesor extends Usuario {
     private ArrayList<Grupo> Grupos;
 
     public Profesor(String Nombre, int Tel, String Email,ArrayList<Grupo> grupos, String clave, int cedula) {
-        super(clave, cedula, 1);
+        super(clave, cedula, "profesor");
         this.Nombre = Nombre;
         this.Tel = Tel;
         this.Email = Email;
@@ -31,11 +31,18 @@ public class Profesor extends Usuario {
     }
 
     public Profesor() {
-        super("",0,1);
+        super("",0,"profesor");
         this.Nombre="";
         this.Email="";
         this.Tel=00000000;
         this.Grupos= new ArrayList<Grupo>() {};
+    }
+    
+    public Profesor(String Nombre, int Tel, String Email, String clave, int cedula, String tipo) {
+        super(clave, cedula, tipo);
+        this.Nombre = Nombre;
+        this.Tel = Tel;
+        this.Email = Email;
     }
 
     public ArrayList<Grupo> getGrupos() {
@@ -58,7 +65,6 @@ public class Profesor extends Usuario {
         Grupo g = new Grupo();
         g.setNumeroGrupo(rs.getInt("numero_grupo"));
         g.setProfesor(this);
-        g.setHorario(horario(rs));
         g.setCurso(curso(rs));
         return g;
         
@@ -92,14 +98,6 @@ public class Profesor extends Usuario {
         return c;
     }
     
-    
-    private Horario horario(ResultSet rs) throws SQLException{
-        Horario h = new Horario();
-        h.setHoraFin(rs.getString("hora_fin"));
-        h.setHoraInicio(rs.getString("hora_ ini"));
-        return h;
-    }
-
     public void setGrupos(ArrayList<Grupo> Grupos) {
         this.Grupos = Grupos;
     }
@@ -128,6 +126,11 @@ public class Profesor extends Usuario {
 
     public void setEmail(String Email) {
         this.Email = Email;
+    }
+    
+    @Override
+    public String toString() {
+        return "Profesor{" + "nombre=" + Nombre + ", Cedula=" + Cedula  +", Tel=" + Tel + ", Email=" + Email + '}';
     }
     
     

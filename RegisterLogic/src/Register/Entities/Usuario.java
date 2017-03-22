@@ -11,12 +11,12 @@ import java.io.Serializable;
  *
  * @author Herrera
  */
-public abstract class Usuario implements Serializable{
+public class Usuario implements Serializable{
     protected String Clave;
     protected int Cedula;
-    protected int Tipo;
+    protected String Tipo;
 
-    public Usuario(String clave, int cedula, int tipo) {
+    public Usuario(String clave, int cedula, String tipo) {
         this.Clave = clave;
         this.Cedula = cedula;
         this.Tipo = tipo;
@@ -25,7 +25,7 @@ public abstract class Usuario implements Serializable{
     public Usuario() {
         this.Clave="";
         this.Cedula=0;
-        this.Tipo= -1;
+        this.Tipo= "";
     }
 
     public String getClave() {
@@ -44,14 +44,11 @@ public abstract class Usuario implements Serializable{
         this.Cedula = cedula;
     }
 
-    public int getTipo() {
+    public String getTipo() {
         return Tipo;
     }
 
-    public void setTipo(int tipo) {
+    public void setTipo(String tipo) {
         this.Tipo = tipo;
     }
-    
-    
-    
 }

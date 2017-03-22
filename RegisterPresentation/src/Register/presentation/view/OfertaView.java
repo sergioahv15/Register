@@ -5,8 +5,11 @@
  */
 package Register.presentation.view;
 
+import Register.Application;
+import Register.Entities.Carrera;
 import Register.presentation.controller.OfertaController;
 import Register.presentation.model.OfertaModel;
+import java.util.List;
 
 /**
  *
@@ -26,17 +29,24 @@ public class OfertaView extends javax.swing.JFrame implements java.util.Observer
     }
     
    public void update(java.util.Observable updatedModel,Object parametros){
-       /*if (parametros != OfertaModel.OFERTA_MODEL) return;
-       textNombreOferta.setText(model.getFiltro().getNombre());
-       cursosTable.setModel(model.getOfertasModel());
+       if (parametros != OfertaModel.OFERTAS_MODEL) return;
+       //textNombreOferta.setText(model.getFiltro().getNombre());
+       cursosFld.setModel(model.getOfertaModel());
        this.revalidate();
-       */
+       
    }
     /**
      * Creates new form OfertaView
      */
     public OfertaView() {
         initComponents();
+        //
+        List<Carrera> carreras = Application.Model.search_CAR("","");
+        this.carreraFld.addItem("Todas");
+        for(Carrera c : carreras){
+            this.carreraFld.addItem(c.getNombre());
+        }
+        //
     }
 
     /**
@@ -54,12 +64,13 @@ public class OfertaView extends javax.swing.JFrame implements java.util.Observer
         cicloLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         cursosFld = new javax.swing.JTable();
+        buscarBtn = new javax.swing.JButton();
+        verGruposBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
 
         carreraLabel.setText("Carrera:");
-
-        carreraFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         cicloFld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
 
@@ -78,6 +89,20 @@ public class OfertaView extends javax.swing.JFrame implements java.util.Observer
         ));
         jScrollPane1.setViewportView(cursosFld);
 
+        buscarBtn.setText("Buscar");
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarBtnActionPerformed(evt);
+            }
+        });
+
+        verGruposBtn.setText("Ver Grupos");
+        verGruposBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verGruposBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,7 +110,10 @@ public class OfertaView extends javax.swing.JFrame implements java.util.Observer
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(verGruposBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(carreraLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -93,8 +121,10 @@ public class OfertaView extends javax.swing.JFrame implements java.util.Observer
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cicloLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cicloFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                        .addComponent(cicloFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buscarBtn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,14 +134,27 @@ public class OfertaView extends javax.swing.JFrame implements java.util.Observer
                     .addComponent(carreraLabel)
                     .addComponent(carreraFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cicloLabel)
-                    .addComponent(cicloFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cicloFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarBtn))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(verGruposBtn))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        this.controller.buscar();
+    }//GEN-LAST:event_buscarBtnActionPerformed
+
+    private void verGruposBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verGruposBtnActionPerformed
+        int row = this.cursosFld.getSelectedRow();
+        Application.GRUPOS_VIEW.setLocation(this.verGruposBtn.getLocationOnScreen());
+        controller.preAgregar(row);
+    }//GEN-LAST:event_verGruposBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,11 +192,13 @@ public class OfertaView extends javax.swing.JFrame implements java.util.Observer
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> carreraFld;
-    private javax.swing.JLabel carreraLabel;
-    private javax.swing.JComboBox<String> cicloFld;
-    private javax.swing.JLabel cicloLabel;
+    public javax.swing.JButton buscarBtn;
+    public javax.swing.JComboBox<String> carreraFld;
+    public javax.swing.JLabel carreraLabel;
+    public javax.swing.JComboBox<String> cicloFld;
+    public javax.swing.JLabel cicloLabel;
     private javax.swing.JTable cursosFld;
-    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JButton verGruposBtn;
     // End of variables declaration//GEN-END:variables
 }

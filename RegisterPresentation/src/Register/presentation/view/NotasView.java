@@ -5,12 +5,33 @@
  */
 package Register.presentation.view;
 
+import Register.Application;
+import Register.presentation.controller.NotasController;
+import Register.presentation.model.NotaModel;
+
 /**
  *
  * @author Fabio
  */
-public class NotasView extends javax.swing.JFrame {
+public class NotasView extends javax.swing.JFrame implements java.util.Observer{
 
+    NotasController controller;
+    NotaModel model;
+    
+    public void setController(NotasController controller){
+        this.controller=controller;
+    }
+    public void setModel(NotaModel model){
+        this.model=model;
+         model.addObserver(this);
+    }
+    
+   public void update(java.util.Observable updatedModel,Object parametros){
+       if (parametros != NotaModel.NOTAS_MODEL) return;
+       //nombreFld.setText(model.getFiltro().getNombre());
+       notasFld.setModel(model.getNotasModel());
+       this.revalidate();
+   }
     /**
      * Creates new form NotasView
      */
@@ -28,12 +49,13 @@ public class NotasView extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        estudiantesFld = new javax.swing.JTable();
+        notasFld = new javax.swing.JTable();
         asignarBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Notas por Grupo");
 
-        estudiantesFld.setModel(new javax.swing.table.DefaultTableModel(
+        notasFld.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -44,7 +66,7 @@ public class NotasView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(estudiantesFld);
+        jScrollPane1.setViewportView(notasFld);
 
         asignarBtn.setText("Asignar Nota");
         asignarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +100,9 @@ public class NotasView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void asignarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarBtnActionPerformed
-        // TODO add your handling code here:
+        int row = this.notasFld.getSelectedRow();
+        Application.NOTA_VIEW.setLocation(this.asignarBtn.getLocationOnScreen());
+        controller.editar(row);
     }//GEN-LAST:event_asignarBtnActionPerformed
 
     /**
@@ -117,8 +141,8 @@ public class NotasView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton asignarBtn;
-    private javax.swing.JTable estudiantesFld;
-    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JButton asignarBtn;
+    public javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable notasFld;
     // End of variables declaration//GEN-END:variables
 }

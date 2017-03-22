@@ -32,7 +32,7 @@ public class CiclosController {
         Ciclo filtro= new Ciclo();
         filtro.setAnyo(model.getFiltro().getAnyo());
         System.out.println(filtro.getAnyo());
-        List<Ciclo> rows = Application.Model.search_CIC_ANYO(filtro.getAnyo());
+        List<Ciclo> rows = Application.Model.search_CIC(filtro.getAnyo(),0);
         for(Ciclo cic : rows){
             if(cic.isActivo())Application.CICLO_ACTIVO = cic;
         }
@@ -51,7 +51,7 @@ public class CiclosController {
         Ciclo seleccionado = model.getCiclosModel().getRowAt(row);
         try{                          
             Application.Model.update(seleccionado);
-            List<Ciclo> rows = Application.Model.search_CIC_ANYO(seleccionado.getAnyo());
+            List<Ciclo> rows = Application.Model.search_CIC(seleccionado.getAnyo(),0);
             for(Ciclo cic : rows){
                 if(cic.isActivo())Application.CICLO_ACTIVO = cic;
             }

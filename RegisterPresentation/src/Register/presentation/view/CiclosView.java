@@ -54,7 +54,8 @@ public class CiclosView extends javax.swing.JFrame implements java.util.Observer
         ciclosFld = new javax.swing.JTable();
         activarBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Mantenimiento de Ciclos");
 
         anyoBtn.setText("Año:");
 

@@ -48,7 +48,8 @@ public class CursoController {
         
         nuevo.setHorasSemanales(Integer.parseInt(view.horasFld.getText()));
         
-                //**************************** OJO CON EL CICLO QUE SE LE ASIGNA **********************************
+        int ciclo = Integer.parseInt(view.cicloFld.getSelectedItem().toString());
+        nuevo.setCiclo(Application.Model.search_CIC(Application.ANYO_CURRENT,ciclo).get(0));
                         
         if (model.getErrores().isEmpty()){
             try{

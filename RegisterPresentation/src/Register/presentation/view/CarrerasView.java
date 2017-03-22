@@ -57,7 +57,8 @@ public class CarrerasView extends javax.swing.JFrame implements java.util.Observ
         editarBtn = new javax.swing.JButton();
         buscarBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Mantenimiento de Carreras");
 
         carrerasFld.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

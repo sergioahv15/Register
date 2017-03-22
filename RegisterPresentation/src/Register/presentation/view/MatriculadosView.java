@@ -5,12 +5,27 @@
  */
 package Register.presentation.view;
 
+import Register.Application;
+import Register.presentation.controller.GruposController;
+import Register.presentation.model.GrupoModel;
+
 /**
  *
  * @author Fabio
  */
-public class MatriculadosView extends javax.swing.JFrame {
-
+public class MatriculadosView extends javax.swing.JFrame implements java.util.Observer{
+    GruposController controller;
+    GrupoModel model;
+    /**
+     * Creates new form CursoView
+     */
+    public void setController(GruposController controller){
+        this.controller=controller;
+    }
+    public void setModel(GrupoModel model){
+        this.model=model;
+         model.addObserver(this);
+    }
     /**
      * Creates new form MatriculaView
      */
@@ -18,6 +33,12 @@ public class MatriculadosView extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void update(java.util.Observable updatedModel,Object parametros){
+       if (parametros != GrupoModel.GRUPOS_MODEL) return;
+       //textNombreCiclo.setText(model.getFiltro().getNombre());
+       gruposFld.setModel(model.getGruposModel());
+       this.revalidate();       
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,7 +53,8 @@ public class MatriculadosView extends javax.swing.JFrame {
         buscarBtn = new javax.swing.JButton();
         eliminarBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cursos Matriculados por Estudiante");
 
         gruposFld.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -48,7 +70,7 @@ public class MatriculadosView extends javax.swing.JFrame {
         gruposFld.setName(""); // NOI18N
         jScrollPane1.setViewportView(gruposFld);
 
-        buscarBtn.setText("Buscar Cursos");
+        buscarBtn.setText("Matricular Cursos");
         buscarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarBtnActionPerformed(evt);
@@ -73,7 +95,7 @@ public class MatriculadosView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(buscarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(eliminarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,11 +114,14 @@ public class MatriculadosView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        // TODO add your handling code here:
+        Application.MATRICULA_VIEW.setLocation(this.buscarBtn.getLocationOnScreen());
+        controller.buscar();
     }//GEN-LAST:event_buscarBtnActionPerformed
 
     private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
-        // TODO add your handling code here:
+        int row = this.gruposFld.getSelectedRow();
+        if (row >= 0)
+            controller.borrar(row);
     }//GEN-LAST:event_eliminarBtnActionPerformed
 
     /**
@@ -136,9 +161,9 @@ public class MatriculadosView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buscarBtn;
-    private javax.swing.JButton eliminarBtn;
+    public javax.swing.JButton buscarBtn;
+    public javax.swing.JButton eliminarBtn;
     private javax.swing.JTable gruposFld;
-    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
