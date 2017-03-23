@@ -43,19 +43,19 @@
                     <button class="btn btn-primary" type="submit" name="mantCiclos">Mantenimiento de Ciclos</button>
                     </div>
                 </form> 
-                <form action="MenuServlet">
+                <form action="OfertaServlet" method="post">
                     <div class="form-group">
                     <button class="btn btn-primary" type="submit" name="oferta">Oferta Academica</button>
                     </div>
                 </form> 
-                <form action="MenuServlet">
+                <form action="GruposProfeServlet" method="post">
                     <div class="form-group">
                     <button class="btn btn-primary" type="submit" name="regNotas">Registro de Notas</button>
                     </div>
                 </form> 
-                <form action="MenuServlet">
+                <form action="HistorialServlet" method="post">
                     <div class="form-group">
-                    <button class="btn btn-primary" type="submit" name="historial">Consulta de Historial</button>
+                    <button class="btn btn-primary" type="submit" name="getHistorial">Consulta de Historial</button>
                     </div>
                 </form> 
             </div>                    

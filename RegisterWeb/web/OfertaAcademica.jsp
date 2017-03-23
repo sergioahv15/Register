@@ -2,51 +2,46 @@
 <%@page import="java.util.*" session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Mantenimiento de Cursos</title>
+        <title>Oferta Academica</title>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
     <body>
         <div class="container">
-            <h1 class="text-center">MANTENIMIENTO DE CURSOS</h1>            
-            <br/>            
+            <h1 class="text-center">OFERTA ACADEMICA</h1>            
+            <br/><br/>
+            
             <div class="text-center">
-                <form class="form-inline" action="CursosServlet">
+                <form class="form-inline" action="OfertaServlet">                    
                     <div class="form-group">
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" class="form-control" name="nombre" id="nombre">
-                    </div>
-                     <div class="form-group">
-                        <label for="codigo">Codigo:</label>
-                        <input type="text" class="form-control" name="codigo" id="codigo">
-                    </div>
-                     <div class="form-group">
-                        <label for="carrera">Carrera</label>
+                        <label for="carrera">Carrera:</label>
                         <select class="form-control" name="carrera" id="carrera">
                             <option selected="selected">Todas</option>
                             <c:forEach items="${carreras}" var="item">
                                 <option><c:out value="${item.getNombre()}" /></option>
                             </c:forEach>
-                            <!--<option selected="selected">Todas</option>
-                            <option>Ingenieria en Sistemas</option>
-                            <option>Otras Mariconadas</option>
-                            <option>Danza</option>-->
                         </select>
-                    </div>     
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ciclo">Ciclo:</label>
+                        <select class="form-control" name="ciclo" id="ciclo">
+                            <option selected="selected">1</option>
+                            <option>2</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Buscar</button>
-                    </div>
+                    </div>                      
                 </form>
             </div>            
-            <br/><br/> 
-            
-            <div class="container"> 
+            <br/><br/>           
+            <div class="container">     
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -55,6 +50,7 @@
                       <th>Carrera</th>
                       <th>Creditos</th>
                       <th>Horas Semanales</th>
+                      <th class="text-center">Mantenimiento</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -65,11 +61,12 @@
                         <td><c:out value="${item.getCarrera().getNombre()}" /></td>
                         <td><c:out value="${item.getCreditos()}" /></td>
                         <td><c:out value="${item.getHorasSemanales()}" /></td>
+                        <td class="text-center"><form action="OfertaServlet?curso=${item.getCodigo()}" method="post"><button name="btnVerGrupos" class="btn btn-success" type="submit">Ver Grupos</button></form></td>
                       </tr>
                     </c:forEach>
                   </tbody>                    
                 </table>
-            </div>            
+            </div>
         </div>
     </body>
 </html>

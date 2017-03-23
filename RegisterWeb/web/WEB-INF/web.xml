@@ -29,6 +29,18 @@
         <servlet-name>CiclosServlet</servlet-name>
         <servlet-class>Register.controller.CiclosServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OfertaServlet</servlet-name>
+        <servlet-class>Register.controller.OfertaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GruposProfeServlet</servlet-name>
+        <servlet-class>Register.controller.GruposProfeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HistorialServlet</servlet-name>
+        <servlet-class>Register.controller.HistorialServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
@@ -52,6 +64,18 @@
     <servlet-mapping>
         <servlet-name>CiclosServlet</servlet-name>
         <url-pattern>/CiclosServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OfertaServlet</servlet-name>
+        <url-pattern>/OfertaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GruposProfeServlet</servlet-name>
+        <url-pattern>/GruposProfeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HistorialServlet</servlet-name>
+        <url-pattern>/HistorialServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

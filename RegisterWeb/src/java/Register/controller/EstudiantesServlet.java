@@ -7,6 +7,7 @@ package Register.controller;
 
 import Register.Entities.Carrera;
 import Register.Entities.Estudiante;
+import Register.Entities.Grupo;
 import Register.Entities.Profesor;
 import Register.IModel;
 import Register.model.ModelProxy;
@@ -26,6 +27,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class EstudiantesServlet extends HttpServlet {
 
+    Estudiante ESTUDIANTE_CURRENT;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -110,7 +113,49 @@ public class EstudiantesServlet extends HttpServlet {
                 request.setAttribute("carreras", carreras);
                 request.getRequestDispatcher("Estudiante.jsp").forward(request, response);
             }
+            if(request.getParameter("btnMatricular") != null){                
+                int cedula_est = Integer.parseInt(request.getParameter("est"));
+                ESTUDIANTE_CURRENT = model.search_EST("", cedula_est, "Todas").get(0);
+                List<Grupo> grupos = model.search_GRU(cedula_est);
+                request.setAttribute("grupos", grupos);
+                request.getRequestDispatcher("GruposMatriculados.jsp").forward(request, response);
+            }
         }
+        
+        if(request.getParameter("btnMatricularCursos") != null){ 
+            request.getRequestDispatcher("Matricula.jsp").forward(request, response);
+        }  
+        
+        if(request.getParameter("btnAgregarCurso") != null){ 
+            int num_grupo = Integer.parseInt(request.getParameter("grupo"));
+            try {
+                model.matricular(num_grupo, ESTUDIANTE_CURRENT.getCedula());
+                List<Grupo> grupos = model.search_GRU(ESTUDIANTE_CURRENT.getCedula());
+                request.setAttribute("grupos", grupos);
+                request.getRequestDispatcher("GruposMatriculados.jsp").forward(request, response);
+            } catch (Exception ex) {
+                Logger.getLogger(EstudiantesServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } 
+        
+        if(request.getParameter("btnDesmatricular") != null){ 
+            int num_grupo = Integer.parseInt(request.getParameter("grupo"));
+            try {
+                model.delete(num_grupo, ESTUDIANTE_CURRENT.getCedula());
+                List<Grupo> grupos = model.search_GRU(ESTUDIANTE_CURRENT.getCedula());
+                request.setAttribute("grupos", grupos);
+                request.getRequestDispatcher("GruposMatriculados.jsp").forward(request, response);
+            } catch (Exception ex) {
+                Logger.getLogger(EstudiantesServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } 
+        
+        if(request.getParameter("btnBuscarGrupos") != null){ 
+            int ciclo = Integer.parseInt(request.getParameter("ciclo"));
+            List<Grupo> grupos = model.search_GRU(ciclo, ESTUDIANTE_CURRENT.getCarrera().getCodigo());
+            request.setAttribute("grupos", grupos);
+            request.getRequestDispatcher("Matricula.jsp").forward(request, response);
+        }  
         
         if(request.getParameter("btnAgregar") != null){     
             request.setAttribute("modo","1");
