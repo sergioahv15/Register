@@ -88,7 +88,9 @@
                         <td><c:out value="${item.getCarrera().getNombre()}" /></td>
                         <td class="text-center"><form action="EstudiantesServlet?est=${item.getCedula()}" method="post">
                                 <button name="btnEditar" class="btn btn-info" type="submit">Editar Estudiante</button>
-                            <button name="btnMatricular" class="btn btn-warning" type="submit">Matricula</button></form></td>
+                            <button name="btnMatricular" class="btn btn-warning" type="submit">Matricula</button>
+                                <button name="btnConsultaHistorial" class="btn btn-primary" type="submit">Ver Historial</button>
+                            </form></td>
                       </tr>
                     </c:forEach>
                   </tbody>                    

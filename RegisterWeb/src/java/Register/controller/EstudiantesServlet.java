@@ -13,6 +13,7 @@ import Register.IModel;
 import Register.model.ModelProxy;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -126,6 +127,25 @@ public class EstudiantesServlet extends HttpServlet {
             request.getRequestDispatcher("Matricula.jsp").forward(request, response);
         }  
         
+        if(request.getParameter("btnConsultaHistorial") != null){
+            int ced_est = Integer.parseInt(request.getParameter("est"));
+            List<String> historial = model.search_HIST(ced_est);
+            Estudiante estudianteCurrent = model.search_EST("", ced_est, "Todas").get(0);
+            List<String> cursos = new ArrayList();
+            List<String> historial_est = new ArrayList();
+            String delimitador = " ";
+            for(String h:historial){
+                String[] nota_format = h.split(delimitador);
+                cursos.add(nota_format[0]);
+                if(nota_format.length==3)historial_est.add(nota_format[1]+" "+nota_format[2]);
+                else historial_est.add(nota_format[1]);
+            }
+            request.setAttribute("estudianteCurrent", estudianteCurrent);
+            request.setAttribute("cursos", cursos);
+            request.setAttribute("historial", historial_est);
+            request.getRequestDispatcher("Historial.jsp").forward(request, response);
+        }
+        
         if(request.getParameter("btnAgregarCurso") != null){ 
             int num_grupo = Integer.parseInt(request.getParameter("grupo"));
             try {
@@ -208,6 +228,8 @@ public class EstudiantesServlet extends HttpServlet {
                 }
             }
         }
+        
+        
     }
 
     /**
