@@ -52,7 +52,6 @@ public class GruposView extends javax.swing.JFrame implements java.util.Observer
         jScrollPane1 = new javax.swing.JScrollPane();
         gruposFld = new javax.swing.JTable();
         agregarBtn = new javax.swing.JButton();
-        eliminarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Grupos por Curso");
@@ -82,13 +81,6 @@ public class GruposView extends javax.swing.JFrame implements java.util.Observer
             }
         });
 
-        eliminarBtn.setText("Eliminar");
-        eliminarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarBtnActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,9 +89,7 @@ public class GruposView extends javax.swing.JFrame implements java.util.Observer
                 .addGap(22, 22, 22)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(agregarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                    .addComponent(eliminarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(agregarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -107,10 +97,7 @@ public class GruposView extends javax.swing.JFrame implements java.util.Observer
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(agregarBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(eliminarBtn))
+                    .addComponent(agregarBtn)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
@@ -130,10 +117,6 @@ public class GruposView extends javax.swing.JFrame implements java.util.Observer
             controller.editar(row);
         }
     }//GEN-LAST:event_gruposFldMouseClicked
-
-    private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eliminarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,7 +155,6 @@ public class GruposView extends javax.swing.JFrame implements java.util.Observer
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
-    private javax.swing.JButton eliminarBtn;
     private javax.swing.JTable gruposFld;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

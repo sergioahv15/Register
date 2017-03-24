@@ -77,14 +77,16 @@ public class GruposProfeServlet extends HttpServlet {
         IModel model = new ModelProxy(); 
         
         if(request.getParameter("regNotas") != null){
-            List<Grupo> grupos = model.search_GRU_PRO(1);//********************************************OJO      ******************
+            Integer ced_pro = (Integer) request.getSession().getAttribute("idUsuario");
+            List<Grupo> grupos = model.search_GRU_PRO(ced_pro);
             request.setAttribute("grupos", grupos);
             request.getRequestDispatcher("GruposProfe.jsp").forward(request, response);
         }
         
         if(request.getParameter("btnCalificaciones") != null){
+            Integer ced_pro = (Integer) request.getSession().getAttribute("idUsuario");
             int num_grupo = Integer.parseInt(request.getParameter("grupo"));
-            List<Grupo> grupos = model.search_GRU_PRO(1);//********************************************OJO      ******************
+            List<Grupo> grupos = model.search_GRU_PRO(ced_pro);
             for(Grupo g : grupos){
                 if(g.getNumeroGrupo() == num_grupo) GRUPO_CURRENT = g;
             }

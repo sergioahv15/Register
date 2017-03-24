@@ -2,6 +2,22 @@
 <%@page import="java.util.*" session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+<%
+
+    HttpSession sesion = request.getSession(true);
+    String tipoUsuario = "";
+    if(sesion!=null){
+        if (sesion.getAttribute("usuario")  == null) {
+            response.sendRedirect("LoginJSP.jsp");
+        }else{
+            tipoUsuario = (String)sesion.getAttribute("tipo");
+        }
+    }else{
+        response.sendRedirect("Login.jsp");
+    }
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,10 +34,6 @@
             
             <div class="container"> 
                 <form  display="inline-block" action="OfertaServlet?modo=<c:out value="${modo}" />" method="post">                    
-                    <div class="form-group">
-                        <label for="numero">Numero:</label>
-                        <input value="<c:out value="${grupoCurrent.getNumeroGrupo()}" />" type="number" class="form-control" name="numero" id="numero" <c:out value="${readonly}" />>
-                    </div>                    
                     <div class="form-group">
                         <label>Dias:</label>
                         <select class="form-control" name="dia1" id="dia1">

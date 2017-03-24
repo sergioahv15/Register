@@ -3,6 +3,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
+
+<%
+
+    HttpSession sesion = request.getSession(true);
+    String tipoUsuario = "";
+    if(sesion!=null){
+        if (sesion.getAttribute("usuario")  == null) {
+            response.sendRedirect("LoginJSP.jsp");
+        }else{
+            tipoUsuario = (String)sesion.getAttribute("tipo");
+        }
+    }else{
+        response.sendRedirect("Login.jsp");
+    }
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +29,29 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
     <body>
+        
+        <nav class="navbar" role="navigation">
+                    <div class="logo">
+                    <a href="index.jsp" class="logo"></a>
+                </div>
+                    <span class="menu"> </span>
+                    <ul>
+                        <li class="active"><a href="index.jsp">Inicio<span> </span></a></li>
+                        <li><a href="about.jsp">Nuestra Empresa</a></li>
+                        <li><a href="catalogo.jsp" onclick="limpiarCategoria();">Catálogo</a></li>
+                        <li><a href="tiendas.jsp">Tiendas</a></li>
+                        <li><a href="contact.jsp">Contacto</a></li>
+                        <% if(tipoUsuario.equals("Administrador")) { %> 
+                        <li><a href="gestionProductos.jsp">Administración</a></li>
+                        <li><a href="reportes.jsp">Reportes</a></li>
+                        <% } %>
+                        <li><a href="carrito.jsp">Carrito de Compras</a></li>
+                        
+                        
+                        <li><a href="Logout">Cerrar Sesión</a></li>
+                    </ul>
+                </nav>
+        
         <div class="container">
             <h1 class="text-center">MANTENIMIENTO DE CURSOS</h1>            
             <br/>            

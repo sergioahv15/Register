@@ -5,23 +5,22 @@
  */
 package Register.controller;
 
-import Register.Entities.Estudiante;
+import Register.Entities.Usuario;
 import Register.IModel;
 import Register.model.ModelProxy;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Fabio
  */
-public class HistorialServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class HistorialServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HistorialServlet</title>");            
+            out.println("<title>Servlet LoginServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet HistorialServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -77,25 +76,48 @@ public class HistorialServlet extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
-            IModel model = new ModelProxy();
-        
-            if(request.getParameter("getHistorial") != null){
-            Integer ced_est = (Integer) request.getSession().getAttribute("idUsuario");
-            List<String> historial = model.search_HIST(ced_est);
-            Estudiante estudianteCurrent = model.search_EST("", ced_est, "Todas").get(0);
-            List<String> cursos = new ArrayList();
-            List<String> historial_est = new ArrayList();
-            String delimitador = " ";
-            for(String h:historial){
-                String[] nota_format = h.split(delimitador);
-                cursos.add(nota_format[0]);
-                if(nota_format.length==3)historial_est.add(nota_format[1]+" "+nota_format[2]);
-                else historial_est.add(nota_format[1]);
+        Usuario ACTIVE_USER = null;
+        IModel model = new ModelProxy();
+        int usuario = Integer.parseInt(request.getParameter("usuario"));
+        String pass = request.getParameter("password");
+        String tipo = model.login(usuario, pass);
+        if(!tipo.equals("nulo")){
+            HttpSession session=request.getSession(true);
+            session.setAttribute("loginStatus", "login");
+            switch(tipo){
+                case "profesor":
+                    ACTIVE_USER = model.search_PRO("", usuario).get(0);
+                    session.setAttribute("usuario", ACTIVE_USER);
+                    session.setAttribute("idUsuario",ACTIVE_USER.getCedula());                            
+                    session.setAttribute("tipo", "Profesor");
+                    System.out.println("LOGIN EXITOSO PROFESOR");                   
+                break;
+                case "estudiante":
+                    ACTIVE_USER = model.search_EST("", usuario,"Todas").get(0);
+                    session.setAttribute("usuario", ACTIVE_USER);
+                    session.setAttribute("idUsuario",ACTIVE_USER.getCedula());                            
+                    session.setAttribute("tipo", "Estudiante"); 
+                    System.out.println("LOGIN EXITOSO ESTUDIANTE");                                  
+                break;
+                case "matriculador":
+                    ACTIVE_USER = new Usuario("",0,"matriculador");
+                    session.setAttribute("usuario", ACTIVE_USER);
+                    session.setAttribute("idUsuario",ACTIVE_USER.getCedula());                            
+                    session.setAttribute("tipo", "Matriculador"); 
+                    System.out.println("LOGIN EXITOSO MATRICULADOR");                    
+                break;
+                case "administrador":
+                    ACTIVE_USER = new Usuario("",0,"administrador");
+                    session.setAttribute("usuario", ACTIVE_USER);
+                    session.setAttribute("idUsuario",ACTIVE_USER.getCedula());                            
+                    session.setAttribute("tipo", "Administrador"); 
+                    System.out.println("LOGIN EXITOSO ADMINISTRADOR");
+                break;
+                case "nulo":
+                    System.out.println("LOGIN FALLIDO - NULO");
+                break;
             }
-            request.setAttribute("estudianteCurrent", estudianteCurrent);
-            request.setAttribute("cursos", cursos);
-            request.setAttribute("historial", historial_est);
-            request.getRequestDispatcher("Historial.jsp").forward(request, response);
+            request.getRequestDispatcher("Menu.jsp").forward(request, response);
         }
     }
 

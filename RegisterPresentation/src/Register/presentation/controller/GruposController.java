@@ -95,7 +95,8 @@ public class GruposController {
     
     public void editar(int row){
         model.clearErrors();
-        Grupo seleccionado = model.getGruposModel().getRowAt(row); 
+        Grupo seleccionado = model.getGruposModel().getRowAt(row);
+        System.out.println("Seleccionado=" + seleccionado.getNumeroGrupo());
         model.setModo(Application.MODO_EDITAR);
         model.setGrupoCurrent(seleccionado);
         Application.GRUPO_VIEW.setVisible(true);

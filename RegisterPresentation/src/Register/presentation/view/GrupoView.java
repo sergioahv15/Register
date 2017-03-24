@@ -52,8 +52,6 @@ public class GrupoView extends javax.swing.JDialog implements java.util.Observer
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        numeroLabel = new javax.swing.JLabel();
-        numeroFld = new javax.swing.JTextField();
         horarioLabel = new javax.swing.JLabel();
         profeLabel = new javax.swing.JLabel();
         guardarBtn = new javax.swing.JButton();
@@ -68,10 +66,6 @@ public class GrupoView extends javax.swing.JDialog implements java.util.Observer
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Grupo");
-
-        numeroLabel.setText("Numero:");
-
-        numeroFld.setColumns(5);
 
         horarioLabel.setText("Dias:");
 
@@ -114,7 +108,7 @@ public class GrupoView extends javax.swing.JDialog implements java.util.Observer
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
@@ -126,36 +120,27 @@ public class GrupoView extends javax.swing.JDialog implements java.util.Observer
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(inicioFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(numeroLabel)
-                            .addComponent(horarioLabel))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(diaFld1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(diaFld2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(numeroFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(horarioLabel)
+                        .addGap(46, 46, 46)
+                        .addComponent(diaFld1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(diaFld2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(profeLabel)
                         .addGap(26, 26, 26)
-                        .addComponent(profeFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(58, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(guardarBtn)
-                .addGap(18, 18, 18)
-                .addComponent(cancelarBtn)
-                .addGap(73, 73, 73))
+                        .addComponent(profeFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(guardarBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(cancelarBtn)
+                        .addGap(15, 15, 15)))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(numeroLabel)
-                    .addComponent(numeroFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(horarioLabel)
                     .addComponent(diaFld1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,7 +161,7 @@ public class GrupoView extends javax.swing.JDialog implements java.util.Observer
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarBtn)
                     .addComponent(cancelarBtn))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -241,13 +226,11 @@ public class GrupoView extends javax.swing.JDialog implements java.util.Observer
        if (parametros != GrupoModel.GRUPO_CURRENT) return;
        
        Grupo grupoCurrent = model.getGrupoCurrent();
+       
+       System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa" + grupoCurrent.getNumeroGrupo());
         
        //this.numeroFld.setEnabled(model.getModo()==Application.MODO_AGREGAR);
-              
-       Integer numero=grupoCurrent.getNumeroGrupo();
-       if(numero==0)numeroFld.setText("");
-       else numeroFld.setText(numero.toString());
-       
+      
        String dia1="";
        if(grupoCurrent.isLunes()){
                dia1="Lunes";
@@ -305,8 +288,6 @@ public class GrupoView extends javax.swing.JDialog implements java.util.Observer
     public javax.swing.JLabel horarioLabel;
     public javax.swing.JComboBox<String> inicioFld;
     public javax.swing.JLabel inicioLabel;
-    public javax.swing.JTextField numeroFld;
-    public javax.swing.JLabel numeroLabel;
     public javax.swing.JComboBox<String> profeFld;
     public javax.swing.JLabel profeLabel;
     // End of variables declaration//GEN-END:variables

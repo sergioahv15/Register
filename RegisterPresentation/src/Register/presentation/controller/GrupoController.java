@@ -30,9 +30,9 @@ public class GrupoController {
         
         Grupo nuevo = new Grupo();
         model.clearErrors();
+                        
         
-        nuevo.setNumeroGrupo(Integer.parseInt(view.numeroFld.getText()));
-                
+        
         nuevo.setProfesor(Application.Model.search_PRO(view.profeFld.getSelectedItem().toString(), 0).get(0));
         
         nuevo.setCurso(Application.Model.search_CUR("", Application.CURSO_CURRENT.getCodigo(), "Todas").get(0));
@@ -67,7 +67,8 @@ public class GrupoController {
                         model.setGrupos(rowsAgr); 
                         view.setVisible(false);
                         break;
-                    case Application.MODO_EDITAR:
+                    case Application.MODO_EDITAR:  
+                        nuevo.setNumeroGrupo(model.getGrupoCurrent().getNumeroGrupo());
                         Application.Model.update(nuevo);
                         model.setMensaje("GRUPO MODIFICADO");
                         model.setGrupoCurrent(nuevo);

@@ -74,6 +74,7 @@ public class Application {
        Model=new ModelProxy();
        
        ACTIVE_USER=null;
+       NUM_GRUPO=0;
        
         CICLO_ACTIVO = new Ciclo();
         CARRERA_CURRENT = new Carrera();
@@ -223,6 +224,7 @@ public class Application {
     public static NotaModel NOTA_MODEL;
     public static HistorialModel HISTORIAL_MODEL;
     public static Grupo GRUPO_CURRENT;
+    public static int NUM_GRUPO;
     public static MenuView MENU_VIEW;
     public static int ANYO_CURRENT=2017;
        

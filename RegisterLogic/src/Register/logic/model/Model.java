@@ -322,6 +322,7 @@ public class Model implements IModel{
     
     @Override
     public void Add_GRU(Grupo g) throws Exception {
+        
         System.out.println(g);
         int lunes,martes,miercoles,jueves,viernes;
         lunes = martes = miercoles = jueves = viernes =0;
@@ -424,13 +425,14 @@ public class Model implements IModel{
         
     @Override
     public void update(Grupo g) throws Exception {
+         System.out.println("EL NUMERO DEL GRUPO ES !!!!!!!!!!!!: "+ g.getNumeroGrupo());
         int lunes,martes,miercoles,jueves,viernes;
         lunes = martes = miercoles = jueves = viernes =0;
         if(g.isLunes()) lunes = 1;if(g.isMartes()) martes = 1;if(g.isMiercoles()) miercoles = 1;
         if(g.isJueves()) jueves = 1;if(g.isViernes()) viernes = 1;
-        String SQL="update grupo set numero_grupo=%d,curso='%s',profesor=%d,hora_ini='%s',hora_fin='%s',"+
+        String SQL="update grupo set curso='%s',profesor=%d,hora_ini='%s',hora_fin='%s',"+
                 "lunes=%d,martes=%d,miercoles=%d,jueves=%d,viernes=%d where numero_grupo=%d";  //REVISAR %d
-        SQL= String.format(SQL, g.getNumeroGrupo(),g.getCurso().getCodigo(),g.getProfesor().getCedula(),
+        SQL= String.format(SQL,g.getCurso().getCodigo(),g.getProfesor().getCedula(),
                 g.getHoraInicio(),g.getHoraFin(),lunes,martes,miercoles,jueves,viernes,g.getNumeroGrupo());
         int count= database.executeUpdate(SQL);
         if(count==0){

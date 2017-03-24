@@ -25,7 +25,7 @@ public class LoginController {
         view.setModel(model);
     }
 
-    public void login(){
+    public void login(){        
         int cedula = Integer.parseInt(view.userFld.getText());        
         String pass = view.passFld.getText();
         String tipo = Application.Model.login(cedula, pass);

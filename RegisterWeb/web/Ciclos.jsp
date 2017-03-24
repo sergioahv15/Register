@@ -1,13 +1,22 @@
-<%-- 
-    Document   : Ciclos
-    Created on : 19/03/2017, 05:43:24 PM
-    Author     : Fabio
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*" session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+<%
+
+    HttpSession sesion = request.getSession(true);
+    String tipoUsuario = "";
+    if(sesion!=null){
+        if (sesion.getAttribute("usuario")  == null) {
+            response.sendRedirect("LoginJSP.jsp");
+        }else{
+            tipoUsuario = (String)sesion.getAttribute("tipo");
+        }
+    }else{
+        response.sendRedirect("Login.jsp");
+    }
+%>
 
 <!DOCTYPE html>
 <html>

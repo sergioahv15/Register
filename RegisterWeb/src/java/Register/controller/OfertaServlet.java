@@ -29,6 +29,7 @@ public class OfertaServlet extends HttpServlet {
 
     Carrera CARRERA_CURRENT;
     Curso CURSO_CURRENT;
+    Grupo GRUPO_CURRENT;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -115,6 +116,7 @@ public class OfertaServlet extends HttpServlet {
                 for(Grupo g : grupos){
                     if(g.getNumeroGrupo()==num_grupo)grupoCurrent = g;
                 }
+                GRUPO_CURRENT = grupoCurrent;
                 String dia1 = "";
                 String dia2 = "";
                 String horaIni = grupoCurrent.getHoraInicio();
@@ -145,7 +147,6 @@ public class OfertaServlet extends HttpServlet {
                 
                 List<Profesor> profes = model.search_PRO("", 0);
                 
-                request.setAttribute("grupoCurrent", grupoCurrent);
                 request.setAttribute("horaIni", horaIni);
                 request.setAttribute("horaFin", horaFin);
                 request.setAttribute("dia1", dia1);
@@ -154,17 +155,7 @@ public class OfertaServlet extends HttpServlet {
                 request.setAttribute("modo","2");
                 request.setAttribute("readonly", "readonly");
                 request.getRequestDispatcher("Grupo.jsp").forward(request, response);
-            }/*else if(request.getParameter("btnEliminar") != null){
-                Grupo cursoCarrera = model.("",codigo,"Todas").get(0);                
-                try{
-                    model.delete(cursoCarrera);
-                    List<Curso> cursosCarrera = model.search_CUR("","", CARRERA_CURRENT.getNombre());
-                    request.setAttribute("cursosCarrera", cursosCarrera);
-                    request.getRequestDispatcher("CursosCarrera.jsp").forward(request, response);
-                }catch(Exception ex){
-                    
-                }
-            }*/
+            }
         }
         
         if(request.getParameter("btnAgregar") != null){     
@@ -178,7 +169,6 @@ public class OfertaServlet extends HttpServlet {
         if (request.getParameter("modo") != null) {
             int modo = Integer.parseInt(request.getParameter("modo"));
             Grupo nuevo = new Grupo();
-            nuevo.setNumeroGrupo(Integer.parseInt(request.getParameter("numero")));
             nuevo.setProfesor(model.search_PRO(request.getParameter("profesor"), 0).get(0));
 
             nuevo.setCurso(model.search_CUR("",CURSO_CURRENT.getCodigo(),"Todas").get(0));
@@ -211,6 +201,7 @@ public class OfertaServlet extends HttpServlet {
                 }
             }else if(modo == 2){
                 try {
+                    nuevo.setNumeroGrupo(GRUPO_CURRENT.getNumeroGrupo());
                     model.update(nuevo);
                     List<Grupo> grupos = model.search_GRU(CURSO_CURRENT.getCodigo(), "");
                     request.setAttribute("grupos", grupos);
