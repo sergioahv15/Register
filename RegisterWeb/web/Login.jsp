@@ -7,6 +7,7 @@
         <title>LOGIN -  Sistema de Matricula</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="js/Script.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  </head>
     <body>
@@ -21,15 +22,15 @@
                 <h2 class="text-center">LOGIN</h2>
                 
                 <br/><br/>
-                <form action="LoginServlet" method="post">
+                <form name="form1" action="LoginServlet" method="post" onsubmit="ValidarLogin();">
                     <div class="form-group" id="groupUsario">
                         <label for="cedula">Usuario:</label>
-                        <input type="text" class="form-control" id="usuario" autofocus="true" name="usuario">
+                        <input type="text" class="form-control" id="usuario" autofocus="true" name="usuario" required>
                     </div>
 
                     <div class="form-group" id="groupPassword">
                         <label for="nombre">Contraseña:</label>
-                        <input type="password" class="form-control" id="password" name="password">
+                        <input type="password" class="form-control" id="password" name="password" required>
                     </div>
 
                     <center>                        

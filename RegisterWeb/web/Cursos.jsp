@@ -25,38 +25,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Mantenimiento de Cursos</title>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="js/Script.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
     <body>
         
-        <nav class="navbar" role="navigation">
-                    <div class="logo">
-                    <a href="index.jsp" class="logo"></a>
-                </div>
-                    <span class="menu"> </span>
-                    <ul>
-                        <li class="active"><a href="index.jsp">Inicio<span> </span></a></li>
-                        <li><a href="about.jsp">Nuestra Empresa</a></li>
-                        <li><a href="catalogo.jsp" onclick="limpiarCategoria();">Catálogo</a></li>
-                        <li><a href="tiendas.jsp">Tiendas</a></li>
-                        <li><a href="contact.jsp">Contacto</a></li>
-                        <% if(tipoUsuario.equals("Administrador")) { %> 
-                        <li><a href="gestionProductos.jsp">Administración</a></li>
-                        <li><a href="reportes.jsp">Reportes</a></li>
-                        <% } %>
-                        <li><a href="carrito.jsp">Carrito de Compras</a></li>
-                        
-                        
-                        <li><a href="Logout">Cerrar Sesión</a></li>
-                    </ul>
-                </nav>
+     
         
         <div class="container">
             <h1 class="text-center">MANTENIMIENTO DE CURSOS</h1>            
             <br/>            
             <div class="text-center">
-                <form class="form-inline" action="CursosServlet">
+                <form name="form1" class="form-inline" action="CursosServlet" onsubmit="return ValidarCursoBusqueda();">
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
                         <input type="text" class="form-control" name="nombre" id="nombre">

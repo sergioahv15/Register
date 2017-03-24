@@ -24,6 +24,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Oferta Academica</title>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="js/Script.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
@@ -33,10 +34,10 @@
             <br/><br/>       
             
             <div class="container"> 
-                <form  display="inline-block" action="OfertaServlet?modo=<c:out value="${modo}" />" method="post">                    
+                <form  display="inline-block" action="OfertaServlet?modo=<c:out value="${modo}" />" method="post" onsubmit="ValidarGrupo();">                    
                     <div class="form-group">
                         <label>Dias:</label>
-                        <select class="form-control" name="dia1" id="dia1">
+                        <select class="form-control" name="dia1" id="dia1" required>
                             <option selected="selected">-----</option>
                             <option <c:if test="${dia1.equals('Lunes')}">selected="selected"</c:if>>Lunes</option>
                             <option <c:if test="${dia1.equals('Martes')}">selected="selected"</c:if>>Martes</option>
@@ -45,7 +46,7 @@
                             <option <c:if test="${dia1.equals('Viernes')}">selected="selected"</c:if>>Viernes</option> 
                         </select>
                         <br/>
-                        <select class="form-control" name="dia2" id="dia2">
+                        <select class="form-control" name="dia2" id="dia2" required>
                             <option selected="selected">-----</option>
                             <option <c:if test="${dia2.equals('Lunes')}">selected="selected"</c:if>>Lunes</option>
                             <option <c:if test="${dia2.equals('Martes')}">selected="selected"</c:if>>Martes</option>
@@ -57,7 +58,7 @@
                     
                     <div class="form-group">
                         <label for="horaIni">Hora Inicio:</label>
-                        <select class="form-control" name="horaIni" id="horaIni">
+                        <select class="form-control" name="horaIni" id="horaIni" required>
                             <option <c:if test="${horaIni.equals('7am')}">selected="selected"</c:if>>7am</option>
                             <option <c:if test="${horaIni.equals('8am')}">selected="selected"</c:if>>8am</option>
                             <option <c:if test="${horaIni.equals('9am')}">selected="selected"</c:if>>9am</option>
@@ -77,7 +78,7 @@
                     
                     <div class="form-group">
                         <label for="horaFin">Hora Fin:</label>
-                        <select class="form-control" name="horaFin" id="horaFin">
+                        <select class="form-control" name="horaFin" id="horaFin" required>
                             <option <c:if test="${horaFin.equals('7am')}">selected="selected"</c:if>>7am</option>
                             <option <c:if test="${horaFin.equals('8am')}">selected="selected"</c:if>>8am</option>
                             <option <c:if test="${horaFin.equals('9am')}">selected="selected"</c:if>>9am</option>
@@ -96,7 +97,7 @@
                     </div>                    
                     <div class="form-group">
                         <label for="profesor">Profesor:</label>
-                        <select class="form-control" name="profesor" id="profesor">
+                        <select class="form-control" name="profesor" id="profesor" required>
                             <c:forEach items="${profes}" var="item">
                                 <option
                                     <c:if test="${item.getNombre().equals(grupoCurrent.getProfesor().getNombre())}">

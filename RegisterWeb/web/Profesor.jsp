@@ -23,6 +23,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Editar Profesor</title>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="js/Script.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
@@ -32,22 +33,22 @@
             <br/><br/>       
             
             <div class="container"> 
-                <form  display="inline-block" action="ProfesoresServlet?modo=<c:out value="${modo}" />" method="post">                    
+                <form  display="inline-block" action="ProfesoresServlet?modo=<c:out value="${modo}" />" method="post" onsubmit="return ValidarProfesor();">                    
                     <div class="form-group">
                         <label for="cedula">Cedula:</label>
-                        <input value="<c:out value="${profeCurrent.getCedula()}" />" type="number" class="form-control" name="cedula" id="cedula" <c:out value="${readonly}" />>
+                        <input value="<c:out value="${profeCurrent.getCedula()}" />" type="number" class="form-control" name="cedula" id="cedula" <c:out value="${readonly}" /> required>
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
-                        <input value="<c:out value="${profeCurrent.getNombre()}" />" type="text" class="form-control" name="nombre" id="nombre">
+                        <input value="<c:out value="${profeCurrent.getNombre()}" />" type="text" class="form-control" name="nombre" id="nombre" required>
                     </div>
                     <div class="form-group">
                         <label for="telefono">Telefono:</label>
-                        <input value="<c:out value="${profeCurrent.getTel()}" />" type="number" class="form-control" name="telefono" id="telefono">
+                        <input value="<c:out value="${profeCurrent.getTel()}" />" type="number" class="form-control" name="telefono" id="telefono" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input value="<c:out value="${profeCurrent.getEmail()}" />" type="text" class="form-control" name="email" id="email">
+                        <input value="<c:out value="${profeCurrent.getEmail()}" />" type="text" class="form-control" name="email" id="email" required>
                     </div>
                      
                     <center>
