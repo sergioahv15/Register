@@ -52,7 +52,10 @@ function ValidarLogin() {
     }  else if (password.length > 45) {
         alert("La contraseña es demasiado larga");
         return false;
-    } 
+    }  else if (isNaN(usuario)) {
+        alert("El identificador del usuario debe de ser un numero");
+        return false;
+    }  
 
 }
 

@@ -10,6 +10,7 @@ import Register.IModel;
 import Register.model.ModelProxy;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javafx.scene.control.Alert;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -118,6 +119,10 @@ public class LoginServlet extends HttpServlet {
                 break;
             }
             request.getRequestDispatcher("Menu.jsp").forward(request, response);
+        } else{
+            HttpSession session=request.getSession(false);
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
+            
         }
     }
 
