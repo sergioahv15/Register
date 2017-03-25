@@ -121,6 +121,9 @@ public class LoginServlet extends HttpServlet {
             request.getRequestDispatcher("Menu.jsp").forward(request, response);
         } else{
             HttpSession session=request.getSession(false);
+            
+           // response.sendError(0, "Usuario o contraseña incorrectas");
+            //response.sendRedirect("Login.jsp");
             request.getRequestDispatcher("Login.jsp").forward(request, response);
             
         }
