@@ -143,6 +143,15 @@ public class ModelWorker {
                         out.writeInt(Protocol.ERROR_UPDATE_CURSO);
                     }
                     break;
+                case Protocol.UPDATE_USER:
+                    u= (Usuario)in.readObject();
+                    try {
+                        Model.update_USU(u);
+                        out.writeInt(Protocol.ERROR_NO_ERROR);
+                    } catch (Exception e) {
+                        out.writeInt(Protocol.ERROR_UPDATE_CURSO);
+                    }
+                    break;
                 case Protocol.UPDATE_NOTA:
                     filtroInt=(Integer) in.readObject();
                     filtroInt2=(Integer) in.readObject();
@@ -257,7 +266,16 @@ public class ModelWorker {
                     } catch (Exception e) {
                         out.writeInt(Protocol.ERROR_ADD_ESTUDIANTE);
                     }
-                    break;                
+                    break;
+                case Protocol.ADD_USER:
+                    u=(Usuario)in.readObject();
+                    try {
+                        Model.ADD_USU(u);
+                        out.writeInt(Protocol.ERROR_NO_ERROR);
+                    } catch (Exception e) {
+                        out.writeInt(Protocol.ERROR_ADD_ESTUDIANTE);
+                    }
+                    break;
                 case Protocol.SEARCH_ESTUDIANTES:
                     filtro=(String) in.readObject();
                     filtroInt=(Integer) in.readObject();
@@ -289,7 +307,17 @@ public class ModelWorker {
                     out.writeInt(Protocol.ERROR_NO_ERROR);
                     out.writeObject(Model.search_CIC(filtroInt,filtroInt2));
                     break;
-                
+                case Protocol.SEARCH_ADM_MAT:
+                    filtroInt=(Integer) in.readObject();
+                    filtro = (String) in.readObject();
+                    out.writeInt(Protocol.ERROR_NO_ERROR);
+                    out.writeObject(Model.search_ADM_MAT(filtroInt,filtro));
+                    break;
+                case Protocol.SEARCH_USER:
+                    filtroInt=(Integer) in.readObject();
+                    out.writeInt(Protocol.ERROR_NO_ERROR);
+                    out.writeObject(Model.search_USU(filtroInt));
+                    break;
                 case Protocol.UPDATE_CICLOS:
                     ci=(Ciclo)in.readObject();
                     try {

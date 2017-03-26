@@ -30,6 +30,7 @@
     </head>
     <body>
         <div class="container">
+            <%@include file="fragments/NavBar_Menu.jspf" %>
             <h1 class="text-center">EDITAR ESTUDIANTE</h1>            
             <br/><br/>       
             

@@ -29,6 +29,7 @@
     </head>
     <body>
         <div class="container">
+            <%@include file="fragments/NavBar_Menu.jspf" %>
             <h1 class="text-center">MANTENIMIENTO DE CICLOS</h1>            
             <br/>            
             <div class="text-center">

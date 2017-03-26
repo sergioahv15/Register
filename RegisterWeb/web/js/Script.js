@@ -52,10 +52,7 @@ function ValidarLogin() {
     }  else if (password.length > 45) {
         alert("La contraseña es demasiado larga");
         return false;
-    }  else if (isNaN(usuario)) {
-        alert("El identificador del usuario debe de ser un numero");
-        return false;
-    }  
+    } 
 
 }
 
@@ -83,13 +80,12 @@ function ValidarCarreraBusqueda() {
     var nombre, codigo;
     codigo = document.forms["form1"]["codigo"].value;
     nombre = document.forms["form1"]["nombre"].value;
-    expresion = /[a-z]/;
 
 
-    if (!expresion.test(nombre)) {
-        alert("El nombre ingresado no es valido");
+    if (!isNaN(nombre) && nombre != "") {
+        alert("El nombre no puede contener numeros");
         return false;
-    }  else if (nombre.length > 45) {
+    } else if (nombre.length > 45) {
         alert("El nombre es demasiado largo");
         return false;
     } else if (codigo.length > 10) {
@@ -98,7 +94,7 @@ function ValidarCarreraBusqueda() {
     } else if (nombre === "" && codigo === "") {
         alert("Debe de ingresar al menos un  criterio de busqueda");
         return false;
-    } 
+    }
 
 }
 
@@ -108,10 +104,10 @@ function ValidarCursoBusqueda() {
     var nombre, codigo;
     codigo = document.forms["form1"]["codigo"].value;
     nombre = document.forms["form1"]["nombre"].value;
-    expresion = /[a-z]/;
 
-    if (!expresion.test(nombre)) {
-        alert("El nombre ingresado no es valido");
+
+    if (!isNaN(nombre) && nombre != "") {
+        alert("El nombre no puede contener numeros");
         return false;
     } else if (nombre.length > 45) {
         alert("El nombre es demasiado largo");
@@ -130,11 +126,10 @@ function ValidarProfesorBusqueda() {
     var nombre, cedula;
     cedula = document.forms["form1"]["cedula"].value;
     nombre = document.forms["form1"]["nombre"].value;
-    
-    var expresion = /[a-z]/;
 
-    if (!expresion.test(nombre)) {
-        alert("El nombre ingresado no es valido");
+
+    if (!isNaN(nombre) && nombre != "") {
+        alert("El nombre no puede contener numeros");
         return false;
     } else if (nombre.length > 45) {
         alert("El nombre es demasiado largo");
@@ -149,10 +144,10 @@ function ValidarEstudianteBusqueda() {
     var nombre, cedula;
     cedula = document.forms["form1"]["cedula"].value;
     nombre = document.forms["form1"]["nombre"].value;
-    expresion = /[a-z]/;
 
-    if (!expresion.test(nombre)) {
-        alert("El nombre ingresado no es valido");
+
+    if (!isNaN(nombre) && nombre != "") {
+        alert("El nombre no puede contener numeros");
         return false;
     } else if (nombre.length > 45) {
         alert("El nombre es demasiado largo");

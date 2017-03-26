@@ -13,7 +13,6 @@ import Register.Entities.Grupo;
 import Register.Entities.Profesor;
 import Register.Entities.Usuario;
 import Register.IModel;
-import com.sun.org.apache.bcel.internal.generic.AASTORE;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -219,7 +218,7 @@ public class Model implements IModel{
         return c;
     }
 
-     @Override
+    @Override
     public void update(Curso c) throws Exception {
         System.out.println(c);
         String SQL="update curso set carrera_codigo='%s' where codigo='%s'";
@@ -230,6 +229,15 @@ public class Model implements IModel{
         }
     }
 
+    @Override
+    public void update_USU(Usuario u){
+        System.out.println(u);
+        String SQL="update usuario set contrasena='%s',tipo='%s' where cedula=%d";
+        SQL= String.format(SQL,u.getClave(),u.getTipo(),u.getCedula());
+        int count= database.executeUpdate(SQL);
+        
+    }
+    
     @Override
     public List<Carrera> search_CAR(String nombre, String codigo) {
         List<Carrera> resultado = new ArrayList<Carrera>();
@@ -727,10 +735,9 @@ public class Model implements IModel{
     public Usuario search_USU(int cedula) {
         Usuario resultado = new Usuario();
         String SQL = "";
-        try {
-          
-                SQL="select * from usuario u where u.cedula = %d";
-                SQL = String.format(SQL,cedula);
+        try {         
+            SQL="select * from usuario u where u.cedula = %d";
+            SQL = String.format(SQL,cedula);
             
             ResultSet rs = database.executeQuery(SQL);
             while(rs.next()){
@@ -740,11 +747,36 @@ public class Model implements IModel{
         }
          return resultado;
     }
+    
+    @Override
+    public List<Usuario> search_ADM_MAT(int cedula, String tipo) {
+        List<Usuario> usuarios = new ArrayList<Usuario>();
+        String SQL = "";
+        try {          
+            if(tipo.equals("Administrador")&& cedula !=0){
+                SQL="select * from usuario u where u.tipo='administrador' and u.cedula=%d"; 
+                SQL = String.format(SQL,cedula);
+            }else if(tipo.equals("Administrador")&& cedula ==0){
+                SQL="select * from usuario u where u.tipo='administrador'"; 
+            }else if(tipo.equals("Matriculador")&& cedula !=0){
+                SQL="select * from usuario u where u.tipo='matriculador' and u.cedula=%d";
+                SQL = String.format(SQL,cedula);
+            }else if(tipo.equals("Matriculador")&& cedula ==0){
+                SQL="select * from usuario u where u.tipo='matriculador'"; 
+            }            
+            ResultSet rs = database.executeQuery(SQL);
+            while(rs.next()){
+                usuarios.add(usuario(rs));
+            }
+        } catch (Exception e) {
+        }
+         return usuarios;
+    }
 
     private Usuario usuario(ResultSet rs) throws SQLException{
             Usuario e = new Usuario();
         
-        e.setClave(rs.getString("clave"));
+        e.setClave(rs.getString("contrasena"));
         e.setCedula(rs.getInt("cedula"));
         e.setTipo(rs.getString("tipo"));
        
@@ -768,7 +800,7 @@ public class Model implements IModel{
     @Override
     public void ADD_USU(Usuario u) {
         String SQL="insert into usuario (cedula,contrasena,tipo)"
-                + "values(%d,'%s','%s')";
+                + " values(%d,'%s','%s')";
         SQL=String.format(SQL,u.getCedula(),u.getClave(),u.getTipo());
         int count= database.executeUpdate(SQL);
         if(count==0){

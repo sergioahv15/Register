@@ -30,12 +30,15 @@
     </head>
     <body>
         <div class="container">
+            <%@include file="fragments/NavBar_Menu.jspf" %>
             <h1 class="text-center">MANTENIMIENTO DE ESTUDIANTES</h1>            
             <br/><br/>
             
-            <center>
-                <form action="EstudiantesServlet" method="post"><button name="btnAgregar" class="btn btn-success" type="submit">Agregar Estudiante</button></form>
-            </center>
+            <% if(tipoUsuario.equals("Administrador")) { %> 
+                <center>
+                    <form action="EstudiantesServlet" method="post"><button name="btnAgregar" class="btn btn-success" type="submit">Agregar Estudiante</button></form>
+                </center>
+            <% } %>                 
             
             <br/><br/>
             
@@ -87,9 +90,13 @@
                         <td><c:out value="${item.getFechaNac()}" /></td>
                         <td><c:out value="${item.getCarrera().getNombre()}" /></td>
                         <td class="text-center"><form action="EstudiantesServlet?est=${item.getCedula()}" method="post">
+                            <% if(tipoUsuario.equals("Administrador")) { %> 
                                 <button name="btnEditar" class="btn btn-info" type="submit">Editar Estudiante</button>
-                            <button name="btnMatricular" class="btn btn-warning" type="submit">Matricula</button>
+                            <% } %> 
+                            <button name="btnMatricular" class="btn btn-warning" type="submit">Matricular</button>
+                            <% if(tipoUsuario.equals("Administrador")) { %> 
                                 <button name="btnConsultaHistorial" class="btn btn-primary" type="submit">Ver Historial</button>
+                            <% } %> 
                             </form></td>
                       </tr>
                     </c:forEach>

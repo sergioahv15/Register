@@ -60,6 +60,8 @@ public interface IModel {
       public List<Curso> ofertaAcad(String carrera, int ciclo);
       
       public Usuario search_USU(int cedula);
+      public List<Usuario> search_ADM_MAT(int cedula,String tipo);
+      public void update_USU(Usuario u);
       public void delete(Usuario u);
       public void ADD_USU(Usuario u);
       

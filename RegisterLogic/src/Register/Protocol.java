@@ -58,8 +58,10 @@ public class Protocol {
     public static final int SEARCH_CICLO_ACTUAL=32;
     
     public static final int SEARCH_USER=33;
-    public static final int DELETE_USER=34;
-    public static final int ADD_USER=35;
+    public static final int SEARCH_ADM_MAT=34;
+    public static final int UPDATE_USER=35;
+    public static final int DELETE_USER=36;
+    public static final int ADD_USER=37;
     
     
     public static final int ERROR_NO_ERROR=0;

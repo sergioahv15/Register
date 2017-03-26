@@ -30,6 +30,7 @@
     </head>
     <body>
         <div class="container">
+            <%@include file="fragments/NavBar_Menu.jspf" %>
             <h1 class="text-center">EDITAR GRUPO</h1>            
             <br/><br/>       
             
@@ -38,7 +39,7 @@
                     <div class="form-group">
                         <label>Dias:</label>
                         <select class="form-control" name="dia1" id="dia1" required>
-                            
+                            <option selected="selected">-----</option>
                             <option <c:if test="${dia1.equals('Lunes')}">selected="selected"</c:if>>Lunes</option>
                             <option <c:if test="${dia1.equals('Martes')}">selected="selected"</c:if>>Martes</option>
                             <option <c:if test="${dia1.equals('Miercoles')}">selected="selected"</c:if>>Miercoles</option>
@@ -47,7 +48,7 @@
                         </select>
                         <br/>
                         <select class="form-control" name="dia2" id="dia2" required>
-                            
+                            <option selected="selected">-----</option>
                             <option <c:if test="${dia2.equals('Lunes')}">selected="selected"</c:if>>Lunes</option>
                             <option <c:if test="${dia2.equals('Martes')}">selected="selected"</c:if>>Martes</option>
                             <option <c:if test="${dia2.equals('Miercoles')}">selected="selected"</c:if>>Miercoles</option>

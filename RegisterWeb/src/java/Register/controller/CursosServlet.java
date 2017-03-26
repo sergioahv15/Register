@@ -37,20 +37,24 @@ public class CursosServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            
             IModel model = new ModelProxy();
             
-            
-            String nombre=request.getParameter("nombre");
-            String codigo=request.getParameter("codigo");
-            String carrera=request.getParameter("carrera");
-                        
-            List<Curso> cursos = model.search_CUR(nombre,codigo,carrera);
-            
-            List<Carrera> carreras = model.search_CAR("","");
-            request.setAttribute("carreras", carreras);
-            request.setAttribute("cursos", cursos);
-            request.getRequestDispatcher("Cursos.jsp").forward(request, response);
+            if(request.getParameter("mantCursos") != null){
+                List<Carrera> carreras = model.search_CAR("","");
+                request.setAttribute("carreras", carreras);
+                request.getRequestDispatcher("Cursos.jsp").forward(request, response);
+            }else{                    
+                String nombre=request.getParameter("nombre");
+                String codigo=request.getParameter("codigo");
+                String carrera=request.getParameter("carrera");
+
+                List<Curso> cursos = model.search_CUR(nombre,codigo,carrera);
+
+                List<Carrera> carreras = model.search_CAR("","");
+                request.setAttribute("carreras", carreras);
+                request.setAttribute("cursos", cursos);
+                request.getRequestDispatcher("Cursos.jsp").forward(request, response);
+            }
         }
     }
 

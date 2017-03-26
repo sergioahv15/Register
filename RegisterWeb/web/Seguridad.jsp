@@ -22,63 +22,60 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Oferta Academica</title>
+        <title>Seguridad</title>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="js/Script.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
     <body>
         <div class="container">
             <%@include file="fragments/NavBar_Menu.jspf" %>
-            <h1 class="text-center">OFERTA ACADEMICA</h1>            
+            <h1 class="text-center">MANTENIMIENTO DE ADMINISTRADORES Y MATRICULADORES</h1>            
+            <br/><br/>
+            
+            <center>
+                <form action="SeguridadServlet" method="post"><button name="btnAgregar" class="btn btn-success" type="submit">Agregar Usuario</button></form>
+            </center>
+            
             <br/><br/>
             
             <div class="text-center">
-                <form class="form-inline" action="OfertaServlet">                    
+                <form name="form1" class="form-inline" action="SeguridadServlet">
                     <div class="form-group">
-                        <label for="carrera">Carrera:</label>
-                        <select class="form-control" name="carrera" id="carrera">
-                            <option selected="selected">Todas</option>
-                            <c:forEach items="${carreras}" var="item">
-                                <option><c:out value="${item.getNombre()}" /></option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    
+                        <label for="cedula">Cedula:</label>
+                        <input type="number" class="form-control" name="cedula" id="cedula">
+                    </div>  
                     <div class="form-group">
-                        <label for="ciclo">Ciclo:</label>
-                        <select class="form-control" name="ciclo" id="ciclo">
-                            <option selected="selected">1</option>
-                            <option>2</option>
+                        <label for="tipo">Tipo:</label>
+                        <select class="form-control" name="tipo" id="tipo">
+                            <option selected="selected">Administrador</option>
+                            <option>Matriculador</option>
                         </select>
-                    </div>
+                    </div>   
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Buscar</button>
                     </div>                      
-                </form>
-            </div>            
+                </form>                
+            </div>     
+            
             <br/><br/>           
             <div class="container">     
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                      <th>Codigo</th>
-                      <th>Nombre</th>
-                      <th>Carrera</th>
-                      <th>Creditos</th>
-                      <th>Horas Semanales</th>
+                      <th>Cedula</th>
+                      <th>Tipo</th>
                       <th class="text-center">Mantenimiento</th>
                     </tr>
                   </thead>
                   <tbody>
-                      <c:forEach items="${cursos}" var="item">
+                      <c:forEach items="${usuarios}" var="item">
                       <tr>
-                        <td><c:out value="${item.getCodigo()}" /></td>
-                        <td><c:out value="${item.getNombre()}" /></td>
-                        <td><c:out value="${item.getCarrera().getNombre()}" /></td>
-                        <td><c:out value="${item.getCreditos()}" /></td>
-                        <td><c:out value="${item.getHorasSemanales()}" /></td>
-                        <td class="text-center"><form action="OfertaServlet?curso=${item.getCodigo()}" method="post"><button name="btnVerGrupos" class="btn btn-success" type="submit">Ver Grupos</button></form></td>
+                        <td><c:out value="${item.getCedula()}" /></td>
+                        <td><c:out value="${item.getTipo()}" /></td>
+                        <td class="text-center"><form action="SeguridadServlet?usuario=${item.getCedula()}" method="post">
+                            <button name="btnEditar" class="btn btn-info" type="submit">Editar Usuario</button></form></td>
                       </tr>
                     </c:forEach>
                   </tbody>                    

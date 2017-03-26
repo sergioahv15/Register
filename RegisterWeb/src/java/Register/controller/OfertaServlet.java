@@ -44,19 +44,24 @@ public class OfertaServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            
             IModel model = new ModelProxy();            
-                        
-            String carrera = request.getParameter("carrera");           
             
-            int ciclo = Integer.parseInt(request.getParameter("ciclo"));
-            
-            List<Curso> cursos = model.search_CUR(carrera,ciclo);
-            List<Carrera> carreras = model.search_CAR("","");
-            
-            request.setAttribute("cursos", cursos);
-            request.setAttribute("carreras", carreras);
-            request.getRequestDispatcher("OfertaAcademica.jsp").forward(request, response);
+            if(request.getParameter("oferta") != null){
+                List<Carrera> carreras = model.search_CAR("","");
+                request.setAttribute("carreras", carreras);
+                request.getRequestDispatcher("OfertaAcademica.jsp").forward(request, response);
+            }else{
+                String carrera = request.getParameter("carrera");           
+
+                int ciclo = Integer.parseInt(request.getParameter("ciclo"));
+
+                List<Curso> cursos = model.search_CUR(carrera,ciclo);
+                List<Carrera> carreras = model.search_CAR("","");
+
+                request.setAttribute("cursos", cursos);
+                request.setAttribute("carreras", carreras);
+                request.getRequestDispatcher("OfertaAcademica.jsp").forward(request, response);
+            }
         }
     }
 

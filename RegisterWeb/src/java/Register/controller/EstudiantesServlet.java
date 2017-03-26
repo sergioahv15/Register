@@ -46,23 +46,26 @@ public class EstudiantesServlet extends HttpServlet {
             
             IModel model = new ModelProxy();            
             
-            
-            String nombre=request.getParameter("nombre");
-            int cedula=0;
-            String cedula_str = request.getParameter("cedula");            
-            if(!cedula_str.equals("")) cedula = Integer.parseInt(cedula_str);
-            
-            String carrera = request.getParameter("carrera");
-            
-            List<Carrera> carreras = model.search_CAR("","");
-            
-            List<Estudiante> estudiantes = model.search_EST(nombre, cedula, carrera);            
-            
-            request.setAttribute("carreras", carreras);
-            request.setAttribute("estudiantes", estudiantes);
-            request.getRequestDispatcher("Estudiantes.jsp").forward(request, response);
-            
-            
+            if(request.getParameter("mantEstudiantes") != null){
+                List<Carrera> carreras = model.search_CAR("","");
+                request.setAttribute("carreras", carreras);
+                request.getRequestDispatcher("Estudiantes.jsp").forward(request, response);
+            }else{            
+                String nombre=request.getParameter("nombre");
+                int cedula=0;
+                String cedula_str = request.getParameter("cedula");            
+                if(!cedula_str.equals("")) cedula = Integer.parseInt(cedula_str);
+
+                String carrera = request.getParameter("carrera");
+
+                List<Carrera> carreras = model.search_CAR("","");
+
+                List<Estudiante> estudiantes = model.search_EST(nombre, cedula, carrera);            
+
+                request.setAttribute("carreras", carreras);
+                request.setAttribute("estudiantes", estudiantes);
+                request.getRequestDispatcher("Estudiantes.jsp").forward(request, response);
+            }            
         }
     }
 

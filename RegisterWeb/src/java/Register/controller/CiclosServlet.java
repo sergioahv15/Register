@@ -38,13 +38,16 @@ public class CiclosServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             IModel model = new ModelProxy();
             
-            
-            int anyo = Integer.parseInt(request.getParameter("anyo"));
-                        
-            List<Ciclo> ciclos = model.search_CIC(anyo,0);
-            
-            request.setAttribute("ciclos", ciclos);
-            request.getRequestDispatcher("Ciclos.jsp").forward(request, response);
+            if(request.getParameter("mantCiclos") != null){
+                request.getRequestDispatcher("Ciclos.jsp").forward(request, response);
+            }else{            
+                int anyo = Integer.parseInt(request.getParameter("anyo"));
+
+                List<Ciclo> ciclos = model.search_CIC(anyo,0);
+
+                request.setAttribute("ciclos", ciclos);
+                request.getRequestDispatcher("Ciclos.jsp").forward(request, response);
+            }
         }
     }
 

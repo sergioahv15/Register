@@ -42,13 +42,17 @@ public class CarrerasServlet extends HttpServlet {
             
             IModel model = new ModelProxy();            
             
-            String nombre=request.getParameter("nombre");
-            String codigo=request.getParameter("codigo");
-                        
-            List<Carrera> carreras = model.search_CAR(nombre, codigo);            
-            
-            request.setAttribute("carreras", carreras);
-            request.getRequestDispatcher("Carreras.jsp").forward(request, response);
+            if(request.getParameter("mantCarreras") != null){
+                request.getRequestDispatcher("Carreras.jsp").forward(request, response);
+            }else{            
+                String nombre=request.getParameter("nombre");
+                String codigo=request.getParameter("codigo");
+
+                List<Carrera> carreras = model.search_CAR(nombre, codigo);            
+
+                request.setAttribute("carreras", carreras);
+                request.getRequestDispatcher("Carreras.jsp").forward(request, response);
+            }
         }
     }
 

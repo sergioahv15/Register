@@ -170,6 +170,24 @@ public class ModelProxy implements IModel{
             throw new Exception("Curso no existe");
         }
     }
+    
+    @Override
+    public void update_USU(Usuario usuario){
+        try {
+            out.writeInt(Protocol.UPDATE_USER);
+            out.writeObject(usuario);
+            out.flush();
+            int error = in.readInt();
+            if (error == Protocol.ERROR_NO_ERROR){
+            }
+            else{
+                throw new Exception("Usuario no existe");
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+        }
+    }
 
     @Override
     public List<Carrera> search_CAR(String nombre, String codigo) {
@@ -426,6 +444,22 @@ public class ModelProxy implements IModel{
             return new ArrayList<Ciclo>();
         }
     }
+    
+    @Override
+    public List<Usuario> search_ADM_MAT(int cedula,String tipo) {
+        try {
+            out.writeInt(Protocol.SEARCH_ADM_MAT);
+            out.writeObject(cedula);
+            out.writeObject(tipo);
+            out.flush();
+            int error = in.readInt();
+            List<Usuario> usuarios = (List<Usuario>) in.readObject();                  
+            return usuarios;
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            return new ArrayList<Usuario>();
+        }
+    }
 
     @Override
     public void update(Ciclo ciclo) throws Exception {
@@ -584,8 +618,18 @@ public class ModelProxy implements IModel{
 
     @Override
     public Usuario search_USU(int cedula) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        try {
+            out.writeInt(Protocol.SEARCH_USER);
+            out.writeObject(cedula);
+            out.flush();
+            int error = in.readInt();
+            Usuario usuario = (Usuario) in.readObject();                  
+            return usuario;
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+            return new Usuario();
+        }
+    }    
 
     @Override
     public void delete(Usuario u) {
@@ -594,6 +638,19 @@ public class ModelProxy implements IModel{
 
     @Override
     public void ADD_USU(Usuario u) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            out.writeInt(Protocol.ADD_USER);
+            out.writeObject(u);
+            out.flush();
+            int error = in.readInt();
+            if (error == Protocol.ERROR_NO_ERROR){
+            }
+            else{
+                throw new Exception("Usuario ya existe");
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error de comunicacion");
+        }
     }
 }

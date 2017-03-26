@@ -25,7 +25,7 @@
                 <form name="form1" action="LoginServlet" method="post" onsubmit="ValidarLogin();">
                     <div class="form-group" id="groupUsario">
                         <label for="cedula">Usuario:</label>
-                        <input type="number" class="form-control" id="usuario" autofocus="true" name="usuario" required>
+                        <input type="text" class="form-control" id="usuario" autofocus="true" name="usuario" required>
                     </div>
 
                     <div class="form-group" id="groupPassword">

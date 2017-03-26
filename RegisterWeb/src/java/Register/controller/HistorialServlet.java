@@ -36,16 +36,27 @@ public class HistorialServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet HistorialServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet HistorialServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
+            IModel model = new ModelProxy();
+            
+            if(request.getParameter("getHistorial") != null){
+                Integer ced_est = (Integer) request.getSession().getAttribute("idUsuario");
+                List<String> historial = model.search_HIST(ced_est);
+                Estudiante estudianteCurrent = model.search_EST("", ced_est, "Todas").get(0);
+                List<String> cursos = new ArrayList();
+                List<String> historial_est = new ArrayList();
+                String delimitador = " ";
+                for(String h:historial){
+                    String[] nota_format = h.split(delimitador);
+                    cursos.add(nota_format[0]);
+                    if(nota_format.length==3)historial_est.add(nota_format[1]+" "+nota_format[2]);
+                    else historial_est.add(nota_format[1]);
+                }
+                request.setAttribute("estudianteCurrent", estudianteCurrent);
+                request.setAttribute("cursos", cursos);
+                request.setAttribute("historial", historial_est);
+                request.getRequestDispatcher("Historial.jsp").forward(request, response);
+            }
         }
     }
 
@@ -80,23 +91,23 @@ public class HistorialServlet extends HttpServlet {
             IModel model = new ModelProxy();
         
             if(request.getParameter("getHistorial") != null){
-            Integer ced_est = (Integer) request.getSession().getAttribute("idUsuario");
-            List<String> historial = model.search_HIST(ced_est);
-            Estudiante estudianteCurrent = model.search_EST("", ced_est, "Todas").get(0);
-            List<String> cursos = new ArrayList();
-            List<String> historial_est = new ArrayList();
-            String delimitador = " ";
-            for(String h:historial){
-                String[] nota_format = h.split(delimitador);
-                cursos.add(nota_format[0]);
-                if(nota_format.length==3)historial_est.add(nota_format[1]+" "+nota_format[2]);
-                else historial_est.add(nota_format[1]);
+                Integer ced_est = (Integer) request.getSession().getAttribute("idUsuario");
+                List<String> historial = model.search_HIST(ced_est);
+                Estudiante estudianteCurrent = model.search_EST("", ced_est, "Todas").get(0);
+                List<String> cursos = new ArrayList();
+                List<String> historial_est = new ArrayList();
+                String delimitador = " ";
+                for(String h:historial){
+                    String[] nota_format = h.split(delimitador);
+                    cursos.add(nota_format[0]);
+                    if(nota_format.length==3)historial_est.add(nota_format[1]+" "+nota_format[2]);
+                    else historial_est.add(nota_format[1]);
+                }
+                request.setAttribute("estudianteCurrent", estudianteCurrent);
+                request.setAttribute("cursos", cursos);
+                request.setAttribute("historial", historial_est);
+                request.getRequestDispatcher("Historial.jsp").forward(request, response);
             }
-            request.setAttribute("estudianteCurrent", estudianteCurrent);
-            request.setAttribute("cursos", cursos);
-            request.setAttribute("historial", historial_est);
-            request.getRequestDispatcher("Historial.jsp").forward(request, response);
-        }
     }
 
     /**

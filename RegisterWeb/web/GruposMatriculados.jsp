@@ -29,6 +29,7 @@
     </head>
     <body>
         <div class="container">
+            <%@include file="fragments/NavBar_Menu.jspf" %>
             <h1 class="text-center">CURSOS MATRICULADOS POR ESTUDIANTE</h1>            
             <br/><br/>        
             

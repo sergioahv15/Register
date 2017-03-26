@@ -30,10 +30,8 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
     <body>
-        
-     
-        
         <div class="container">
+            <%@include file="fragments/NavBar_Menu.jspf" %>
             <h1 class="text-center">MANTENIMIENTO DE CURSOS</h1>            
             <br/>            
             <div class="text-center">
@@ -53,10 +51,6 @@
                             <c:forEach items="${carreras}" var="item">
                                 <option><c:out value="${item.getNombre()}" /></option>
                             </c:forEach>
-                            <!--<option selected="selected">Todas</option>
-                            <option>Ingenieria en Sistemas</option>
-                            <option>Otras Mariconadas</option>
-                            <option>Danza</option>-->
                         </select>
                     </div>     
                     <div class="form-group">

@@ -1,0 +1,21 @@
+<br/>
+<ul class="nav nav-pills nav-stacked">
+    <% if(tipoUsuario.equals("Administrador")) { %> 
+        <li class="list-group-item list-group-item-info"><a href="CursosServlet?mantCursos">Mantenimiento de Cursos</a></li>
+        <li class="list-group-item list-group-item-info"><a href="CarrerasServlet?mantCarreras">Mantenimiento de Carreras</a></li>
+        <li class="list-group-item list-group-item-info"><a href="ProfesoresServlet?mantProfes">Mantenimineto de Profesores</a></li>
+        <li class="list-group-item list-group-item-info"class="list-group-item list-group-item-info"><a href="EstudiantesServlet?mantEstudiantes">Mantenimiento de Estudiantes</a></li>
+        <li class="list-group-item list-group-item-info"><a href="CiclosServlet?mantCiclos">Mantenimiento de Ciclos</a></li>
+        <li class="list-group-item list-group-item-success"><a href="OfertaServlet?oferta">Oferta Academica</a></li>
+        <li class="list-group-item list-group-item-danger"><a href="SeguridadServlet?seguridad">Seguridad</a></li>
+    <% } %>
+    <% if(tipoUsuario.equals("Matriculador")) { %> 
+        <li class="list-group-item list-group-item-success"><a href="EstudiantesServlet?mantEstudiantes">Matricular Estudiantes</a></li>
+    <% } %>
+    <% if(tipoUsuario.equals("Profesor")) { %> 
+        <li class="list-group-item list-group-item-success"><a href="GruposProfeServlet?regNotas">Registro de Notas</a></li>
+    <% } %>
+    <% if(tipoUsuario.equals("Estudiante")) { %>
+        <li class="list-group-item list-group-item-success"><a href="HistorialServlet?getHistorial">Consultar Historial</a></li>
+    <% } %>
+</ul>

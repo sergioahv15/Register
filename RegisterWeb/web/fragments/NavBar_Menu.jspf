@@ -1,0 +1,32 @@
+<br/> 
+<div id="menu">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <% if(tipoUsuario.equals("Administrador")) { %> 
+                    <li class="active"><a href="Menu.jsp">Menu Principal</a></li>
+                    <li><a href="CursosServlet?mantCursos">Cursos</a></li>
+                    <li><a href="CarrerasServlet?mantCarreras">Carreras</a></li>
+                    <li><a href="ProfesoresServlet?mantProfes">Profesores</a></li>
+                    <li><a href="EstudiantesServlet?mantEstudiantes">Estudiantes</a></li>
+                    <li><a href="CiclosServlet?mantCiclos">Ciclos</a></li>
+                    <li><a href="OfertaServlet?oferta">Oferta Academica</a></li>
+                    <li><a href="SeguridadServlet?seguridad">Seguridad</a></li>
+                <% } %>
+                <% if(tipoUsuario.equals("Matriculador")) { %> 
+                    <li class="active"><a href="Menu.jsp">Menu Principal</a></li>
+                    <li><a href="EstudiantesServlet?mantEstudiantes">Matricular Estudiantes</a></li>
+                <% } %>
+                <% if(tipoUsuario.equals("Profesor")) { %> 
+                    <li class="active"><a href="Menu.jsp">Menu Principal</a></li>
+                    <li><a href="GruposProfeServlet?regNotas">Registro de Notas</a></li>
+                <% } %>
+                <% if(tipoUsuario.equals("Estudiante")) { %> 
+                    <li class="active"><a href="Menu.jsp">Menu Principal</a></li>
+                    <li><a href="HistorialServlet?getHistorial">Consultar Historial</a></li>
+                <% } %>                    
+                <li><a href="LoginServlet?logout">Cerrar Sesión</a></li>
+            </ul>
+        </div>
+      </nav>
+</div>   

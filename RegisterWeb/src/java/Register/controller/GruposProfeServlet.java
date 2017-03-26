@@ -43,6 +43,14 @@ public class GruposProfeServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
+            IModel model = new ModelProxy();
+            
+            if(request.getParameter("regNotas") != null){
+                Integer ced_pro = (Integer) request.getSession().getAttribute("idUsuario");
+                List<Grupo> grupos = model.search_GRU_PRO(ced_pro);
+                request.setAttribute("grupos", grupos);
+                request.getRequestDispatcher("GruposProfe.jsp").forward(request, response);
+            }
         }
     }
 

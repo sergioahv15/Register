@@ -5,12 +5,13 @@
  */
 package Register.controller;
 
+import Register.Entities.Carrera;
 import Register.Entities.Usuario;
 import Register.IModel;
 import Register.model.ModelProxy;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javafx.scene.control.Alert;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,16 +37,26 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
+            IModel model = new ModelProxy();   
+            
+            if(request.getParameter("logout") != null){
+                HttpSession session = request.getSession();
+                if(session!= null){
+                    response.setHeader("Cache-Control","no-cache"); 
+                    response.setHeader("Cache-Control","no-store"); 
+                    response.setHeader("Pragma","no-cache");
+                    response.setDateHeader("Expires", 0);
+                    //*******************************************+
+                    session.removeAttribute("usuario");
+                    session.removeAttribute("idUsuario");
+                    session.removeAttribute("loginStatus");
+                    session.removeAttribute("tipo");
+                    //********************************************
+                    session.invalidate();
+                }
+                response.sendRedirect("Login.jsp");
+            }
         }
     }
 
@@ -119,13 +130,6 @@ public class LoginServlet extends HttpServlet {
                 break;
             }
             request.getRequestDispatcher("Menu.jsp").forward(request, response);
-        } else{
-            HttpSession session=request.getSession(false);
-            
-           // response.sendError(0, "Usuario o contraseña incorrectas");
-            //response.sendRedirect("Login.jsp");
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
-            
         }
     }
 
