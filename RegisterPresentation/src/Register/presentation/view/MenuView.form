@@ -42,22 +42,27 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
-              <Component id="menuLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="155" max="32767" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="mantenEstBtn" max="32767" attributes="0"/>
-                  <Component id="mantenProfesBtn" alignment="0" max="32767" attributes="0"/>
-                  <Component id="mantenCarrerasBtn" alignment="0" max="32767" attributes="0"/>
-                  <Component id="mantenCiclosBtn" alignment="1" max="32767" attributes="0"/>
-                  <Component id="ofertaAcadBtn" alignment="1" max="32767" attributes="0"/>
-                  <Component id="regNotasBtn" alignment="1" max="32767" attributes="0"/>
-                  <Component id="consultHistBtn" alignment="0" max="32767" attributes="0"/>
-                  <Component id="mantenCursosBtn" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
+                      <Component id="menuLabel" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="mantenEstBtn" max="32767" attributes="0"/>
+                          <Component id="mantenProfesBtn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="mantenCarrerasBtn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="mantenCiclosBtn" alignment="1" max="32767" attributes="0"/>
+                          <Component id="ofertaAcadBtn" alignment="1" max="32767" attributes="0"/>
+                          <Component id="regNotasBtn" alignment="1" max="32767" attributes="0"/>
+                          <Component id="consultHistBtn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="mantenCursosBtn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="SeguridadBtn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="LogoutBtn" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace pref="110" max="32767" attributes="0"/>
           </Group>
@@ -84,7 +89,11 @@
               <Component id="regNotasBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="consultHistBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="32" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="SeguridadBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="LogoutBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -206,6 +215,34 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="MENU PRINCIPAL"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="SeguridadBtn">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="grupo1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Seguridad"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SeguridadBtnActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="LogoutBtn">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="grupo1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Cerrar Sesi&#xf3;n"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LogoutBtnActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>

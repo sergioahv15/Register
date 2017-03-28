@@ -27,9 +27,9 @@ public class HistorialController {
     }
     
     public void buscar(){
-        List<String> historial = Application.Model.search_HIST(Application.ACTIVE_USER.getCedula());
+        List<String> historial = Application.Model.search_HIST(Application.CED_EST_CURRENT);
         model.setHistoriales(historial);
-        Estudiante est = Application.Model.search_EST("", Application.ACTIVE_USER.getCedula(), "Todas").get(0);
+        Estudiante est = Application.Model.search_EST("", Application.CED_EST_CURRENT, "Todas").get(0);
         view.estudianteFld.setText(est.getNombre());
         view.cedulaFld.setText(String.valueOf(est.getCedula()));
     }

@@ -214,7 +214,9 @@ public class EstudiantesView extends javax.swing.JFrame implements java.util.Obs
     }//GEN-LAST:event_matriculaBtnActionPerformed
 
     private void consultaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaBtnActionPerformed
-        // TODO add your handling code here:
+        int row = this.estudiantesFld.getSelectedRow();
+        Application.HISTORIAL_VIEW.setLocation(this.matriculaBtn.getLocationOnScreen());
+        controller.verHistorial(row);
     }//GEN-LAST:event_consultaBtnActionPerformed
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed

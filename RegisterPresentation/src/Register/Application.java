@@ -25,7 +25,10 @@ import Register.presentation.controller.MenuController;
 import Register.presentation.controller.NotaController;
 import Register.presentation.controller.NotasController;
 import Register.presentation.controller.OfertaController;
+import Register.presentation.controller.ProfesorController;
 import Register.presentation.controller.ProfesoresController;
+import Register.presentation.controller.UsuarioController;
+import Register.presentation.controller.UsuariosController;
 import Register.presentation.model.CarreraModel;
 import Register.presentation.model.CicloModel;
 import Register.presentation.model.CursoModel;
@@ -37,6 +40,7 @@ import Register.presentation.model.ModelProxy;
 import Register.presentation.model.NotaModel;
 import Register.presentation.model.OfertaModel;
 import Register.presentation.model.ProfesorModel;
+import Register.presentation.model.UsuarioModel;
 import Register.presentation.view.CarrerasView;
 import Register.presentation.view.CiclosView;
 import Register.presentation.view.CursoView;
@@ -57,6 +61,8 @@ import Register.presentation.view.NotasView;
 import Register.presentation.view.OfertaView;
 import Register.presentation.view.ProfesorView;
 import Register.presentation.view.ProfesoresView;
+import Register.presentation.view.SeguridadView;
+import Register.presentation.view.UsuarioView;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
@@ -90,12 +96,15 @@ public class Application {
         
         LoginModel loginModel = new LoginModel();
         LoginView loginView = new LoginView();
+        LOGIN_VIEW = loginView;
         LoginController loginController = new LoginController(loginView,loginModel);
+        LOGIN_CONTROLLER = loginController;
         loginView.setVisible(true);
         
         GrupoModel grupoModel = new GrupoModel();
         GRUPO_MODEL = grupoModel;
         ProfesorModel profesorModel = new ProfesorModel();
+        UsuarioModel usuarioModel = new UsuarioModel();
         EstudianteModel estudianteModel = new EstudianteModel();
         CicloModel cicloModel = new CicloModel();
         CarreraModel carreraModel = new CarreraModel();
@@ -142,6 +151,11 @@ public class Application {
         ProfesoresController profesoresController = new ProfesoresController(profesoresView,profesorModel);
         //profesoresView.setVisible(true);
                 
+        SeguridadView seguridadView = new SeguridadView();
+        SEGURIDAD_VIEW = seguridadView;
+        UsuariosController usuariosController = new UsuariosController(seguridadView,usuarioModel);
+        
+        
         EstudiantesView estudiantesView= new EstudiantesView();
         ESTUDIANTES_VIEW=estudiantesView;
         EstudiantesController estudiantesController = new EstudiantesController(estudiantesView,estudianteModel);
@@ -175,11 +189,14 @@ public class Application {
         MATRICULA_VIEW=matriculaView;
         
         gruposController.setView3(matriculaView);
-        //ProfesorView profesorView = new ProfesorView(profesoresView,true);
         
+        ProfesorView profesorView = new ProfesorView(profesoresView,true);               
+        PROFESOR_VIEW=profesorView;
+        ProfesorController profesorController = new ProfesorController(profesorView,profesorModel);
         
-        //PROFESOR_VIEW=profesorView;
-        //ProfesorController profesorController = new ProfesorController(profesorView,profesorModel);
+        UsuarioView usuarioView = new UsuarioView(seguridadView,true);
+        USUARIO_VIEW = usuarioView;
+        UsuarioController usuarioController = new UsuarioController(usuarioView,usuarioModel);        
         
         EstudianteView estudianteView = new EstudianteView(estudiantesView,true);
         ESTUDIANTE_VIEW=estudianteView;
@@ -227,6 +244,11 @@ public class Application {
     public static int NUM_GRUPO;
     public static MenuView MENU_VIEW;
     public static int ANYO_CURRENT=2017;
+    public static UsuarioView USUARIO_VIEW;
+    public static SeguridadView SEGURIDAD_VIEW;
+    public static int CED_EST_CURRENT;
+    public static LoginView LOGIN_VIEW;
+    public static LoginController LOGIN_CONTROLLER;
        
     public static  final int  MODO_AGREGAR=0;
     public static final int MODO_EDITAR=1;

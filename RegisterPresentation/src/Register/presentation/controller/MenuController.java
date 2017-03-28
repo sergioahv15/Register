@@ -47,9 +47,22 @@ public class MenuController {
             break;
             case 8:
                 Application.HISTORIAL_VIEW.setVisible(true);
+                Application.CED_EST_CURRENT = Application.ACTIVE_USER.getCedula();
             break;
-            default:
-                Application.HISTORIAL_VIEW.setVisible(true);
+            case 9:
+                Application.SEGURIDAD_VIEW.setVisible(true);
+            break;
+            case 10:
+                Application.CURSOS_VIEW.setVisible(false);
+                Application.CARRERAS_VIEW.setVisible(false);
+                Application.PROFESORES_VIEW.setVisible(false);
+                Application.ESTUDIANTES_VIEW.setVisible(false);
+                Application.CICLOS_VIEW.setVisible(false);
+                Application.OFERTA_VIEW.setVisible(false);
+                Application.GRUPOS_PROFE_VIEW.setVisible(false);
+                Application.HISTORIAL_VIEW.setVisible(false);
+                Application.SEGURIDAD_VIEW.setVisible(false);                
+                Application.LOGIN_CONTROLLER.logout();
             break;
         }
     }

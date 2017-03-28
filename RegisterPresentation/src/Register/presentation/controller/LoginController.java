@@ -39,7 +39,10 @@ public class LoginController {
                 Application.MENU_VIEW.mantenCursosBtn.setEnabled(false);
                 Application.MENU_VIEW.mantenEstBtn.setEnabled(false);
                 Application.MENU_VIEW.mantenProfesBtn.setEnabled(false);
-                Application.MENU_VIEW.ofertaAcadBtn.setEnabled(false);      
+                Application.MENU_VIEW.ofertaAcadBtn.setEnabled(false); 
+                Application.MENU_VIEW.SeguridadBtn.setEnabled(false);
+                Application.MENU_VIEW.regNotasBtn.setEnabled(true);
+                Application.LOGIN_VIEW.setVisible(false);
                 Application.MENU_VIEW.setVisible(true);
             break;
             case "estudiante":
@@ -51,7 +54,10 @@ public class LoginController {
                 Application.MENU_VIEW.mantenEstBtn.setEnabled(false);
                 Application.MENU_VIEW.mantenProfesBtn.setEnabled(false);
                 Application.MENU_VIEW.ofertaAcadBtn.setEnabled(false);      
-                Application.MENU_VIEW.regNotasBtn.setEnabled(false); 
+                Application.MENU_VIEW.regNotasBtn.setEnabled(false);
+                Application.MENU_VIEW.SeguridadBtn.setEnabled(false);
+                Application.MENU_VIEW.consultHistBtn.setEnabled(true);
+                Application.LOGIN_VIEW.setVisible(false);
                 Application.MENU_VIEW.setVisible(true);                
             break;
             case "matriculador":
@@ -60,18 +66,34 @@ public class LoginController {
                 Application.MENU_VIEW.mantenCarrerasBtn.setEnabled(false);
                 Application.MENU_VIEW.mantenCiclosBtn.setEnabled(false);
                 Application.MENU_VIEW.mantenCursosBtn.setEnabled(false);
+                Application.MENU_VIEW.mantenEstBtn.setEnabled(true);
                 Application.MENU_VIEW.mantenProfesBtn.setEnabled(false);
                 Application.MENU_VIEW.ofertaAcadBtn.setEnabled(false);      
                 Application.MENU_VIEW.regNotasBtn.setEnabled(false); 
                 Application.MENU_VIEW.consultHistBtn.setEnabled(false);
+                Application.MENU_VIEW.SeguridadBtn.setEnabled(false);
                 Application.ESTUDIANTES_VIEW.agregarBtn.setEnabled(false);
                 Application.ESTUDIANTES_VIEW.consultaBtn.setEnabled(false);
+                Application.ESTUDIANTES_VIEW.matriculaBtn.setEnabled(true);
+                Application.LOGIN_VIEW.setVisible(false);
                 Application.MENU_VIEW.setVisible(true);
             break;
             case "administrador":
                 Application.ACTIVE_USER = new Usuario("",0,"administrador");
                 System.out.println("LOGIN EXITOSO ADMINISTRADOR");     
+                Application.MENU_VIEW.mantenCarrerasBtn.setEnabled(true);
+                Application.MENU_VIEW.mantenCiclosBtn.setEnabled(true);
+                Application.MENU_VIEW.mantenCursosBtn.setEnabled(true);
+                Application.MENU_VIEW.mantenEstBtn.setEnabled(true);
+                Application.MENU_VIEW.mantenProfesBtn.setEnabled(true);
+                Application.MENU_VIEW.ofertaAcadBtn.setEnabled(true);      
                 Application.MENU_VIEW.regNotasBtn.setEnabled(false);
+                Application.MENU_VIEW.consultHistBtn.setEnabled(false);
+                Application.ESTUDIANTES_VIEW.agregarBtn.setEnabled(true);
+                Application.ESTUDIANTES_VIEW.consultaBtn.setEnabled(true);
+                Application.ESTUDIANTES_VIEW.matriculaBtn.setEnabled(true);
+                Application.MENU_VIEW.SeguridadBtn.setEnabled(true);
+                Application.LOGIN_VIEW.setVisible(false);
                 Application.MENU_VIEW.setVisible(true);
             break;
             case "nulo":
@@ -81,5 +103,13 @@ public class LoginController {
             default:
                 
         }
+    }
+    
+    public void logout(){
+        Application.ACTIVE_USER=null;
+        view.userFld.setText("");
+        view.passFld.setText("");
+        Application.MENU_VIEW.setVisible(false);
+        Application.LOGIN_VIEW.setVisible(true);
     }
 }

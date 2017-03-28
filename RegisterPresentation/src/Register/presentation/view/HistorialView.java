@@ -5,6 +5,7 @@
  */
 package Register.presentation.view;
 
+import Register.Application;
 import Register.presentation.controller.HistorialController;
 import Register.presentation.model.HistorialModel;
 
@@ -55,7 +56,8 @@ public class HistorialView extends javax.swing.JFrame implements java.util.Obser
         cedulaFld = new javax.swing.JTextField();
         buscarBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Historial de Estudiante");
 
         estudianteLabel.setText("Estudiante:");
         estudianteLabel.setToolTipText("");
@@ -139,6 +141,7 @@ public class HistorialView extends javax.swing.JFrame implements java.util.Obser
     }//GEN-LAST:event_estudianteFldActionPerformed
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        
         this.controller.buscar();
     }//GEN-LAST:event_buscarBtnActionPerformed
 

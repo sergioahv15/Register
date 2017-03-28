@@ -63,18 +63,18 @@ public class EstudiantesController {
     }
     
     public void preAgregar(int row){
-        /*Estudiante seleccionado = model.getEstudiantesModel().getRowAt(row);
-        Application.ESTUDIANTE_CURRENT = seleccionado;
-        Application.CARRERA_CURRENT = seleccionado.getCarrera();
-        List<Grupo> rows = Application.Model.search_GRU("",Application.CARRERA_CURRENT.getCodigo());
-        //Application.GRUPO_MODEL.setGrupos(rows); 
-        Application.MATRICULADOS_VIEW.setVisible(true);
-        */
         Estudiante seleccionado = model.getEstudiantesModel().getRowAt(row);
         Application.ESTUDIANTE_CURRENT = seleccionado;
         List<Grupo> rows = Application.Model.search_GRU(seleccionado.getCedula());
         Application.GRUPO_MODEL.setGrupos(rows); 
         Application.MATRICULADOS_VIEW.setVisible(true);
+    }
+    
+    public void verHistorial(int row){
+        Estudiante seleccionado = model.getEstudiantesModel().getRowAt(row);
+        Application.ESTUDIANTE_CURRENT = seleccionado;
+        Application.CED_EST_CURRENT = seleccionado.getCedula();
+        Application.HISTORIAL_VIEW.setVisible(true);
     }
     
     public void editar(int row){
